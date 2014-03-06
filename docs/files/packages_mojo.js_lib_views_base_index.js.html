@@ -45,15 +45,21 @@
             
                 <li><a href="../classes/Application.html">Application</a></li>
             
+                <li><a href="../classes/BaseView.html">BaseView</a></li>
+            
+                <li><a href="../classes/ListView.html">ListView</a></li>
+            
+                <li><a href="../classes/Mojo.html">Mojo</a></li>
+            
                 <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+                <li><a href="../classes/StateView.html">StateView</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="../modules/mojo.html">mojo</a></li>
-            
-                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
             
             </ul>
         </div>
@@ -103,12 +109,24 @@ _                = require(&quot;underscore&quot;),
 decor            = require(&quot;../../plugins/decor&quot;),
 generateId       = require(&quot;../../utils/idGenerator&quot;);
 
+/**
+ * The Base View
+ * @class BaseView
+ * @extends SubindableObject
+ */
+
 
 function DecorableView (data, application) {
 
   SubindableObject.call(this, this);
 
   this._onParent     = _.bind(this._onParent, this);
+
+  /**
+   * The main application that instantiated this view
+   * @property application
+   * @type {Application}
+   */
 
   this.application = application;
 
@@ -131,6 +149,9 @@ protoclass(SubindableObject, DecorableView, {
   define: [&quot;sections&quot;, &quot;states&quot;],
 
   /**
+   * adds a disposable object to cleanup when the view is destroyed.
+   * @method disposable
+   * @param {Object} disposable Must have &#x60;dispose()&#x60; defined.
    */
 
   disposable: function (disposable) {
@@ -161,6 +182,9 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Called when the view is instantiated
+   * @method initialize 
+   * @param {Object} options options passed when creating the view
    */
 
   initialize: function (data) {
@@ -171,7 +195,6 @@ protoclass(SubindableObject, DecorableView, {
     this.reset(data);
 
     if (this.application) this._initDecor();
-
   },
 
   /**
@@ -194,7 +217,8 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
-   * returns the path to this view
+   * Returns the path to the view
+   * @method path
    */
 
   path: function () {
@@ -209,6 +233,9 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Renders the view
+   * @method render
+   * @return {Object} document fragment
    */
 
   render: function () {
@@ -231,6 +258,9 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * called in &#x60;render()&#x60;, before emitting &#x60;render&#x60; event
+   * @method _render
+   * @protected
    */
 
   _render: function (section) {
@@ -238,6 +268,8 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Removes the view from the parent, or DOM
+   * @method remove
    */
 
   remove: function () {
@@ -251,6 +283,9 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * jquery selector for elements owned by the view
+   * @method $
+   * @param {String} selector
    */
 
   $: function (search) {
@@ -266,7 +301,9 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
-   * attaches to an element
+   * Attaches the view to an element. This is mostly used for the main view.
+   * @method attach
+   * @param {Object} DOM element to attach to
    */
 
   attach: function (element) {
@@ -283,7 +320,7 @@ protoclass(SubindableObject, DecorableView, {
     }
   },
 
-  /**
+  /** 
    */
 
   setChild: function (name, child) {
@@ -292,6 +329,10 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Sort of a mix-in for the view. This is how &#x60;sections&#x60;, and &#x60;events&#x60; are added.
+   * @method decorate
+   * @param options
+   * @returns {Object} this
    */
 
   decorate: function (options) {
@@ -300,6 +341,8 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Disposes the view, and adds to the global object pool if registered.
+   * @method dispose
    */
 
   dispose: function () {
@@ -317,6 +360,10 @@ protoclass(SubindableObject, DecorableView, {
   },
 
   /**
+   * Bubbles an event up to the root view
+   * @method bubble
+   * @param {String} name of the event
+   * @param {Object} params... additional params
    */
 
   bubble: function () {

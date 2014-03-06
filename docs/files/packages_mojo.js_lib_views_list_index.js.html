@@ -45,15 +45,21 @@
             
                 <li><a href="../classes/Application.html">Application</a></li>
             
+                <li><a href="../classes/BaseView.html">BaseView</a></li>
+            
+                <li><a href="../classes/ListView.html">ListView</a></li>
+            
+                <li><a href="../classes/Mojo.html">Mojo</a></li>
+            
                 <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+                <li><a href="../classes/StateView.html">StateView</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="../modules/mojo.html">mojo</a></li>
-            
-                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
             
             </ul>
         </div>
@@ -105,7 +111,11 @@ runlater       = require(&quot;runlater&quot;).global,
 poolparty      = require(&quot;poolparty&quot;),
 idGenerator    = require(&quot;../../utils/idGenerator&quot;);
 
-
+/** 
+ * List View
+ * @class ListView
+ * @extends BaseView
+ */
 
 function ListView (data, application) {
   ListView.parent.call(this, data, application);
@@ -137,11 +147,15 @@ function onOptionChange (onRef) {
 protoclass(BaseView, ListView, {
 
   /**
+   * Number of items to asyncronously add to the list (optimization).
+   * @property chunk
    */
 
   chunk: 10,
 
   /**
+   * Delay between adding chunked items to the list (optimization).
+   * @property delay
    */
 
   delay: 0,
@@ -160,7 +174,71 @@ protoclass(BaseView, ListView, {
   /**
    */
 
-  define: [&quot;filter&quot;, &quot;sort&quot;, &quot;map&quot;, &quot;length&quot;, &quot;modelViewFactory&quot;, &quot;modelViewClass&quot;, &quot;viewClass&quot;, &quot;source&quot;],
+  define: [
+
+    /**
+     * The filter method for the list view
+     * @method filter
+     * @param {BindableObject} the model to builder
+     */
+
+    &quot;filter&quot;, 
+
+    /**
+     * The sort method for the list
+     * @method sort
+     * @param {BaseView} a
+     * @param {BaseView} b
+     */
+
+    &quot;sort&quot;, 
+
+    /**
+     * Maps model data before setting to the instantiated list item view
+     * @method map
+     * @param {Object} model
+     * @return {Number} 0, 1, or -1
+     */
+
+    &quot;map&quot;, 
+
+    /**
+     * The size of the list view
+     * @property length
+     * @type {Number}
+     */
+
+    &quot;length&quot;, 
+
+    /**
+     * The model view factory for creating each list item
+     * @property modelViewFactory
+     */
+
+    &quot;modelViewFactory&quot;, 
+
+    /**
+     * The model view class for each list item. Use this or &#x60;modelViewFactory&#x60;.
+     * @property modelViewClass
+     * @type {BaseView}
+     */
+
+    &quot;modelViewClass&quot;, 
+
+    /**
+     * DEPRECATED
+     */
+
+    &quot;viewClass&quot;, 
+
+    /**
+     * The collection of models to use. Each model is assigned as &#x60;model&#x60; to each instantiated &#x60;modelViewClass&#x60;.
+     * @property source
+     * @type {BindableCollection}
+     */
+
+    &quot;source&quot;
+  ],
 
   /**
    */

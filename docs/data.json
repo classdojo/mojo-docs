@@ -2,7 +2,8 @@
     "project": {
         "name": "Mojo.js Docs",
         "version": "0.7.84",
-        "url": "http://mojojs.com/"
+        "url": "http://mojojs.com/",
+        "theme": "simple"
     },
     "files": {
         "packages/mojo.js/lib/plugins/decor/events.js": {
@@ -36,21 +37,27 @@
         "packages/mojo.js/lib/views/base/index.js": {
             "name": "packages/mojo.js/lib/views/base/index.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "BaseView": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "packages/mojo.js/lib/views/list/index.js": {
             "name": "packages/mojo.js/lib/views/list/index.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "ListView": 1
+            },
             "fors": {},
             "namespaces": {}
         },
         "packages/mojo.js/lib/views/states/index.js": {
             "name": "packages/mojo.js/lib/views/states/index.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "StateView": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -74,11 +81,18 @@
         },
         "packages/mojo.js/lib/application.js": {
             "name": "packages/mojo.js/lib/application.js",
-            "modules": {
-                "mojo-application": 1
-            },
+            "modules": {},
             "classes": {
                 "Application": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/index.js": {
+            "name": "packages/mojo.js/lib/index.js",
+            "modules": {},
+            "classes": {
+                "Mojo": 1
             },
             "fors": {},
             "namespaces": {}
@@ -383,12 +397,14 @@
     "modules": {
         "mojo": {
             "name": "mojo",
-            "submodules": {
-                "mojo-application": 1
-            },
+            "submodules": {},
             "classes": {
+                "BaseView": 1,
+                "ListView": 1,
+                "StateView": 1,
                 "Animator": 1,
                 "Application": 1,
+                "Mojo": 1,
                 "RegisteredClasses": 1
             },
             "fors": {},
@@ -396,22 +412,7 @@
             "tag": "module",
             "file": "packages/mojo.js/lib/registeredClasses.js",
             "line": 3,
-            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
-        },
-        "mojo-application": {
-            "name": "mojo-application",
-            "submodules": {},
-            "classes": {
-                "Application": 1
-            },
-            "fors": {},
-            "is_submodule": 1,
-            "namespaces": {},
-            "module": "mojo",
-            "namespace": "",
-            "file": "packages/mojo.js/lib/application.js",
-            "line": 16,
-            "description": "Main entry point to your application. This is where everything is initialized.",
+            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing.",
             "params": [
                 {
                     "name": "options",
@@ -422,6 +423,48 @@
         }
     },
     "classes": {
+        "BaseView": {
+            "name": "BaseView",
+            "shortname": "BaseView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 10,
+            "description": "The Base View",
+            "extends": "SubindableObject"
+        },
+        "ListView": {
+            "name": "ListView",
+            "shortname": "ListView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 12,
+            "description": "List View",
+            "extends": "BaseView"
+        },
+        "StateView": {
+            "name": "StateView",
+            "shortname": "StateView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 9,
+            "description": "States View. This is usually defined in `{ sections: { pages: { type: 'states'}} }`",
+            "extends": "BaseView"
+        },
         "Animator": {
             "name": "Animator",
             "shortname": "Animator",
@@ -445,11 +488,23 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "mojo",
-            "submodule": "mojo-application",
             "namespace": "",
             "file": "packages/mojo.js/lib/application.js",
             "line": 16,
             "description": "Main entry point to your application. This is where everything is initialized."
+        },
+        "Mojo": {
+            "name": "Mojo",
+            "shortname": "Mojo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/index.js",
+            "line": 5
         },
         "RegisteredClasses": {
             "name": "RegisteredClasses",
@@ -470,386 +525,666 @@
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 21,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 34,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 41,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 84,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 93,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 11,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 19,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 29,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 48,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 16,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 26,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 42,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 58,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/pools/index.js",
             "line": 46,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 27,
-            "class": "Animator"
+            "line": 23,
+            "description": "The main application that instantiated this view",
+            "itemtype": "property",
+            "name": "application",
+            "type": "{Application}",
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 32,
-            "class": "Animator"
+            "line": 39,
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 37,
-            "class": "Animator"
+            "line": 44,
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
             "line": 49,
-            "class": "Animator"
+            "description": "adds a disposable object to cleanup when the view is destroyed.",
+            "itemtype": "method",
+            "name": "disposable",
+            "params": [
+                {
+                    "name": "disposable",
+                    "description": "Must have `dispose()` defined.",
+                    "type": "Object"
+                }
+            ],
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 67,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 81,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 100,
-            "description": "returns the path to this view",
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 115,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 137,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 144,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 157,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 172,
-            "description": "attaches to an element",
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 190,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 198,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 206,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 223,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 231,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 253,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 263,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 274,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 18,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 38,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 43,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 48,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 53,
-            "description": "make sure decorations don't get activated for this view",
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 59,
-            "class": "Animator"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 64,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 69,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 82,
+            "description": "Called when the view is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "options passed when creating the view",
+                    "type": "Object"
+                }
+            ],
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
+            "file": "packages/mojo.js/lib/views/base/index.js",
             "line": 98,
-            "class": "Animator"
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 122,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 117,
+            "description": "Returns the path to the view",
+            "itemtype": "method",
+            "name": "path",
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 162,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 133,
+            "description": "Renders the view",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "document fragment",
+                "type": "Object"
+            },
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 169,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 158,
+            "description": "called in `render()`, before emitting `render` event",
+            "itemtype": "method",
+            "name": "_render",
+            "access": "protected",
+            "tagname": "",
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 182,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 168,
+            "description": "Removes the view from the parent, or DOM",
+            "itemtype": "method",
+            "name": "remove",
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 190,
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 183,
+            "description": "jquery selector for elements owned by the view",
+            "itemtype": "method",
+            "name": "$",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "BaseView"
         },
         {
-            "file": "packages/mojo.js/lib/views/list/index.js",
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 201,
+            "description": "Attaches the view to an element. This is mostly used for the main view.",
+            "itemtype": "method",
+            "name": "attach",
+            "params": [
+                {
+                    "name": "DOM",
+                    "description": "element to attach to",
+                    "type": "Object"
+                }
+            ],
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 221,
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
             "line": 229,
-            "class": "Animator"
+            "description": "Sort of a mix-in for the view. This is how `sections`, and `events` are added.",
+            "itemtype": "method",
+            "name": "decorate",
+            "params": [
+                {
+                    "name": "options",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "this",
+                "type": "Object"
+            },
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 241,
+            "description": "Disposes the view, and adds to the global object pool if registered.",
+            "itemtype": "method",
+            "name": "dispose",
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 260,
+            "description": "Bubbles an event up to the root view",
+            "itemtype": "method",
+            "name": "bubble",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "of the event",
+                    "type": "String"
+                },
+                {
+                    "name": "params...",
+                    "description": "additional params",
+                    "type": "Object"
+                }
+            ],
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 272,
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 294,
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 304,
+            "class": "BaseView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 315,
+            "class": "BaseView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 239,
-            "class": "Animator"
+            "line": 22,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 247,
-            "class": "Animator"
+            "line": 42,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 47,
+            "description": "Number of items to asyncronously add to the list (optimization).",
+            "itemtype": "property",
+            "name": "chunk",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 54,
+            "description": "Delay between adding chunked items to the list (optimization).",
+            "itemtype": "property",
+            "name": "delay",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 61,
+            "description": "make sure decorations don't get activated for this view",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 67,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 72,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 77,
+            "description": "The filter method for the list view",
+            "itemtype": "method",
+            "name": "filter",
+            "params": [
+                {
+                    "name": "the",
+                    "description": "model to builder",
+                    "type": "BindableObject"
+                }
+            ],
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 85,
+            "description": "The sort method for the list",
+            "itemtype": "method",
+            "name": "sort",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "BaseView"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "BaseView"
+                }
+            ],
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 94,
+            "description": "Maps model data before setting to the instantiated list item view",
+            "itemtype": "method",
+            "name": "map",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "0, 1, or -1",
+                "type": "Number"
+            },
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 103,
+            "description": "The size of the list view",
+            "itemtype": "property",
+            "name": "length",
+            "type": "{Number}",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 111,
+            "description": "The model view factory for creating each list item",
+            "itemtype": "property",
+            "name": "modelViewFactory",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 118,
+            "description": "The model view class for each list item. Use this or `modelViewFactory`.",
+            "itemtype": "property",
+            "name": "modelViewClass",
+            "type": "{BaseView}",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 126,
+            "description": "DEPRECATED",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 132,
+            "description": "The collection of models to use. Each model is assigned as `model` to each instantiated `modelViewClass`.",
+            "itemtype": "property",
+            "name": "source",
+            "type": "{BindableCollection}",
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 141,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 170,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 194,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 234,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 241,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 254,
-            "class": "Animator"
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 293,
-            "class": "Animator"
+            "line": 262,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 307,
-            "class": "Animator"
+            "line": 301,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 348,
-            "class": "Animator"
+            "line": 311,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 359,
-            "class": "Animator"
+            "line": 319,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 373,
-            "class": "Animator"
+            "line": 326,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 402,
-            "class": "Animator"
+            "line": 365,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 410,
-            "class": "Animator"
+            "line": 379,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 424,
-            "class": "Animator"
+            "line": 420,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 435,
-            "class": "Animator"
+            "line": 431,
+            "class": "ListView"
         },
         {
-            "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 16,
-            "description": "prevent states from being decorated",
-            "class": "Animator"
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 445,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 474,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 482,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 496,
+            "class": "ListView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 507,
+            "class": "ListView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
             "line": 22,
-            "class": "Animator"
+            "description": "prevent states from being decorated",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 29,
-            "class": "Animator"
+            "line": 28,
+            "description": "Transitions from one state to another",
+            "params": [
+                {
+                    "name": "from",
+                    "description": "view to transition from. This can be null.",
+                    "type": "BaseView"
+                },
+                {
+                    "name": "to",
+                    "description": "view to transition to.",
+                    "type": "BaseView"
+                },
+                {
+                    "name": "complete",
+                    "description": "called when the transition finishes",
+                    "type": "Function"
+                }
+            ],
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 40,
-            "class": "Animator"
+            "line": 39,
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 45,
-            "class": "Animator"
+            "line": 44,
+            "description": "current state name",
+            "itemtype": "property",
+            "name": "currentName",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 59,
-            "class": "Animator"
+            "line": 51,
+            "description": "current state index",
+            "itemtype": "property",
+            "name": "index",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 73,
-            "class": "Animator"
+            "line": 58,
+            "description": "TODO - change this to 'states'",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 82,
-            "class": "Animator"
+            "line": 64,
+            "description": "The current view being displayed",
+            "itemtype": "property",
+            "name": "currentView",
+            "type": "{BaseView}",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 96,
-            "class": "Animator"
+            "line": 75,
+            "description": "The collection of view classes to use",
+            "itemtype": "property",
+            "name": "views",
+            "type": "{Array}",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 110,
-            "class": "Animator"
+            "line": 84,
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 89,
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 103,
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
             "line": 117,
-            "class": "Animator"
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 124,
-            "class": "Animator"
+            "line": 126,
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 149,
-            "class": "Animator"
+            "line": 140,
+            "description": "Selects a specific index",
+            "itemtype": "method",
+            "name": "select",
+            "params": [
+                {
+                    "name": "stateOrIndex",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 163,
-            "class": "Animator"
+            "line": 157,
+            "description": "moves to the next state",
+            "itemtype": "method",
+            "name": "next",
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 170,
-            "class": "Animator"
+            "line": 166,
+            "description": "moves to the previous state",
+            "itemtype": "method",
+            "name": "prev",
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 175,
+            "description": "moves to a specific state index",
+            "itemtype": "method",
+            "name": "move",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "steps to move. Can be something like `-1`, or `1`."
+                }
+            ],
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 203,
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 217,
+            "class": "StateView"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 224,
+            "class": "StateView"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
@@ -899,29 +1234,27 @@
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 36,
+            "line": 35,
             "description": "List of registered model classes",
             "itemtype": "property",
             "name": "modelClasses",
             "type": "RegisteredClasses",
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 44,
+            "line": 43,
             "description": "List of registered view classes",
             "itemtype": "property",
             "name": "viewClasses",
             "type": "RegisteredClasses",
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 62,
+            "line": 61,
             "description": "Plugins to use for the mojo application.",
             "itemtype": "method",
             "name": "use",
@@ -933,28 +1266,25 @@
                 }
             ],
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 79,
+            "line": 78,
             "description": "DEPRECATED",
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 95,
+            "line": 94,
             "description": "DEPRECATED",
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 109,
+            "line": 108,
             "description": "Runs `update()` on requestAnimationFrame. Used whenever the UI changes.",
             "itemtype": "method",
             "name": "animate",
@@ -969,24 +1299,90 @@
                 "Animator"
             ],
             "class": "Application",
-            "module": "mojo",
-            "submodule": "mojo-application"
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/index.js",
+            "line": 14,
+            "description": "The base mojo.js View",
+            "itemtype": "property",
+            "name": "View",
+            "class": "Mojo",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/index.js",
+            "line": 21,
+            "description": "The base mojo.application. This is where all your models / views live.",
+            "itemtype": "property",
+            "name": "Application",
+            "class": "Mojo",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/index.js",
+            "line": 28,
+            "description": "Registers a class to pool",
+            "itemtype": "property",
+            "name": "pool",
+            "class": "Mojo",
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/registeredClasses.js",
             "line": 17,
+            "description": "Returns a registered class",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
             "class": "RegisteredClasses",
             "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/registeredClasses.js",
-            "line": 24,
+            "line": 27,
+            "description": "Registers a class",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "clazz",
+                    "description": "the view / model class",
+                    "type": "Class"
+                }
+            ],
             "class": "RegisteredClasses",
             "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/registeredClasses.js",
-            "line": 31,
+            "line": 38,
+            "description": "Creates a new object. \nNote that `application` is passed in the second constructor param of the instantiated class.",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "to pass as the first param in the constructor",
+                    "type": "Object"
+                }
+            ],
             "class": "RegisteredClasses",
             "module": "mojo"
         },
@@ -1838,6 +2234,10 @@
     ],
     "warnings": [
         {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " packages/mojo.js/lib/views/base/index.js:229"
+        },
+        {
             "message": "Missing item type",
             "line": " packages/mojo.js/lib/plugins/decor/events.js:21"
         },
@@ -1895,151 +2295,83 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:27"
+            "line": " packages/mojo.js/lib/views/base/index.js:39"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:32"
+            "line": " packages/mojo.js/lib/views/base/index.js:44"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:37"
+            "line": " packages/mojo.js/lib/views/base/index.js:64"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:49"
+            "line": " packages/mojo.js/lib/views/base/index.js:98"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:67"
+            "line": " packages/mojo.js/lib/views/base/index.js:221"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:81"
-        },
-        {
-            "message": "Missing item type\nreturns the path to this view",
-            "line": " packages/mojo.js/lib/views/base/index.js:100"
+            "line": " packages/mojo.js/lib/views/base/index.js:272"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:115"
+            "line": " packages/mojo.js/lib/views/base/index.js:294"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:137"
+            "line": " packages/mojo.js/lib/views/base/index.js:304"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:144"
+            "line": " packages/mojo.js/lib/views/base/index.js:315"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:157"
-        },
-        {
-            "message": "Missing item type\nattaches to an element",
-            "line": " packages/mojo.js/lib/views/base/index.js:172"
+            "line": " packages/mojo.js/lib/views/list/index.js:22"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:190"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:198"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:206"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:223"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:231"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:253"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:263"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:274"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:18"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:38"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:43"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:48"
+            "line": " packages/mojo.js/lib/views/list/index.js:42"
         },
         {
             "message": "Missing item type\nmake sure decorations don't get activated for this view",
-            "line": " packages/mojo.js/lib/views/list/index.js:53"
+            "line": " packages/mojo.js/lib/views/list/index.js:61"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:59"
+            "line": " packages/mojo.js/lib/views/list/index.js:67"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:64"
+            "line": " packages/mojo.js/lib/views/list/index.js:72"
+        },
+        {
+            "message": "Missing item type\nDEPRECATED",
+            "line": " packages/mojo.js/lib/views/list/index.js:126"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:69"
+            "line": " packages/mojo.js/lib/views/list/index.js:141"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:98"
+            "line": " packages/mojo.js/lib/views/list/index.js:170"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:122"
+            "line": " packages/mojo.js/lib/views/list/index.js:194"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:162"
+            "line": " packages/mojo.js/lib/views/list/index.js:234"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:169"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:182"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:190"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:229"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:239"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:247"
+            "line": " packages/mojo.js/lib/views/list/index.js:241"
         },
         {
             "message": "Missing item type",
@@ -2047,79 +2379,87 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:293"
+            "line": " packages/mojo.js/lib/views/list/index.js:262"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:307"
+            "line": " packages/mojo.js/lib/views/list/index.js:301"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:348"
+            "line": " packages/mojo.js/lib/views/list/index.js:311"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:359"
+            "line": " packages/mojo.js/lib/views/list/index.js:319"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:373"
+            "line": " packages/mojo.js/lib/views/list/index.js:326"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:402"
+            "line": " packages/mojo.js/lib/views/list/index.js:365"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:410"
+            "line": " packages/mojo.js/lib/views/list/index.js:379"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:424"
+            "line": " packages/mojo.js/lib/views/list/index.js:420"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:435"
+            "line": " packages/mojo.js/lib/views/list/index.js:431"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:445"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:474"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:482"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:496"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:507"
         },
         {
             "message": "Missing item type\nprevent states from being decorated",
-            "line": " packages/mojo.js/lib/views/states/index.js:16"
-        },
-        {
-            "message": "Missing item type",
             "line": " packages/mojo.js/lib/views/states/index.js:22"
         },
         {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:29"
+            "message": "Missing item type\nTransitions from one state to another",
+            "line": " packages/mojo.js/lib/views/states/index.js:28"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:40"
+            "line": " packages/mojo.js/lib/views/states/index.js:39"
+        },
+        {
+            "message": "Missing item type\nTODO - change this to 'states'",
+            "line": " packages/mojo.js/lib/views/states/index.js:58"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:45"
+            "line": " packages/mojo.js/lib/views/states/index.js:84"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:59"
+            "line": " packages/mojo.js/lib/views/states/index.js:89"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:73"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:82"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:96"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:110"
+            "line": " packages/mojo.js/lib/views/states/index.js:103"
         },
         {
             "message": "Missing item type",
@@ -2127,19 +2467,19 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:124"
+            "line": " packages/mojo.js/lib/views/states/index.js:126"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:149"
+            "line": " packages/mojo.js/lib/views/states/index.js:203"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:163"
+            "line": " packages/mojo.js/lib/views/states/index.js:217"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:170"
+            "line": " packages/mojo.js/lib/views/states/index.js:224"
         },
         {
             "message": "Missing item type",
@@ -2167,23 +2507,11 @@
         },
         {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/application.js:79"
+            "line": " packages/mojo.js/lib/application.js:78"
         },
         {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/application.js:95"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/registeredClasses.js:17"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/registeredClasses.js:24"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/registeredClasses.js:31"
+            "line": " packages/mojo.js/lib/application.js:94"
         },
         {
             "message": "Missing item type",

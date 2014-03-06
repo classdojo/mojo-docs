@@ -1,4 +1,4 @@
-all: yuidoc
+all: download-packages yuidoc
 
 clean:	
 	rm -rf packages docs
@@ -12,6 +12,7 @@ link-packages:
 	ln -s `cbd dir mediocre` ./packages/mediocre
 	ln -s `cbd dir paperclip.js` ./packages/paperclip.js
 	ln -s `cbd dir paperclip-view` ./packages/paperclip-component
+	ln -s `cbd dir subindable.js` ./packages/subindable
 
 
 download-packages:

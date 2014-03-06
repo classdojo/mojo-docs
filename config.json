@@ -3,6 +3,7 @@
   "name": "Mojo.js Docs",
   "version": "0.7.84",
   "url": "http://mojojs.com/",
+  "theme": "simple",
   "options": {
     "paths": [
       "./packages/mojo.js/lib",

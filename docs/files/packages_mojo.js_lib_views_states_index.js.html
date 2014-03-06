@@ -45,15 +45,21 @@
             
                 <li><a href="../classes/Application.html">Application</a></li>
             
+                <li><a href="../classes/BaseView.html">BaseView</a></li>
+            
+                <li><a href="../classes/ListView.html">ListView</a></li>
+            
+                <li><a href="../classes/Mojo.html">Mojo</a></li>
+            
                 <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+                <li><a href="../classes/StateView.html">StateView</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="../modules/mojo.html">mojo</a></li>
-            
-                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
             
             </ul>
         </div>
@@ -102,6 +108,12 @@ _            = require(&quot;underscore&quot;),
 flatstack    = require(&quot;flatstack&quot;);
 
 
+/**
+ * States View. This is usually defined in &#x60;{ sections: { pages: { type: &#x27;states&#x27;}} }&#x60;
+ * @class StateView
+ * @extends BaseView
+ */
+
 function StateView (data, application) {
   BaseView.call(this, data, application);
 }
@@ -116,6 +128,10 @@ protoclass(BaseView, StateView, {
   _decorated: true,
 
   /**
+   * Transitions from one state to another
+   * @param {BaseView} from view to transition from. This can be null.
+   * @param {BaseView} to view to transition to.
+   * @param {Function} complete called when the transition finishes
    */
 
   transition: function (from, to, next) {
@@ -125,13 +141,47 @@ protoclass(BaseView, StateView, {
   /**
    */
 
-  define: [&quot;currentName&quot;, 
+  define: [
+
+    /**
+     * current state name
+     * @property currentName
+     */
+
+    &quot;currentName&quot;, 
+
+    /**
+     * current state index
+     * @property index
+     */
+
     &quot;index&quot;, 
+
+    /**
+     * TODO - change this to &#x27;states&#x27;
+     */
+
     &quot;source&quot;, 
+
+    /**
+     * The current view being displayed
+     * @property currentView
+     * @type {BaseView}
+     */
+
     &quot;currentView&quot;, 
+
     &quot;rotate&quot;, 
     &quot;ended&quot;, 
-    &quot;views&quot;],
+
+    /**
+     * The collection of view classes to use
+     * @property views
+     * @type {Array}
+     */
+
+    &quot;views&quot;
+  ],
 
   /**
    */
@@ -190,6 +240,9 @@ protoclass(BaseView, StateView, {
   },
 
   /**
+   * Selects a specific index
+   * @method select
+   * @param {Number} stateOrIndex 
    */
 
   select: function (stateOrIndex) {
@@ -204,6 +257,8 @@ protoclass(BaseView, StateView, {
   },
 
   /**
+   * moves to the next state
+   * @method next
    */
 
   next: function () {
@@ -211,6 +266,8 @@ protoclass(BaseView, StateView, {
   },
 
   /**
+   * moves to the previous state
+   * @method prev
    */
 
   prev: function () {
@@ -218,6 +275,9 @@ protoclass(BaseView, StateView, {
   },
 
   /**
+   * moves to a specific state index
+   * @method move
+   * @param position steps to move. Can be something like &#x60;-1&#x60;, or &#x60;1&#x60;.
    */
 
   move: function (position) {

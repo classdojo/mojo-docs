@@ -45,15 +45,21 @@
             
                 <li><a href="../classes/Application.html">Application</a></li>
             
+                <li><a href="../classes/BaseView.html">BaseView</a></li>
+            
+                <li><a href="../classes/ListView.html">ListView</a></li>
+            
+                <li><a href="../classes/Mojo.html">Mojo</a></li>
+            
                 <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+                <li><a href="../classes/StateView.html">StateView</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="../modules/mojo.html">mojo</a></li>
-            
-                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
             
             </ul>
         </div>
@@ -111,6 +117,9 @@ function RegisteredClasses (application) {
 protoclass(RegisteredClasses, {
 
   /**
+   * Returns a registered class
+   * @method get
+   * @param {String} name
    */
 
   get: function (name) {
@@ -118,6 +127,10 @@ protoclass(RegisteredClasses, {
   },
 
   /**
+   * Registers a class
+   * @method add
+   * @param {String} name
+   * @param {Class} clazz the view / model class
    */
 
   add: function (name, clazz) {
@@ -125,6 +138,12 @@ protoclass(RegisteredClasses, {
   },
 
   /**
+   * Creates a new object. 
+   * Note that &#x60;application&#x60; is passed in the second constructor param of the instantiated class.
+
+   * @method create
+   * @param {String} name
+   * @param {Object} options to pass as the first param in the constructor
    */
 
   create: function (name, options) {

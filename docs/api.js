@@ -3,22 +3,20 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "Animator",
         "Application",
-        "RegisteredClasses"
+        "BaseView",
+        "ListView",
+        "Mojo",
+        "RegisteredClasses",
+        "StateView"
     ],
     "modules": [
-        "mojo",
-        "mojo-application"
+        "mojo"
     ],
     "allModules": [
         {
             "displayName": "mojo",
             "name": "mojo",
             "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
-        },
-        {
-            "displayName": "mojo-application",
-            "name": "mojo-application",
-            "description": "Main entry point to your application. This is where everything is initialized."
         }
     ]
 } };
