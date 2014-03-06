@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>packages/mojo.js/lib/views/states/index.js - Mojo.js Docs</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Mojo.js Docs"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.7.84</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Animator.html">Animator</a></li>
+            
+                <li><a href="../classes/Application.html">Application</a></li>
+            
+                <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/mojo.html">mojo</a></li>
+            
+                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: packages/mojo.js/lib/views/states/index.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+var bindable = require(&quot;bindable&quot;)
+State        = require(&quot;./state&quot;),
+protoclass   = require(&quot;protoclass&quot;),
+BaseView     = require(&quot;../base&quot;),
+_            = require(&quot;underscore&quot;),
+flatstack    = require(&quot;flatstack&quot;);
+
+
+function StateView (data, application) {
+  BaseView.call(this, data, application);
+}
+
+
+protoclass(BaseView, StateView, {
+
+  /**
+   * prevent states from being decorated
+   */
+
+  _decorated: true,
+
+  /**
+   */
+
+  transition: function (from, to, next) {
+    next()
+  },
+
+  /**
+   */
+
+  define: [&quot;currentName&quot;, 
+    &quot;index&quot;, 
+    &quot;source&quot;, 
+    &quot;currentView&quot;, 
+    &quot;rotate&quot;, 
+    &quot;ended&quot;, 
+    &quot;views&quot;],
+
+  /**
+   */
+
+  ended: false,
+
+  /**
+   */
+
+  initialize: function (data) {
+    this.source = new bindable.Collection();    
+    BaseView.prototype.initialize.call(this, data);
+    this._q = flatstack();
+
+    this.next = _.bind(this.next, this);
+    this.prev = _.bind(this.prev, this);
+
+    this.bind(&quot;views&quot;, { to: _.bind(this._setViews, this) }).now();
+  },
+
+  /**
+   */
+
+  _setViews: function (views) {
+    var self = this;
+    this.source.reset(views.map(function (stateOptions, i) {
+      return new State(self, stateOptions, i);
+    }));
+
+    if(this._rendered) {
+      this._createBindings();
+    }
+  },
+
+  /**
+   */
+
+  render: function () {
+    var section = BaseView.prototype.render.call(this);
+    this._createBindings();
+    return section;
+  },
+
+  /**
+   */
+
+  _createBindings: function () {
+
+    if (this._indexBinding) {
+      this._indexBinding.dispose();
+      this._cnameBinding.dispose();
+    }
+
+    this._indexbinding = this.bind(&quot;index&quot;, { to: _.bind(this._setIndexWithAnimation, this) }).now();
+    this._cnameBinding = this.bind(&quot;currentName&quot;, { to: _.bind(this._setName, this) }).now();
+  },
+
+  /**
+   */
+
+  select: function (stateOrIndex) {
+    if (typeof stateOrIndex === &quot;number&quot;) {
+      this.set(&quot;index&quot;, stateOrIndex);
+    } else {
+      var i = this.source.indexOf(stateOrIndex);
+      if (~i) {
+        this.select(i);
+      }
+    }
+  },
+
+  /**
+   */
+
+  next: function () {
+    this.move(1);
+  },
+
+  /**
+   */
+
+  prev: function () {
+    this.move(-1);
+  },
+
+  /**
+   */
+
+  move: function (position) {
+    var newIndex = this.index + position;
+
+    if (newIndex &lt; 0) {
+      if (this.rotate) {
+        newIndex = this.source.length - 1;
+      } else {
+        newIndex = 0;
+        this.set(&quot;ended&quot;, true);
+      }
+    } else if (newIndex &gt;= this.source.length) {
+      if (this.rotate) {
+        newIndex = 0;
+      } else {
+        newIndex = this.source.length - 1;
+        this.set(&quot;ended&quot;, true);
+      }
+    }
+
+    this.set(&quot;index&quot;, newIndex);
+  },
+
+  /**
+   */
+
+  _setName: function (name) {
+    if (!name) return;
+    for (var i = this.source.length; i--;) {
+      var state = this.source.at(i);
+      if (state.get(&quot;name&quot;) === name) {
+        this.set(&quot;index&quot;, i);
+        break;
+      }
+    }
+  },
+
+  /**
+   */
+
+  _setIndexWithAnimation: function () {
+    this.application.animate(this);
+  },
+
+  /**
+   */
+
+  update: function () {
+    if (!this.source.length) return;  
+
+    var self = this;
+
+
+    var cs = this.currentState,
+    os = cs;
+
+    if (cs) cs.set(&quot;selected&quot;, false);
+
+    var self     = this,
+    state        = cs = this.currentState = this.source.at(Number(this.index || 0)),
+    isNew        = !state.hasView(),
+    newStateView = state.getView();
+
+    this.setChild(&quot;currentChild&quot;, newStateView);
+    cs.set(&quot;selected&quot;, true);
+
+    if (this._displayListener) this._displayListener.dispose();
+
+    state.render();
+
+    if (isNew) {
+      self.section.append(newStateView.section.render());
+    }
+
+    function onTransition () {
+      if (os &amp;&amp; os !== cs) os.removeLater();
+      
+      self.set(&quot;currentView&quot;, newStateView);
+    }
+
+    if (!os) {
+      this.transition(os ? os._view : os, state._view, function () {
+        self.application.animate({ update: onTransition })
+      });
+    } else {
+      onTransition();
+    }
+
+  }
+});
+
+
+module.exports = StateView;
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

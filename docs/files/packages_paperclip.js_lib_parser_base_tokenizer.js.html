@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>packages/paperclip.js/lib/parser/base/tokenizer.js - Mojo.js Docs</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Mojo.js Docs"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.7.84</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Animator.html">Animator</a></li>
+            
+                <li><a href="../classes/Application.html">Application</a></li>
+            
+                <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/mojo.html">mojo</a></li>
+            
+                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: packages/paperclip.js/lib/parser/base/tokenizer.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+var protoclass = require(&quot;protoclass&quot;),
+strscan        = require(&quot;strscanner&quot;);
+
+function BaseTokenizer () {
+  this._s    = strscan(&quot;&quot;, { skipWhitespace: true });
+  this._pool = [];
+}
+
+protoclass(BaseTokenizer, {
+
+  /**
+   */
+
+  source: function (value) {
+    if (!arguments.length) return this._source;
+    this._s.source(this._source = value);
+  },
+
+  /**
+   */
+
+  skipWhitespace: function (value) {
+    if (!arguments.length) return this._s.skipWhitespace();
+    this._s.skipWhitespace(value);
+  },
+
+  /**
+   */
+
+  peekNext: function () {
+    var c = this.current, cc = this.currentCode;
+    next = this.next();
+    this.putBack();
+    this.current = c;
+    this.currentCode = cc;
+    return next;
+  },
+
+  /**
+   */
+
+  putBack: function () {
+    if (this.current) {
+      this._pool.push(this.current);
+    }
+  },
+
+  /**
+   */
+
+  _current: function (value) {
+    this.current = value;
+
+    if (value) {
+      this.currentCode = value[0];
+    } else {
+      this.currentCode = null;
+    }
+
+    return value;
+  },
+
+  /**
+   */
+
+  next: function () {
+    if (this._pool.length) return this._current(this._pool.pop());
+    if (this._s.eof()) return this._current(void 0);
+
+    return this._current(this._next() || this._t(-1, this._s.cchar()));
+  },
+
+  /**
+   */
+
+  _next: function () {
+    // OVERRIDE ME
+  },
+
+
+  /**
+   */
+
+  _t: function (code,value) {
+    var p = this._s.pos(), r = this._s.row(), c = this._s.column();
+    this._s.nextChar();
+    return this.current = [code, value, p, r, c];
+  }
+});
+
+module.exports = BaseTokenizer;
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

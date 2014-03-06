@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>packages/paperclip.js/lib/parser/script/tokenizer.js - Mojo.js Docs</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Mojo.js Docs"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.7.84</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Animator.html">Animator</a></li>
+            
+                <li><a href="../classes/Application.html">Application</a></li>
+            
+                <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/mojo.html">mojo</a></li>
+            
+                <li><a href="../modules/mojo-application.html">mojo-application</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: packages/paperclip.js/lib/parser/script/tokenizer.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+var BaseTokenizer = require(&quot;../base/tokenizer&quot;),
+utils = require(&quot;../utils&quot;);
+
+var codes = utils.makeTokenCodes([
+  &quot;other&quot;       , // ?
+  &quot;var&quot;         , // boundVar
+  &quot;number&quot;      , // 12345
+  &quot;string&quot;      , // &quot;string&quot;
+  &quot;word&quot;        , // world
+  &quot;ws&quot;          , // \s\n\t\r
+  &quot;bool&quot;        , // true/false
+  &quot;undef&quot;       , // undefined
+  &quot;as&quot;          , // as
+  &quot;or&quot;          , // ||  
+  &quot;assign&quot;      , // =
+  &quot;eq&quot;          , // ==
+  &quot;aeq&quot;         , // ===
+  &quot;neq&quot;         , // !=
+  &quot;aneq&quot;        , // !==
+  &quot;not&quot;         , // !
+  &quot;dollar&quot;      , // $
+  &quot;lp&quot;          , // (
+  &quot;rp&quot;          , // )
+  &quot;coma&quot;        , // ,
+  &quot;dot&quot;         , // .
+  &quot;bs&quot;          , // /
+  &quot;colon&quot;       , // :
+  &quot;semi_colon&quot;  , // ;
+  &quot;at&quot;          , // @
+  &quot;lb&quot;          , // {
+  &quot;pipe&quot;        , // |
+  &quot;rb&quot;          , // }
+  &quot;us&quot;          , // _
+  &quot;tick&quot;         // &#x60;
+]);
+
+var codeMap = {
+  &quot;=&quot;  : codes.ASSIGN,
+  &quot;$&quot;  : codes.DOLLAR,
+  &quot;(&quot;  : codes.LP,
+  &quot;)&quot;  : codes.RP,
+  &quot;,&quot;  : codes.COMA,
+  &quot;.&quot;  : codes.DOT,
+  &quot;/&quot;  : codes.BS,
+  &quot;:&quot;  : codes.COLON,
+  &quot;;&quot;  : codes.SEMI_COLON,
+  &quot;@&quot;  : codes.AT,
+  &quot;{&quot;  : codes.LB,
+  &quot;|&quot;  : codes.PIPE,
+  &quot;}&quot;  : codes.RB,
+  &quot;_&quot;  : codes.US,
+  &quot;&#x60;&quot;  : codes.TICK
+};
+
+
+function ScriptTokenizer () {
+  ScriptTokenizer.parent.call(this);
+  this._s.skipWhitespace(true);
+}
+
+ScriptTokenizer.codes = codes;
+
+BaseTokenizer.extend(ScriptTokenizer, {
+
+  /**
+   */
+
+  _next: function () {
+    var ccode = this._s.ccode(), cchar = this._s.cchar(), tcode;
+
+
+    // var, or reserved word?
+    if (this._s.isAZ() || (tcode = (codeMap[cchar] || codes.OTHER)) &amp; (codes.DOLLAR | codes.AT | codes.US)) {
+
+      var word = this._s.next(/[_$@a-zA-Z0-9]+/);
+
+      if (/^(true|false)$/.test(word)) return this._t(codes.BOOL, word);
+      if (/^(undefined|null)$/.test(word)) return this._t(codes.UNDEF, word);
+      if (/^as$/.test(word)) return this._t(codes.AS, word);
+
+      return this._t(codes.VAR, word);
+
+    // &quot;string&quot;?
+    } else if (ccode === 39 || ccode === 34) {
+
+      this._s.skipWhitespace(false);
+
+      var buffer = [], c;
+
+      while ((c = this._s.nextChar()) &amp;&amp; !this._s.eof()) {
+        var cscode = this._s.ccode();
+
+        // skip escape (\)
+        if (cscode === 92) {
+          buffer.push(this._s.nextChar());
+          continue;
+        }
+
+        if (cscode === ccode) {
+          break;
+        }
+
+        buffer.push(c);
+      }
+
+      this._s.skipWhitespace(true);
+
+      return this._t(codes.STRING, buffer.join(&quot;&quot;));
+
+    // number?
+    } else if (this._s.is09()) {
+      return this._t(codes.NUMBER, this._s.next(/[0-9\.]+/))
+    // !, !=, !==
+    } else if (ccode === 33) {
+      if (this._s.peek(2) === &quot;!=&quot;) {
+        this._s.skip(1);
+
+        if (this._s.peek(2) === &quot;==&quot;) {
+          this._s.skip(1);
+          return this._t(codes.ANEQ, &quot;!==&quot;);
+        }
+
+        return this._t(codes.NEQ, &quot;!=&quot;);
+      } else {
+        return this._t(codes.NOT, &quot;!&quot;);
+      }
+
+    // =, ==, ===
+    } else if (ccode === 61) {
+      if (this._s.peek(2) === &quot;==&quot;) {
+        this._s.skip(1);
+
+        if (this._s.peek(2) === &quot;==&quot;) {
+          this._s.skip(1);
+          return this._t(codes.AEQ, &quot;===&quot;);
+        }
+
+        return this._t(codes.EQ, &quot;==&quot;);
+      } else {
+        return this._t(codes.ASSIGN, &quot;=&quot;);
+      }
+
+    // ||
+    } else if (ccode === 124 &amp;&amp; this._s.peek(2) === &quot;||&quot;) {
+      this._s.skip(1);
+      return this._t(codes.OR, &quot;||&quot;);
+    } 
+
+    // everything else
+    return this._t(tcode, cchar);
+  }
+
+});
+
+
+module.exports = ScriptTokenizer;
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

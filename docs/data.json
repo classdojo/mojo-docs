@@ -1,0 +1,2749 @@
+{
+    "project": {
+        "name": "Mojo.js Docs",
+        "version": "0.7.84",
+        "url": "http://mojojs.com/"
+    },
+    "files": {
+        "packages/mojo.js/lib/plugins/decor/events.js": {
+            "name": "packages/mojo.js/lib/plugins/decor/events.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/plugins/decor/factory.js": {
+            "name": "packages/mojo.js/lib/plugins/decor/factory.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/plugins/decor/sections.js": {
+            "name": "packages/mojo.js/lib/plugins/decor/sections.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/pools/index.js": {
+            "name": "packages/mojo.js/lib/pools/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/views/base/index.js": {
+            "name": "packages/mojo.js/lib/views/base/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/views/list/index.js": {
+            "name": "packages/mojo.js/lib/views/list/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/views/states/index.js": {
+            "name": "packages/mojo.js/lib/views/states/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/views/states/state.js": {
+            "name": "packages/mojo.js/lib/views/states/state.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/animator.js": {
+            "name": "packages/mojo.js/lib/animator.js",
+            "modules": {
+                "mojo": 1
+            },
+            "classes": {
+                "Animator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/application.js": {
+            "name": "packages/mojo.js/lib/application.js",
+            "modules": {
+                "mojo-application": 1
+            },
+            "classes": {
+                "Application": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/mojo.js/lib/registeredClasses.js": {
+            "name": "packages/mojo.js/lib/registeredClasses.js",
+            "modules": {},
+            "classes": {
+                "RegisteredClasses": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/clip/buffer.js": {
+            "name": "packages/paperclip.js/lib/clip/buffer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/clip/index.js": {
+            "name": "packages/paperclip.js/lib/clip/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/base/binder.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/base/binder.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/base/script.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/base/script.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/block/value.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/block/value.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/node/attrs/dataBind/handlers/focus.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/node/attrs/dataBind/handlers/focus.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/textBlock/binder.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/textBlock/binder.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/bindings/textBlock/binding.js": {
+            "name": "packages/paperclip.js/lib/paper/bindings/textBlock/binding.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/writers/textBlock.js": {
+            "name": "packages/paperclip.js/lib/paper/writers/textBlock.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/application.js": {
+            "name": "packages/paperclip.js/lib/paper/application.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/binding.js": {
+            "name": "packages/paperclip.js/lib/paper/binding.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/paper/template.js": {
+            "name": "packages/paperclip.js/lib/paper/template.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/base/expression.js": {
+            "name": "packages/paperclip.js/lib/parser/base/expression.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/base/parser.js": {
+            "name": "packages/paperclip.js/lib/parser/base/parser.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/base/tokenizer.js": {
+            "name": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/call.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/call.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/get.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/get.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/group.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/group.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/modifier.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/modifier.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/object.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/object.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/other.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/other.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/param.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/param.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/reference.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/reference.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/root.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/root.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/script.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/script.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/set.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/set.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/ast/string.js": {
+            "name": "packages/paperclip.js/lib/parser/script/ast/string.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/index.js": {
+            "name": "packages/paperclip.js/lib/parser/script/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/script/tokenizer.js": {
+            "name": "packages/paperclip.js/lib/parser/script/tokenizer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/attribute.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/attribute.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/attributes.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/attributes.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/block.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/block.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/childNodes.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/childNodes.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/node.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/node.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/root.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/root.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/string.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/string.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/textBlock.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/textBlock.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/ast/textNode.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/ast/textNode.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/index.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/xml/tokenizer.js": {
+            "name": "packages/paperclip.js/lib/parser/xml/tokenizer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/paperclip.js/lib/parser/index.js": {
+            "name": "packages/paperclip.js/lib/parser/index.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "mojo": {
+            "name": "mojo",
+            "submodules": {
+                "mojo-application": 1
+            },
+            "classes": {
+                "Animator": 1,
+                "Application": 1,
+                "RegisteredClasses": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 3,
+            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
+        },
+        "mojo-application": {
+            "name": "mojo-application",
+            "submodules": {},
+            "classes": {
+                "Application": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 16,
+            "description": "Main entry point to your application. This is where everything is initialized.",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        }
+    },
+    "classes": {
+        "Animator": {
+            "name": "Animator",
+            "shortname": "Animator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/animator.js",
+            "line": 3,
+            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
+        },
+        "Application": {
+            "name": "Application",
+            "shortname": "Application",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "submodule": "mojo-application",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 16,
+            "description": "Main entry point to your application. This is where everything is initialized."
+        },
+        "RegisteredClasses": {
+            "name": "RegisteredClasses",
+            "shortname": "RegisteredClasses",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 3,
+            "description": "Collection of registered classes that can be used throughout the mojo applicaiton (views/models)."
+        }
+    },
+    "classitems": [
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/events.js",
+            "line": 21,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/events.js",
+            "line": 34,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/events.js",
+            "line": 41,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/events.js",
+            "line": 84,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/events.js",
+            "line": 93,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/factory.js",
+            "line": 11,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/factory.js",
+            "line": 19,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/factory.js",
+            "line": 29,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/factory.js",
+            "line": 48,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/sections.js",
+            "line": 16,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/sections.js",
+            "line": 26,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/sections.js",
+            "line": 42,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/plugins/decor/sections.js",
+            "line": 58,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/pools/index.js",
+            "line": 46,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 27,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 32,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 37,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 49,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 67,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 81,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 100,
+            "description": "returns the path to this view",
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 115,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 137,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 144,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 157,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 172,
+            "description": "attaches to an element",
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 190,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 198,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 206,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 223,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 231,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 253,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 263,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 274,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 18,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 38,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 43,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 48,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 53,
+            "description": "make sure decorations don't get activated for this view",
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 59,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 64,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 69,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 98,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 122,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 162,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 169,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 182,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 190,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 229,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 239,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 247,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 254,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 293,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 307,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 348,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 359,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 373,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 402,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 410,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 424,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 435,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 16,
+            "description": "prevent states from being decorated",
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 22,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 29,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 40,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 45,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 59,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 73,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 82,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 96,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 110,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 117,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 124,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 149,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 163,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 170,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 28,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 35,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 45,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 56,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 64,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/states/state.js",
+            "line": 71,
+            "class": "Animator"
+        },
+        {
+            "file": "packages/mojo.js/lib/animator.js",
+            "line": 16,
+            "description": "Runs animatable object on requestAnimationFrame. This gets\ncalled whenever the UI state changes.",
+            "itemtype": "method",
+            "name": "animate",
+            "params": [
+                {
+                    "name": "animatable",
+                    "description": "object. Must have `update()`",
+                    "type": "Object"
+                }
+            ],
+            "class": "Animator",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 36,
+            "description": "List of registered model classes",
+            "itemtype": "property",
+            "name": "modelClasses",
+            "type": "RegisteredClasses",
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 44,
+            "description": "List of registered view classes",
+            "itemtype": "property",
+            "name": "viewClasses",
+            "type": "RegisteredClasses",
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 62,
+            "description": "Plugins to use for the mojo application.",
+            "itemtype": "method",
+            "name": "use",
+            "params": [
+                {
+                    "name": "plugins...",
+                    "description": "must be defined as `function (app) { }`",
+                    "type": "Function"
+                }
+            ],
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 79,
+            "description": "DEPRECATED",
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 95,
+            "description": "DEPRECATED",
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 109,
+            "description": "Runs `update()` on requestAnimationFrame. Used whenever the UI changes.",
+            "itemtype": "method",
+            "name": "animate",
+            "params": [
+                {
+                    "name": "animatable",
+                    "description": "Must have `update()` defined.",
+                    "type": "Object"
+                }
+            ],
+            "see": [
+                "Animator"
+            ],
+            "class": "Application",
+            "module": "mojo",
+            "submodule": "mojo-application"
+        },
+        {
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 17,
+            "class": "RegisteredClasses",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 24,
+            "class": "RegisteredClasses",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 31,
+            "class": "RegisteredClasses",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 21,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 28,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 37,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 74,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 83,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 93,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/buffer.js",
+            "line": 105,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 21,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 35,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 68,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 75,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 82,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 99,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 107,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 116,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 131,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 159,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 177,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 192,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 204,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 213,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 222,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 231,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 240,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 247,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 260,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 288,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 298,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 306,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 314,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 322,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/clip/index.js",
+            "line": 329,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/binder.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/binder.js",
+            "line": 17,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/binder.js",
+            "line": 24,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/binder.js",
+            "line": 42,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/script.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/script.js",
+            "line": 40,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/script.js",
+            "line": 49,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/base/script.js",
+            "line": 56,
+            "description": "DEPRECATED",
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/block/value.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/node/attrs/dataBind/handlers/focus.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/textBlock/binder.js",
+            "line": 12,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/textBlock/binding.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/textBlock/binding.js",
+            "line": 22,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/bindings/textBlock/binding.js",
+            "line": 29,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/writers/textBlock.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/application.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 14,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 22,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 29,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 38,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 51,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 59,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/binding.js",
+            "line": 66,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/template.js",
+            "line": 29,
+            "description": "useful for warming up a template",
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/template.js",
+            "line": 51,
+            "description": "binds loads, and binds the template to a context",
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/paper/template.js",
+            "line": 68,
+            "description": "create the template node so we don't re-construct the DOM each time - this\nis optimal - we can use cloneNode instead which defers the DOM creation to the browser.",
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/expression.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/expression.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/expression.js",
+            "line": 32,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/expression.js",
+            "line": 47,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/parser.js",
+            "line": 9,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/parser.js",
+            "line": 18,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 19,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 27,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 39,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 48,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 63,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 73,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/base/tokenizer.js",
+            "line": 81,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/call.js",
+            "line": 12,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/get.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/group.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/modifier.js",
+            "line": 13,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/object.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/other.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/param.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/reference.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/reference.js",
+            "line": 16,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/root.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/script.js",
+            "line": 12,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/set.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/ast/string.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 25,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 52,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 67,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 80,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 110,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 119,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 126,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 147,
+            "description": "parses a.b.c",
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 195,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 206,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 213,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 222,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 229,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 236,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 244,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 273,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/index.js",
+            "line": 291,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/script/tokenizer.js",
+            "line": 65,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/attribute.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/attribute.js",
+            "line": 16,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/attribute.js",
+            "line": 23,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/attributes.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/attributes.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/block.js",
+            "line": 12,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/block.js",
+            "line": 17,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/childNodes.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/childNodes.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/node.js",
+            "line": 13,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/node.js",
+            "line": 18,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/root.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/root.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/string.js",
+            "line": 10,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/string.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/textBlock.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/textBlock.js",
+            "line": 16,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/textNode.js",
+            "line": 11,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/ast/textNode.js",
+            "line": 16,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 29,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 51,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 78,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 114,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 132,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 141,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 160,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 196,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 212,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 226,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 265,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 287,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/index.js",
+            "line": 296,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/tokenizer.js",
+            "line": 48,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/tokenizer.js",
+            "line": 59,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/xml/tokenizer.js",
+            "line": 67,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/index.js",
+            "line": 8,
+            "class": "",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/paperclip.js/lib/parser/index.js",
+            "line": 15,
+            "class": "",
+            "module": "mojo"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/events.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/events.js:34"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/events.js:41"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/events.js:84"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/events.js:93"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/factory.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/factory.js:19"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/factory.js:29"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/factory.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/sections.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/sections.js:26"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/sections.js:42"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/plugins/decor/sections.js:58"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/pools/index.js:46"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:27"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:32"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:37"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:49"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:67"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:81"
+        },
+        {
+            "message": "Missing item type\nreturns the path to this view",
+            "line": " packages/mojo.js/lib/views/base/index.js:100"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:115"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:137"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:144"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:157"
+        },
+        {
+            "message": "Missing item type\nattaches to an element",
+            "line": " packages/mojo.js/lib/views/base/index.js:172"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:190"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:198"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:206"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:223"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:231"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:253"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:263"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/base/index.js:274"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:38"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:43"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:48"
+        },
+        {
+            "message": "Missing item type\nmake sure decorations don't get activated for this view",
+            "line": " packages/mojo.js/lib/views/list/index.js:53"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:59"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:64"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:69"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:98"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:122"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:162"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:169"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:182"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:190"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:229"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:239"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:247"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:254"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:293"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:307"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:348"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:359"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:373"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:402"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:410"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:424"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:435"
+        },
+        {
+            "message": "Missing item type\nprevent states from being decorated",
+            "line": " packages/mojo.js/lib/views/states/index.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:22"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:29"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:40"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:45"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:59"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:73"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:82"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:96"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:110"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:117"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:124"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:149"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:163"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/index.js:170"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:35"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:45"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:56"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:64"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/states/state.js:71"
+        },
+        {
+            "message": "Missing item type\nDEPRECATED",
+            "line": " packages/mojo.js/lib/application.js:79"
+        },
+        {
+            "message": "Missing item type\nDEPRECATED",
+            "line": " packages/mojo.js/lib/application.js:95"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/registeredClasses.js:17"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/registeredClasses.js:24"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/registeredClasses.js:31"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:37"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:74"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:83"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:93"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/buffer.js:105"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:35"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:68"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:75"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:82"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:99"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:107"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:116"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:131"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:159"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:177"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:192"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:204"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:213"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:222"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:231"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:240"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:247"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:260"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:288"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:298"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:306"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:314"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:322"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/clip/index.js:329"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/binder.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/binder.js:17"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/binder.js:24"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/binder.js:42"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/script.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/script.js:40"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/script.js:49"
+        },
+        {
+            "message": "Missing item type\nDEPRECATED",
+            "line": " packages/paperclip.js/lib/paper/bindings/base/script.js:56"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/block/value.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/node/attrs/dataBind/handlers/focus.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/textBlock/binder.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/textBlock/binding.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/textBlock/binding.js:22"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/bindings/textBlock/binding.js:29"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/writers/textBlock.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/application.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:22"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:29"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:38"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:51"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:59"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/paper/binding.js:66"
+        },
+        {
+            "message": "Missing item type\nuseful for warming up a template",
+            "line": " packages/paperclip.js/lib/paper/template.js:29"
+        },
+        {
+            "message": "Missing item type\nbinds loads, and binds the template to a context",
+            "line": " packages/paperclip.js/lib/paper/template.js:51"
+        },
+        {
+            "message": "Missing item type\ncreate the template node so we don't re-construct the DOM each time - this\nis optimal - we can use cloneNode instead which defers the DOM creation to the browser.",
+            "line": " packages/paperclip.js/lib/paper/template.js:68"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/expression.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/expression.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/expression.js:32"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/expression.js:47"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/parser.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/parser.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:19"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:27"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:39"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:63"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:73"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/base/tokenizer.js:81"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/call.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/get.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/group.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/modifier.js:13"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/object.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/other.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/param.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/reference.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/reference.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/root.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/script.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/set.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/ast/string.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:25"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:52"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:67"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:80"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:110"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:119"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:126"
+        },
+        {
+            "message": "Missing item type\nparses a.b.c",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:147"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:195"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:206"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:213"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:222"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:229"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:236"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:244"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:273"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/index.js:291"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/script/tokenizer.js:65"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/attribute.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/attribute.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/attribute.js:23"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/attributes.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/attributes.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/block.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/block.js:17"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/childNodes.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/childNodes.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/node.js:13"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/node.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/root.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/root.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/string.js:10"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/string.js:15"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/textBlock.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/textBlock.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/textNode.js:11"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/ast/textNode.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:29"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:51"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:78"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:114"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:132"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:141"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:160"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:196"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:212"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:226"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:265"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:287"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/index.js:296"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/tokenizer.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/tokenizer.js:59"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/xml/tokenizer.js:67"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/index.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/paperclip.js/lib/parser/index.js:15"
+        }
+    ]
+}
