@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/plugins/decor/sections.js - Mojo.js Docs</title>
+    <title>packages/bindable.js/lib/core/eventEmitter.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,97 +124,171 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/plugins/decor/sections.js <small>File</small></h1>
+    <h1>packages/bindable.js/lib/core/eventEmitter.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var type   = require(&quot;type-component&quot;),
-protoclass = require(&quot;protoclass&quot;),
-_ = require(&quot;underscore&quot;);
+var protoclass = require(&quot;protoclass&quot;);
 
+/**
+ * @module bindable
+ * @class EventEmitter
+ */
 
-function SectionsDecorator (view, sectionOptions) {
-  this.view           = view;
-  this.sectionOptions = sectionOptions;
-  view.sections = { __decorated: true };
-
-  view.once(&quot;render&quot;, _.bind(this.init, this));
+function EventEmitter () {
+  this._events = {};
 }
 
-protoclass(SectionsDecorator, {
+EventEmitter.prototype.setMaxListeners = function () {
 
-  /**
-   */
+}
+
+/**
+ * adds a listener on the event emitter
+ *
+ * @method on
+ * @param {String} event event to listen on
+ * @param {Function} listener to callback when &#x60;event&#x60; is emitted.
+ * @returns {Disposable}
+ */
 
 
-  init: function () {
-    for (var sectionName in this.sectionOptions) {
-      this._addSection(sectionName, this._fixOptions(this.sectionOptions[sectionName]));
+EventEmitter.prototype.on = function (event, listener) {
+
+  if (typeof listener !== &quot;function&quot;) {
+    throw new Error(&quot;listener must be a function for event &#x27;&quot;+event+&quot;&#x27;&quot;);
+  }
+
+  var listeners;
+  if (!(listeners = this._events[event])) {
+    this._events[event] = listener;
+  } else if (typeof listeners === &quot;function&quot;) {
+    this._events[event] = [listeners, listener];
+  } else {
+    listeners.push(listener);
+  }
+
+  var self = this;
+
+  return {
+    dispose: function() {
+      self.off(event, listener);
     }
-  },
+  }
+}
 
-  /**
-   */
+/**
+ * removes an event emitter
+ * @method off
+ * @param {String} event to remove
+ * @param {Function} listener to remove
+ */
 
-  _addSection: function (name, options) {
-    if (!options) return;
+EventEmitter.prototype.off = function (event, listener) {
 
-    var view = this._createSectionView(options);
+  var listeners;
 
-    view.once(&quot;render&quot;, function () {
-      view.decorate(options);
-    });
+  if(!(listeners = this._events[event])) {
+    return;
+  }
 
-
-    this.view.setChild(name, view);
-  },
-
-  /**
-   */
-
-  _fixOptions: function (options) {
-
-    if (!options) {
-      throw new Error(&quot;&#x27;sections&#x27; is invalid for view &#x27;&quot;+this.view.path+&quot;&#x27;&quot;);
+  if (typeof listeners === &quot;function&quot;) {
+    this._events[event] = undefined;
+  } else {
+    var i = listeners.indexOf(listener);
+    if (~i) listeners.splice(i, 1);
+    if (!listeners.length) {
+      this._events[event] = undefined;
     }
+  }
+}
 
-    if (!options.type) {
-      options = { type: options };
-    }
+/**
+ * adds a listener on the event emitter
+ * @method once
+ * @param {String} event event to listen on
+ * @param {Function} listener to callback when &#x60;event&#x60; is emitted.
+ * @returns {Disposable}
+ */
 
-    return options;
-  },
 
-  /**
-   */
+EventEmitter.prototype.once = function (event, listener) {
 
-  _createSectionView: function (options) {
-    var t;
-    if ((t = type(options.type)) === &quot;object&quot;) {
-      return options.type;
-    } else if (t === &quot;function&quot;) {
-      return new options.type(options);
-    } else if (t === &quot;string&quot;) {
-      return this.view.application.createView(options.type, options);
+  function listener2 () {
+    disp.dispose();
+    listener.apply(this, arguments);
+  }
+
+  var disp = this.on(event, listener2);  
+  disp.target = this;
+  return disp;
+}
+
+/**
+ * emits an event
+ * @method emit
+ * @param {String} event
+ * @param {String}, &#x60;data...&#x60; data to emit
+ */
+
+
+EventEmitter.prototype.emit = function (event) {
+
+  if (this._events[event] === undefined) return;
+
+  var listeners = this._events[event];
+
+
+  if (typeof listeners === &quot;function&quot;) {
+    if (arguments.length === 1) {
+      listeners();
     } else {
-      throw new Error(&quot;cannot create section for type &#x27;&quot; + t + &quot;&#x27;&quot;);
+    switch(arguments.length) {
+      case 2:
+        listeners(arguments[1]);
+        break;
+      case 3:
+        listeners(arguments[1], arguments[2]);
+        break;
+      case 4:
+        listeners(arguments[1], arguments[2], arguments[3]);
+        break;
+      default:
+        var n = arguments.length;
+        var args = new Array(n - 1);
+        for(var i = 1; i &lt; n; i++) args[i-1] = arguments[i];
+        listeners.apply(this, args);
     }
   }
-
-});
-
-SectionsDecorator.priority = &quot;init&quot;;
-SectionsDecorator.getOptions = function (view) {
-  if (view.sections &amp;&amp; !view.sections.__decorated) {
-    return view.sections;
+  } else {
+    var n = arguments.length;
+    var args = new Array(n - 1);
+    for(var i = 1; i &lt; n; i++) args[i-1] = arguments[i];
+    for(var j = listeners.length; j--;) {
+      if(listeners[j]) listeners[j].apply(this, args);
+    }
   }
 }
-SectionsDecorator.decorate = function (view, options) {
-  return new SectionsDecorator(view, options);
+
+/**
+ * removes all listeners
+ * @method removeAllListeners
+ * @param {String} event (optional) removes all listeners of &#x60;event&#x60;. Omitting will remove everything.
+ */
+
+
+EventEmitter.prototype.removeAllListeners = function (event) {
+  if (arguments.length === 1) {
+    this._events[event] = undefined;
+  } else {
+    this._events = {};
+  }
 }
 
-module.exports = SectionsDecorator;
+
+
+module.exports = EventEmitter;
     </pre>
 </div>
 

@@ -9,10 +9,10 @@ link-packages:
 	ln -s `cbd dir bindable.js` ./packages/bindable.js
 	ln -s `cbd dir mojo-router` ./packages/mojo-router
 	ln -s `cbd dir mojo-model` ./packages/mojo-model
-	ln -s `cbd dir mediocre` ./packages/mediocre
+	ln -s `cbd dir mediocre.js` ./packages/mediocre
 	ln -s `cbd dir paperclip.js` ./packages/paperclip.js
 	ln -s `cbd dir paperclip-view` ./packages/paperclip-component
-	ln -s `cbd dir subindable.js` ./packages/subindable
+	ln -s `cbd dir subindable.js` ./packages/subindable.js
 
 
 download-packages:

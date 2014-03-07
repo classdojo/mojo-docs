@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/plugins/decor/sections.js - Mojo.js Docs</title>
+    <title>packages/bindable.js/lib/object/transform.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,97 +124,144 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/plugins/decor/sections.js <small>File</small></h1>
+    <h1>packages/bindable.js/lib/object/transform.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var type   = require(&quot;type-component&quot;),
-protoclass = require(&quot;protoclass&quot;),
-_ = require(&quot;underscore&quot;);
+var toarray = require(&quot;toarray&quot;),
+_           = require(&quot;underscore&quot;);
+
+/**
+ * created when the second parameter on &#x60;bind(property, listener)&#x60; is an object.
+ *
+ * @module bindable
+ * @class BindingTransformer
+ * @protected
+ */
 
 
-function SectionsDecorator (view, sectionOptions) {
-  this.view           = view;
-  this.sectionOptions = sectionOptions;
-  view.sections = { __decorated: true };
-
-  view.once(&quot;render&quot;, _.bind(this.init, this));
+function getToPropertyFn (target, property) {
+  return function (value) {
+    target.set(property, value);
+  };
 }
 
-protoclass(SectionsDecorator, {
 
-  /**
-   */
+function hasChanged (oldValues, newValues) {
 
+  if (oldValues.length !== newValues.length) return true;
 
-  init: function () {
-    for (var sectionName in this.sectionOptions) {
-      this._addSection(sectionName, this._fixOptions(this.sectionOptions[sectionName]));
-    }
-  },
+  for (var i = newValues.length; i--;) {
+    if (newValues[i] !== oldValues[i]) return true;
+  }
+  return false;
+}
 
-  /**
-   */
+function wrapFn (fn, previousValues, max) {
 
-  _addSection: function (name, options) {
-    if (!options) return;
+  var numCalls = 0;
 
-    var view = this._createSectionView(options);
+  return function () {
 
-    view.once(&quot;render&quot;, function () {
-      view.decorate(options);
-    });
+    var values = Array.prototype.slice.call(arguments, 0),
+    newValues  = (values.length % 2) === 0 ? values.slice(0, values.length / 2) : values;
 
 
-    this.view.setChild(name, view);
-  },
+    if (!hasChanged(newValues, previousValues)) return;
 
-  /**
-   */
 
-  _fixOptions: function (options) {
-
-    if (!options) {
-      throw new Error(&quot;&#x27;sections&#x27; is invalid for view &#x27;&quot;+this.view.path+&quot;&#x27;&quot;);
+    if (~max &amp;&amp; ++numCalls &gt;= max) {
+      this.dispose();
     }
 
-    if (!options.type) {
-      options = { type: options };
-    }
+    previousValues = newValues;
 
-    return options;
-  },
 
-  /**
-   */
+    fn.apply(this, values);
+  }
+}
 
-  _createSectionView: function (options) {
-    var t;
-    if ((t = type(options.type)) === &quot;object&quot;) {
-      return options.type;
-    } else if (t === &quot;function&quot;) {
-      return new options.type(options);
-    } else if (t === &quot;string&quot;) {
-      return this.view.application.createView(options.type, options);
+function transform (bindable, fromProperty, options) {
+
+  var when        = options.when         || function() { return true; },
+  map             = options.map          || function () { return Array.prototype.slice.call(arguments, 0); },
+  target          = options.target       || bindable,
+  max             = options.max          || (options.once ? 1 : undefined) || -1,
+  tos             = toarray(options.to).concat(),
+  previousValues  = toarray(options.defaultValue),
+  toProperties    = [],
+  bothWays        = options.bothWays;
+
+  
+  if (!when.test &amp;&amp; typeof when === &quot;function&quot;) {
+    when = { test: when };
+  }
+
+  if (!previousValues.length) {
+    previousValues.push(undefined)
+  }
+
+  if (!tos.length) {
+    throw new Error(&quot;missing &#x27;to&#x27; option&quot;);
+  }
+
+  for (var i = tos.length; i--;) {
+    var to = tos[i],
+    tot    = typeof to;
+
+    /*
+     need to convert { property: { map: fn}} to another transformed value, which is
+     { map: fn, to: property }
+     */
+
+    if (tot === &quot;object&quot;) {
+
+      // &quot;to&quot; might have multiple properties we&#x27;re binding to, so 
+      // add them to the END of the array of &quot;to&quot; items
+      for (var property in to) {
+
+        // assign the property to the &#x27;to&#x27; parameter
+        to[property].to = property;
+        tos.push(transform(target, fromProperty, to[property]));
+      }
+
+      // remove the item, since we just added new items to the end
+      tos.splice(i, 1);
+
+    // might be a property we&#x27;re binding to
+    } else if(tot === &quot;string&quot;) {
+      toProperties.push(to);
+      tos[i] = wrapFn(getToPropertyFn(target, to), previousValues, max);
+    } else if (tot === &quot;function&quot;) {
+      tos[i] = wrapFn(to, previousValues, max);
     } else {
-      throw new Error(&quot;cannot create section for type &#x27;&quot; + t + &quot;&#x27;&quot;);
+      throw new Error(&quot;&#x27;to&#x27; must be a function&quot;);
     }
   }
 
-});
-
-SectionsDecorator.priority = &quot;init&quot;;
-SectionsDecorator.getOptions = function (view) {
-  if (view.sections &amp;&amp; !view.sections.__decorated) {
-    return view.sections;
+  // two-way data-binding
+  if (bothWays) {
+    for (var i = toProperties.length; i--;) {
+      target.bind(toProperties[i], { to: fromProperty });
+    }
   }
-}
-SectionsDecorator.decorate = function (view, options) {
-  return new SectionsDecorator(view, options);
-}
 
-module.exports = SectionsDecorator;
+  // newValue, newValue2, oldValue, oldValue2
+  return function () {
+
+    var values = toarray(map.apply(this, arguments));
+
+    // first make sure that we don&#x27;t trigger the old value
+    if (!when.test.apply(when, values)) return;
+
+    for (var i = tos.length; i--;) {
+      tos[i].apply(this, values);
+    }
+  };
+};
+
+module.exports = transform;
     </pre>
 </div>
 

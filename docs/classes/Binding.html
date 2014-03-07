@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/plugins/decor/sections.js - Mojo.js Docs</title>
+    <title>Binding - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,98 +124,276 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/plugins/decor/sections.js <small>File</small></h1>
+    <h1>Binding <small>Class</small></h1>
 </div>
 
-<div class="file">
-    <pre class="prettyprint linenums">
-var type   = require(&quot;type-component&quot;),
-protoclass = require(&quot;protoclass&quot;),
-_ = require(&quot;underscore&quot;);
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/packages_bindable.js_lib_object_watchProperty.js.html#l5"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;watchProperty.js:5</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/bindable.html">bindable</a>
+        
+    
+
+    
+</div>
 
 
-function SectionsDecorator (view, sectionOptions) {
-  this.view           = view;
-  this.sectionOptions = sectionOptions;
-  view.sections = { __decorated: true };
 
-  view.once(&quot;render&quot;, _.bind(this.init, this));
-}
-
-protoclass(SectionsDecorator, {
-
-  /**
-   */
+<div class="well well-small">
+    
+</div>
 
 
-  init: function () {
-    for (var sectionName in this.sectionOptions) {
-      this._addSection(sectionName, this._fixOptions(this.sectionOptions[sectionName]));
-    }
-  },
 
-  /**
-   */
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
-  _addSection: function (name, options) {
-    if (!options) return;
+        
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
+        
+        
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
 
-    var view = this._createSectionView(options);
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
 
-    view.once(&quot;render&quot;, function () {
-      view.decorate(options);
-    });
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_dispose" data-tablink="dispose">dispose</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_now" data-tablink="now">now</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_target" data-tablink="target">target</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_dispose" class="method item">
+    <h3 class="name"><code>dispose</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_watchProperty.js.html#l44"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;watchProperty.js:44</code></a>
+        
+        </p>
 
 
-    this.view.setChild(name, view);
-  },
+        
 
-  /**
-   */
+        
+    </div>
 
-  _fixOptions: function (options) {
+    <div class="description">
+        <p>disposes the binding</p>
 
-    if (!options) {
-      throw new Error(&quot;&#x27;sections&#x27; is invalid for view &#x27;&quot;+this.view.path+&quot;&#x27;&quot;);
-    }
+    </div>
 
-    if (!options.type) {
-      options = { type: options };
-    }
+    
 
-    return options;
-  },
+    
 
-  /**
-   */
+    
+</div>
 
-  _createSectionView: function (options) {
-    var t;
-    if ((t = type(options.type)) === &quot;object&quot;) {
-      return options.type;
-    } else if (t === &quot;function&quot;) {
-      return new options.type(options);
-    } else if (t === &quot;string&quot;) {
-      return this.view.application.createView(options.type, options);
-    } else {
-      throw new Error(&quot;cannot create section for type &#x27;&quot; + t + &quot;&#x27;&quot;);
-    }
-  }
+                
+                    <div id="method_now" class="method item">
+    <h3 class="name"><code>now</code></h3>
 
-});
+    
+        <span class="paren">()</span>
+    
 
-SectionsDecorator.priority = &quot;init&quot;;
-SectionsDecorator.getOptions = function (view) {
-  if (view.sections &amp;&amp; !view.sections.__decorated) {
-    return view.sections;
-  }
-}
-SectionsDecorator.decorate = function (view, options) {
-  return new SectionsDecorator(view, options);
-}
+    
 
-module.exports = SectionsDecorator;
-    </pre>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_watchProperty.js.html#l34"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;watchProperty.js:34</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>triggers the binding listener</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_target" class="property item">
+    <h3 class="name"><code>target</code></h3>
+    <span class="type"><a href="../classes/BindableObject.html" class="crosslink">BindableObject</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_watchProperty.js.html#l26"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;watchProperty.js:26</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>the target bindable object</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

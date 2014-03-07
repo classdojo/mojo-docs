@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>packages/bindable.js/lib/object/watchProperty.js - Mojo.js Docs</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Mojo.js Docs" src="../assets/css/logo.png" style="max-height: 65%;" title="Mojo.js Docs">
+        
+            Mojo.js Docs
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.7.84</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Animator.html">Animator</a></li>
+                    
+                        <li><a href="../classes/Application.html">Application</a></li>
+                    
+                        <li><a href="../classes/BaseView.html">BaseView</a></li>
+                    
+                        <li><a href="../classes/BindableCollection.html">BindableCollection</a></li>
+                    
+                        <li><a href="../classes/BindableObject.html">BindableObject</a></li>
+                    
+                        <li><a href="../classes/Binding.html">Binding</a></li>
+                    
+                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
+                    
+                        <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
+                    
+                        <li><a href="../classes/ListView.html">ListView</a></li>
+                    
+                        <li><a href="../classes/Mojo.html">Mojo</a></li>
+                    
+                        <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+                    
+                        <li><a href="../classes/StateView.html">StateView</a></li>
+                    
+                        <li><a href="../classes/SubindableObject.html">SubindableObject</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/bindable.html">bindable</a></li>
+                    
+                        <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>packages/bindable.js/lib/object/watchProperty.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+var _     = require(&quot;underscore&quot;),
+transform = require(&quot;./transform&quot;),
+options   = require(&quot;../utils/options&quot;);
+
+/**
+ * @module bindable
+ * @class Binding
+ */
+
+
+
+/*
+ * bindable.bind(&quot;a&quot;, fn);
+ */
+
+function watchSimple (bindable, property, fn) {
+
+  bindable.emit(&quot;watching&quot;, [property]);
+
+  var listener = bindable.on(&quot;change:&quot; + property, function () {
+    fn.apply(self, arguments);
+  }), self;
+
+  return self = {
+
+    /** 
+     * the target bindable object
+     * @property target
+     * @type {BindableObject}
+     */
+
+    target: bindable,
+
+    /**
+     * triggers the binding listener
+     * @method now
+     */
+
+    now: function () {
+      fn.call(self, bindable.get(property));
+      return self;
+    },
+
+    /**
+     * disposes the binding
+     * @method dispose
+     */
+
+    dispose: function () {
+      listener.dispose();
+    }
+  }
+}
+
+/*
+ * bindable.bind(&quot;a.b.c.d.e&quot;, fn);
+ */
+
+
+function watchChain (bindable, hasComputed, chain, fn) {
+
+  var listeners = [], values = hasComputed ? [] : undefined, self;
+
+  function onChange () {
+    dispose();
+    listeners = [];
+    values = hasComputed ? [] : undefined;
+    bind(bindable, chain);
+    self.now();
+  }
+
+
+  if (hasComputed &amp;&amp; typeof window !== &quot;undefined&quot;) {
+    onChange = _.debounce(onChange, 1);
+  }
+
+  function bind (target, chain, pushValues) {
+
+    var currentChain = [], subValue, currentProperty, j, computed, hadComputed, pv, cv = chain.length ? target.__context : target;
+
+    // need to run through all variations of the property chain incase it changes
+    // in the bindable.object. For instance:
+    // target.bind(&quot;a.b.c&quot;, fn); 
+    // triggers on
+    // target.set(&quot;a&quot;, obj);
+    // target.set(&quot;a.b&quot;, obj);
+    // target.set(&quot;a.b.c&quot;, obj);
+
+    // does it have @each in there? could be something like
+    // target.bind(&quot;friends.@each.name&quot;, function (names) { })
+    if (hasComputed) {
+
+      for (var i = 0, n = chain.length; i &lt; n; i++) {
+
+        currentChain.push(chain[i]);
+        currentProperty = chain[i];
+
+        target.emit(&quot;watching&quot;, currentChain);
+
+        // check for @ at the beginning
+        if (computed = (currentProperty.charCodeAt(0) === 64)) {
+          hadComputed = true;
+          // remove @ - can&#x27;t be used to fetch the propertyy
+          currentChain[i] = currentProperty = currentChain[i].substr(1);
+        }
+        
+        pv = cv;
+        if (cv) cv = cv[currentProperty];
+
+        // check if 
+        if (computed &amp;&amp; cv) {
+
+
+          // used in cases where the collection might change that would affect 
+          // this binding. length for instance on the collection...
+          if (cv.compute) {
+            for (var j = cv.compute.length; j--;) {
+              bind(target, [cv.compute[j]], false);
+            }
+          }
+
+          // the sub chain for each of the items from the loop
+          var eachChain = chain.slice(i + 1);
+
+          // call the function, looping through items
+          cv.call(pv, function (item) {
+
+            if (!item) return;
+
+            // wrap around bindable object as a helper
+            if (!item.__isBindable) {
+              item = new module.exports.BindableObject(item);
+            }
+
+            bind(item, eachChain, pushValues);
+          });
+          break;
+        } else if (cv &amp;&amp; cv.__isBindable &amp;&amp; i !== n - 1) {
+          bind(cv, chain.slice(i + 1), false);
+          cv = cv.__context;
+        }
+
+        listeners.push(target.on(&quot;change:&quot; +  currentChain.join(&quot;.&quot;), onChange));
+
+      } 
+
+      if (!hadComputed &amp;&amp; pushValues !== false) {
+        values.push(cv);
+      }
+
+    } else {
+
+      for (var i = 0, n = chain.length; i &lt; n; i++) {
+        currentProperty = chain[i];
+        currentChain.push(currentProperty);
+
+        target.emit(&quot;watching&quot;, currentChain);
+
+        if (cv) cv = cv[currentProperty];
+
+        // pass the watch onto the bindable object, but also listen 
+        // on the current target for any
+        if (cv &amp;&amp; cv.__isBindable &amp;&amp; i !== n - 1) {
+          bind(cv, chain.slice(i + 1), false);
+          cv = cv.__context;
+        }
+
+        listeners.push(target.on(&quot;change:&quot; + currentChain.join(&quot;.&quot;), onChange));
+        
+      }
+
+      if (pushValues !== false) values = cv;
+    }
+
+
+  }
+
+  function dispose () {
+    if (!listeners) return;
+    for (var i = listeners.length; i--;) {
+      listeners[i].dispose();
+    }
+    listeners = undefined;
+  }
+
+  bind(bindable, chain);
+
+  return self = {
+    target: bindable,
+    now: function () {
+      fn.call(self, values);
+      return self;
+    },
+    dispose: dispose
+  }
+}
+
+/**
+ */
+
+function watchMultiple (bindable, chains, fn) { 
+
+  var values = new Array(chains.length),
+  oldValues  = new Array(chains.length),
+  bindings   = new Array(chains.length),
+  fn2        = options.computedDelay === -1 ? fn : _.debounce(fn, options.computedDelay),
+  self;
+
+  chains.forEach(function (chain, i) {
+
+    function onChange (value, oldValue) {
+      values[i]    = value;
+      oldValues[i] = oldValue;
+      fn2.apply(this, values.concat(oldValues));
+    }
+
+    bindings[i] = bindable.bind(chain, onChange);
+  });
+
+  return self = {
+    target: bindable,
+    now: function () {
+      for (var i = bindings.length; i--;) {
+        bindings[i].now();
+      }
+      return self;
+    },
+    dispose: function () {
+      for (var i = bindings.length; i--;) {
+        bindings[i].dispose();
+      }
+    }
+  }
+}
+
+/**
+ */
+
+function watchProperty (bindable, property, fn) {
+
+  if (typeof fn === &quot;object&quot;) {
+    fn = transform(bindable, property, fn);
+  }
+
+  // TODO - check if is an array
+  var chain;
+
+  if (typeof property === &quot;string&quot;) {
+    if (~property.indexOf(&quot;,&quot;)) {
+      return watchMultiple(bindable, property.split(/[,\s]+/), fn);
+    } else if (~property.indexOf(&quot;.&quot;)) {
+      chain = property.split(&quot;.&quot;);
+    } else {
+      chain = [property];
+    }
+  } else {
+    chain = property;
+  }
+
+  // collection.bind(&quot;length&quot;)
+  if (chain.length === 1) {
+    return watchSimple(bindable, property, fn);
+
+  // person.bind(&quot;city.zip&quot;)
+  } else {
+    return watchChain(bindable, ~property.indexOf(&quot;@&quot;), chain, fn);
+  }
+}
+
+module.exports = watchProperty;
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

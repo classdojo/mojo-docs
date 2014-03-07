@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/plugins/decor/sections.js - Mojo.js Docs</title>
+    <title>packages/subindable.js/lib/index.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,97 +124,220 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/plugins/decor/sections.js <small>File</small></h1>
+    <h1>packages/subindable.js/lib/index.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var type   = require(&quot;type-component&quot;),
-protoclass = require(&quot;protoclass&quot;),
-_ = require(&quot;underscore&quot;);
+var bindable = require(&quot;bindable&quot;),
+protoclass   = require(&quot;protoclass&quot;),
+type         = require(&quot;type-component&quot;),
+_            = require(&quot;underscore&quot;);
 
 
-function SectionsDecorator (view, sectionOptions) {
-  this.view           = view;
-  this.sectionOptions = sectionOptions;
-  view.sections = { __decorated: true };
+function _combineSuperProps (target, property) {
+  var constructor = target.constructor;
 
-  view.once(&quot;render&quot;, _.bind(this.init, this));
+  if (!constructor.__combined) {
+    constructor.__combined = {};
+  }
+
+  if (constructor.__combined[property]) {
+    return;
+  }
+
+  constructor.__combined[property] = true;
+
+  var p = constructor.prototype,
+  defined = [];
+
+
+  while (p) {
+    defined = (p.define || []).concat(defined);
+    p = p.constructor.__super__;
+  }
+
+  constructor.prototype[property] = target[property] = defined;
 }
 
-protoclass(SectionsDecorator, {
 
-  /**
+/**
+ * Allows you to inherit properties from a parent bindable.
+ * @class SubindableObject
+ * @extends BindableObject
+ */
+
+
+function SubindableObject (context, parent) {
+  SubindableObject.parent.call(this, context || this);
+
+  if (parent) this.set(&quot;parent&quot;, parent);
+
+  this._defined = {};
+
+  _combineSuperProps(this, &quot;define&quot;);
+  this._define.apply(this, this.define);
+  var self = this;
+
+  // listen whenever a property 
+  this.on(&quot;watching&quot;, function (propertyChain) {
+    var key = propertyChain[0]
+    if (self.__context[key] === undefined)
+      self.inherit(key);
+  });
+}
+
+protoclass(bindable.Object, SubindableObject, {
+
+  /*
    */
 
+  define: [
 
-  init: function () {
-    for (var sectionName in this.sectionOptions) {
-      this._addSection(sectionName, this._fixOptions(this.sectionOptions[sectionName]));
-    }
-  },
+    /**
+     * The parent subindable object
+     * @property {SubindableObject} parent
+     */
 
-  /**
+    &quot;parent&quot;
+  ],
+
+  /*
    */
 
-  _addSection: function (name, options) {
-    if (!options) return;
+  get: function (key) {
 
-    var view = this._createSectionView(options);
+    var ret = SubindableObject.__super__.get.call(this, key);
+    if(ret != undefined) return ret;
 
-    view.once(&quot;render&quot;, function () {
-      view.decorate(options);
-    });
+    var bindingKey, i;
 
-
-    this.view.setChild(name, view);
-  },
-
-  /**
-   */
-
-  _fixOptions: function (options) {
-
-    if (!options) {
-      throw new Error(&quot;&#x27;sections&#x27; is invalid for view &#x27;&quot;+this.view.path+&quot;&#x27;&quot;);
-    }
-
-    if (!options.type) {
-      options = { type: options };
-    }
-
-    return options;
-  },
-
-  /**
-   */
-
-  _createSectionView: function (options) {
-    var t;
-    if ((t = type(options.type)) === &quot;object&quot;) {
-      return options.type;
-    } else if (t === &quot;function&quot;) {
-      return new options.type(options);
-    } else if (t === &quot;string&quot;) {
-      return this.view.application.createView(options.type, options);
+    if (typeof key !== &quot;string&quot;) {
+      bindingKey = key[0];
+    } else if (~(i = key.indexOf(&quot;.&quot;))) {
+      bindingKey = key.slice(0, i);
     } else {
-      throw new Error(&quot;cannot create section for type &#x27;&quot; + t + &quot;&#x27;&quot;);
+      bindingKey = key;
     }
+
+    // if the binding key exists, then don&#x27;t inherit
+    if (this.__context[bindingKey] != undefined) {
+      return;
+    }
+
+    // inherit from the parent
+    this.inherit(bindingKey);
+
+    // return the inherited value
+    return SubindableObject.__super__.get.call(this, key);
+  },
+
+  /*
+   */
+
+  set: function (key, value) {  
+
+    var i;
+
+    // if we&#x27;re setting to a chained property, inherit the first part
+    // incase it exists - for example:
+    // subView.set(&quot;user.name&quot;, &quot;blah&quot;) 
+    // would need to be inherited before being set
+    if (typeof key === &quot;string&quot; &amp;&amp; ~(i = key.indexOf(&quot;.&quot;))) {
+      var bindingKey = key.slice(0, i);
+      if (this.__context[bindingKey] == undefined) this.inherit(bindingKey);
+    }
+
+    return SubindableObject.__super__.set.call(this, key, value);
+  },
+
+  /*
+   */
+
+  _define: function () {
+    for(var i = arguments.length; i--;) {
+      this._defined[arguments[i]] = true;
+    }
+  },
+
+  /*
+   * DEPRECATED
+   */
+
+  _inherit: function (key) {
+    console.warn(&quot;_inherit on subindable is deprecated&quot;);
+    this.inherit(key);
+  },
+
+  /**
+   * Inherits a property from the parent subindable object
+   * @method inherit
+   * @param {String} path path to inherit.
+   */
+
+  inherit: function (key) {
+
+    if (this._defined[key]) return;
+    this._defined[key] = true;
+
+    var parentPropertyBinding,
+    parentBinding,
+    valueBinding,
+    self = this;
+
+    // if the parent ever changes, we&#x27;ll need to also change the bound value
+    parentBinding = this.bind(&quot;parent&quot;, function(parent) {
+
+      if (parentPropertyBinding) parentPropertyBinding.dispose();
+      if (!parent) return;
+
+      // inherit the property from the parent here
+      parentPropertyBinding = parent.bind(key, function (v) {
+
+        // if the value is a function, then make sure the context is 
+        // bound to the parent
+        if (typeof v === &quot;function&quot; &amp;&amp; !v.__bound) {
+          var org;
+          v = _.bind(org = v, parent);
+          v.__bound    = true;
+          v.__original = org;
+        }
+
+        // set the inherited property
+        self.set(key, v);
+      }).now();
+    }).now();
+
+
+    // now bind to THIS context incase explicitly set
+    valueBinding = this.bind(key, function(value) {
+
+      // if the parent value doesn&#x27;t match this context&#x27;s value, then
+      // break inheritance
+      if (self.__context.parent &amp;&amp; self.__context.parent.__context[key] === value) {
+        return;
+      }
+
+      // but be sure that the bound value is not an inherited function
+      if (value &amp;&amp; value.__bound &amp;&amp; value.__original == self.__context.parent.__context[key]) {
+        return
+      }
+
+      // at this point, the parent value, and this context&#x27;s value do NOT match
+      // so remove all inheritance bindings.
+      valueBinding.dispose();
+
+      if (parentPropertyBinding) parentPropertyBinding.dispose()
+      if (parentBinding) parentBinding.dispose();
+    });
   }
 
 });
 
-SectionsDecorator.priority = &quot;init&quot;;
-SectionsDecorator.getOptions = function (view) {
-  if (view.sections &amp;&amp; !view.sections.__decorated) {
-    return view.sections;
-  }
-}
-SectionsDecorator.decorate = function (view, options) {
-  return new SectionsDecorator(view, options);
-}
 
-module.exports = SectionsDecorator;
+module.exports = {
+  Object: SubindableObject
+}
     </pre>
 </div>
 

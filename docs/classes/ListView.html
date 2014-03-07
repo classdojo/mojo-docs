@@ -3,101 +3,131 @@
 <head>
     <meta charset="utf-8">
     <title>ListView - Mojo.js Docs</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
-
-<div id="doc">
-    <div id="hd" class="yui3-g header">
-        <div class="yui3-u-3-4">
-            
-                <h1><img src="../assets/css/logo.png" title="Mojo.js Docs"></h1>
-            
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Mojo.js Docs" src="../assets/css/logo.png" style="max-height: 65%;" title="Mojo.js Docs">
+        
+            Mojo.js Docs
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.7.84</b>
+                </p>
+            </li>
         </div>
-        <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.84</em>
-        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+        </form>
     </div>
-    <div id="bd" class="yui3-g">
-
-        <div class="yui3-u-1-4">
-            <div id="docs-sidebar" class="sidebar apidocs">
-                <div id="api-list">
-    <h2 class="off-left">APIs</h2>
-    <div id="api-tabview" class="tabview">
-        <ul class="tabs">
-            <li><a href="#api-classes">Classes</a></li>
-            <li><a href="#api-modules">Modules</a></li>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
         </ul>
 
         <div id="api-tabview-filter">
-            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+            <input type="search" placeholder="Type to filter APIs">
         </div>
 
-        <div id="api-tabview-panel">
-            <ul id="api-classes" class="apis classes">
-            
-                <li><a href="../classes/Animator.html">Animator</a></li>
-            
-                <li><a href="../classes/Application.html">Application</a></li>
-            
-                <li><a href="../classes/BaseView.html">BaseView</a></li>
-            
-                <li><a href="../classes/ListView.html">ListView</a></li>
-            
-                <li><a href="../classes/Mojo.html">Mojo</a></li>
-            
-                <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
-            
-                <li><a href="../classes/StateView.html">StateView</a></li>
-            
-            </ul>
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Animator.html">Animator</a></li>
+                    
+                        <li><a href="../classes/Application.html">Application</a></li>
+                    
+                        <li><a href="../classes/BaseView.html">BaseView</a></li>
+                    
+                        <li><a href="../classes/BindableCollection.html">BindableCollection</a></li>
+                    
+                        <li><a href="../classes/BindableObject.html">BindableObject</a></li>
+                    
+                        <li><a href="../classes/Binding.html">Binding</a></li>
+                    
+                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
+                    
+                        <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
+                    
+                        <li><a href="../classes/ListView.html">ListView</a></li>
+                    
+                        <li><a href="../classes/Mojo.html">Mojo</a></li>
+                    
+                        <li><a href="../classes/RegisteredClasses.html">RegisteredClasses</a></li>
+                    
+                        <li><a href="../classes/StateView.html">StateView</a></li>
+                    
+                        <li><a href="../classes/SubindableObject.html">SubindableObject</a></li>
+                    
+                </ul>
+            </div>
 
-            <ul id="api-modules" class="apis modules">
-            
-                <li><a href="../modules/mojo.html">mojo</a></li>
-            
-            </ul>
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/bindable.html">bindable</a></li>
+                    
+                        <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-            </div>
         </div>
-        <div class="yui3-u-3-4">
-                <div id="api-options">
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
         Show:
-        <label for="api-show-inherited">
+        <label for="api-show-inherited" class="checkbox">
             <input type="checkbox" id="api-show-inherited" checked>
             Inherited
         </label>
 
-        <label for="api-show-protected">
+        <label for="api-show-protected" class="checkbox">
             <input type="checkbox" id="api-show-protected">
             Protected
         </label>
 
-        <label for="api-show-private">
+        <label for="api-show-private" class="checkbox">
             <input type="checkbox" id="api-show-private">
             Private
         </label>
-        <label for="api-show-deprecated">
+        <label for="api-show-deprecated" class="checkbox">
             <input type="checkbox" id="api-show-deprecated">
             Deprecated
         </label>
 
-    </div>
+    </form>
 
 
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>ListView Class</h1>
-<div class="box meta">
+                        <div class="page-header">
+    <h1>ListView <small>Class</small></h1>
+</div>
+
+<div class="well well-small">
     
 
     
@@ -114,7 +144,7 @@
 
     
         
-            Module: <a href="../modules/mojo.html">mojo</a>
+            Module: <a href="../modules/bindable.html">bindable</a>
         
     
 
@@ -123,29 +153,31 @@
 
 
 
-<div class="box intro">
+<div class="well well-small">
     <p>List View</p>
 
 </div>
 
 
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
         
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
         
         
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
         
         
+        
+            <li><a data-toggle="tab" href="#events">Events</a></li>
         
     </ul>
 
-    <div>
-        <div id="index" class="api-class-tabpanel index">
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
             <h2 class="off-left">Item Index</h2>
 
             
@@ -155,98 +187,196 @@
                     <ul class="index-list methods extends">
                         
                             <li class="index-item method inherited">
-                                <a href="#method_$">$</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_$" data-tablink="$">$</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method protected inherited">
-                                <a href="#method__render">_render</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method__render" data-tablink="_render">_render</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_attach">attach</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_attach" data-tablink="attach">attach</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_bubble">bubble</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_bind" data-tablink="bind">bind</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_decorate">decorate</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_bubble" data-tablink="bubble">bubble</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_disposable">disposable</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_context" data-tablink="context">context</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_dispose">dispose</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_decorate" data-tablink="decorate">decorate</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_disposable" data-tablink="disposable">disposable</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_dispose" data-tablink="dispose">dispose</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_emit" data-tablink="emit">emit</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_filter">filter</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_filter" data-tablink="filter">filter</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_initialize">initialize</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_get" data-tablink="get">get</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_has" data-tablink="has">has</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_inherit" data-tablink="inherit">inherit</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_initialize" data-tablink="initialize">initialize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_keys" data-tablink="keys">keys</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_map">map</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_map" data-tablink="map">map</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_path">path</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_off" data-tablink="off">off</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_remove">remove</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_on" data-tablink="on">on</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method inherited">
-                                <a href="#method_render">render</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_once" data-tablink="once">once</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_path" data-tablink="path">path</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_remove" data-tablink="remove">remove</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_removeAllListeners" data-tablink="removeAllListeners">removeAllListeners</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_render" data-tablink="render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_set" data-tablink="set">set</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setProperties" data-tablink="setProperties">setProperties</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_sort">sort</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_sort" data-tablink="sort">sort</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_toJSON" data-tablink="toJSON">toJSON</a>
 
                                 
                                 
@@ -263,49 +393,56 @@
                     <ul class="index-list properties extends">
                         
                             <li class="index-item property inherited">
-                                <a href="#property_application">application</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_application" data-tablink="application">application</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_chunk">chunk</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_chunk" data-tablink="chunk">chunk</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_delay">delay</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_delay" data-tablink="delay">delay</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_length">length</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_length" data-tablink="length">length</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_modelViewClass">modelViewClass</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_modelViewClass" data-tablink="modelViewClass">modelViewClass</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_modelViewFactory">modelViewFactory</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_modelViewFactory" data-tablink="modelViewFactory">modelViewFactory</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_parent" data-tablink="parent">parent</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_source">source</a>
+                                <a href="#" data-tabid="#properties" data-anchor="#property_source" data-tablink="source">source</a>
 
                                 
                                 
@@ -318,10 +455,60 @@
             
 
             
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events extends">
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_change" data-tablink="change">change</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_change:*" data-tablink="change:*">change:*</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_dispose" data-tablink="dispose">dispose</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_remove" data-tablink="remove">remove</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_render" data-tablink="render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event inherited">
+                                <a href="#" data-tabid="#events" data-anchor="#event_watching" data-tablink="watching">watching</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
         </div>
 
         
-            <div id="methods" class="api-class-tabpanel">
+            <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
                 
@@ -364,7 +551,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l183"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:183</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l201"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:201</code></a>
         
         </p>
 
@@ -441,7 +628,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l158"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:158</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l176"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:176</code></a>
         
         </p>
 
@@ -503,7 +690,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l201"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:201</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l219"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:219</code></a>
         
         </p>
 
@@ -544,6 +731,152 @@
         </div>
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_bind" class="method item inherited">
+    <h3 class="name"><code>bind</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>property</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>listener</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>now</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Binding.html" class="crosslink">Binding</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_bind">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l216"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:216</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Binds a property to a function</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>path to bind to.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">listener</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p><code>function</code> or <code>transformer</code> to bind to</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">now</code>
+                        <span class="type">Boolean</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(optional) call binding now. Otherwise wait till property changes.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Binding.html" class="crosslink">Binding</a></span>:
+                    
+                
+            </div>
+        </div>
     
 
     
@@ -595,7 +928,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l260"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:260</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l276"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:276</code></a>
         
         </p>
 
@@ -658,6 +991,110 @@
 </div>
 
                 
+                    <div id="method_context" class="method item inherited">
+    <h3 class="name"><code>context</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>data</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_context">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l57"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:57</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The context of the bindable object. Note that the context can be <code>this</code>.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">data</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(optional) sets the context</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <p>context</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_decorate" class="method item inherited">
     <h3 class="name"><code>decorate</code></h3>
 
@@ -701,7 +1138,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l229"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:229</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l247"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:247</code></a>
         
         </p>
 
@@ -800,7 +1237,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l49"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:49</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l67"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:67</code></a>
         
         </p>
 
@@ -872,11 +1309,11 @@
         
             
                 <p>Inherited from
-                <a href="../classes/BaseView.html#method_dispose">BaseView</a>:
+                <a href="../classes/BindableObject.html#method_dispose">BindableObject</a>:
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l241"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:241</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l229"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:229</code></a>
         
         </p>
 
@@ -887,10 +1324,117 @@
     </div>
 
     <div class="description">
-        <p>Disposes the view, and adds to the global object pool if registered.</p>
+        <p>Disposes the bindable object. Emits <code>dispose</code>.</p>
 
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_emit" class="method item inherited">
+    <h3 class="name"><code>emit</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>,</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/EventEmitter.html#method_emit">EventEmitter</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l97"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:97</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>emits an event</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">,</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p><code>data...</code> data to emit</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -965,13 +1509,286 @@
                 <li class="param">
                     
                         <code class="param-name">the</code>
-                        <span class="type">BindableObject</span>
+                        <span class="type"><a href="../classes/BindableObject.html" class="crosslink">BindableObject</a></span>
                     
 
                     
 
                     <div class="param-description">
                         <p>model to builder</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_get" class="method item inherited">
+    <h3 class="name"><code>get</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>path</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_get">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l96"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:96</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns a property stored in the bindable object context</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">path</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>path to the value. Can be something like <code>person.city.name</code>.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_has" class="method item inherited">
+    <h3 class="name"><code>has</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>path</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_has">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l85"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:85</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns TRUE if a property exists in the context</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">path</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Boolean</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_inherit" class="method item inherited">
+    <h3 class="name"><code>inherit</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>path</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/SubindableObject.html#method_inherit">SubindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_subindable.js_lib_index.js.html#l141"><code>packages&#x2F;subindable.js&#x2F;lib&#x2F;index.js:141</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Inherits a property from the parent subindable object</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">path</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>path to inherit.</p>
 
                     </div>
 
@@ -1027,7 +1844,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l82"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:82</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l100"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:100</code></a>
         
         </p>
 
@@ -1068,6 +1885,74 @@
         </div>
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_keys" class="method item inherited">
+    <h3 class="name"><code>keys</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Array</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_keys">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l75"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:75</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the keys in the context</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Array</span>:
+                    
+                
+            </div>
+        </div>
     
 
     
@@ -1180,6 +2065,362 @@
 </div>
 
                 
+                    <div id="method_off" class="method item inherited">
+    <h3 class="name"><code>off</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>listener</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/EventEmitter.html#method_off">EventEmitter</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l50"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:50</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>removes an event emitter</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>to remove</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>to remove</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_on" class="method item inherited">
+    <h3 class="name"><code>on</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>listener</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Disposable</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/EventEmitter.html#method_on">EventEmitter</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l16"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:16</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>adds a listener on the event emitter</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>event to listen on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>to callback when <code>event</code> is emitted.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Disposable</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_once" class="method item inherited">
+    <h3 class="name"><code>once</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>listener</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Disposable</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/EventEmitter.html#method_once">EventEmitter</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l76"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:76</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>adds a listener on the event emitter</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>event to listen on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>to callback when <code>event</code> is emitted.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Disposable</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_path" class="method item inherited">
     <h3 class="name"><code>path</code></h3>
 
@@ -1209,7 +2450,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l117"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:117</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l135"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:135</code></a>
         
         </p>
 
@@ -1261,7 +2502,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l168"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:168</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l186"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:186</code></a>
         
         </p>
 
@@ -1276,6 +2517,92 @@
 
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_removeAllListeners" class="method item inherited">
+    <h3 class="name"><code>removeAllListeners</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/EventEmitter.html#method_removeAllListeners">EventEmitter</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l143"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:143</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>removes all listeners</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(optional) removes all listeners of <code>event</code>. Omitting will remove everything.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -1317,7 +2644,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l133"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:133</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l151"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:151</code></a>
         
         </p>
 
@@ -1344,6 +2671,196 @@
                         <span class="type">Object</span>:
                     
                     <p>document fragment</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_set" class="method item inherited">
+    <h3 class="name"><code>set</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>path</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_set">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l147"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:147</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets a property on the bindable object&#39;s context</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">path</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>path to the value. Can be something like <code>person.city.name</code>.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setProperties" class="method item inherited">
+    <h3 class="name"><code>setProperties</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>properties</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/BindableObject.html" class="crosslink">BindableObject</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_setProperties">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l133"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:133</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Properties to set on the bindable object</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">properties</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>properties to set</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/BindableObject.html" class="crosslink">BindableObject</a></span>:
+                    
+                    <p>this</p>
 
                 
             </div>
@@ -1463,11 +2980,63 @@
 </div>
 
                 
+                    <div id="method_toJSON" class="method item inherited">
+    <h3 class="name"><code>toJSON</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#method_toJSON">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l238"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:238</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Converts the context to a JSON object</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
             </div>
         
 
         
-            <div id="properties" class="api-class-tabpanel">
+            <div id="properties" class="tab-pane">
                 <h2 class="off-left">Properties</h2>
 
                 
@@ -1491,7 +3060,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l23"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:23</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l41"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:41</code></a>
         
         </p>
 
@@ -1738,9 +3307,51 @@
 </div>
 
                 
+                    <div id="property_parent" class="property item inherited">
+    <h3 class="name"><code>parent</code></h3>
+    <span class="type"><a href="../classes/SubindableObject.html" class="crosslink">SubindableObject</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/SubindableObject.html#property_parent">SubindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_subindable.js_lib_index.js.html#l66"><code>packages&#x2F;subindable.js&#x2F;lib&#x2F;index.js:66</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The parent subindable object</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_source" class="property item">
     <h3 class="name"><code>source</code></h3>
-    <span class="type">BindableCollection</span>
+    <span class="type"><a href="../classes/BindableCollection.html" class="crosslink">BindableCollection</a></span>
 
     
 
@@ -1789,6 +3400,350 @@
         
 
         
+            <div id="events" class="tab-pane">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_change" class="events item inherited">
+    <h3 class="name"><code>change</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#event_change">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l12"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:12</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Emitted everytime a property changes</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">oldValue</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_change:*" class="events item inherited">
+    <h3 class="name"><code>change:*</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#event_change:*">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l20"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:20</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Emitted when a specific property changes</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">oldValue</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_dispose" class="events item inherited">
+    <h3 class="name"><code>dispose</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BindableObject.html#event_dispose">BindableObject</a>:
+            
+        
+        
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l5"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:5</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Emitted when the bindable object is disposed. This happens
+when the object is no-longer needed.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_remove" class="events item inherited">
+    <h3 class="name"><code>remove</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BaseView.html#event_remove">BaseView</a>:
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l23"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:23</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the view is remove</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_render" class="events item inherited">
+    <h3 class="name"><code>render</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BaseView.html#event_render">BaseView</a>:
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l17"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:17</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the view is rendered</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_watching" class="events item inherited">
+    <h3 class="name"><code>watching</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BaseView.html#event_watching">BaseView</a>:
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l29"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:29</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>emitted when a property is being watched</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+            </div>
+        
     </div>
 </div>
 
@@ -1798,13 +3753,10 @@
         </div>
     </div>
 </div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
 <script>prettyPrint();</script>
-<script src="../assets/js/yui-prettify.js"></script>
-<script src="../assets/../api.js"></script>
-<script src="../assets/js/api-filter.js"></script>
-<script src="../assets/js/api-list.js"></script>
-<script src="../assets/js/api-search.js"></script>
-<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>

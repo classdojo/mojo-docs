@@ -7,8 +7,11 @@
   "options": {
     "paths": [
       "./packages/mojo.js/lib",
-      "./packages/paperclip.js/lib"
+      "./packages/bindable.js/lib",
+      "./packages/subindable.js/lib"
     ],
-    "outdir":   "./docs"
+    "outdir":   "./docs",
+    "themedir": "themes/yuidoc-bootstrap-theme",
+    "helpers": ["themes/yuidoc-bootstrap-theme/helpers/helpers.js"]
   }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/plugins/decor/sections.js - Mojo.js Docs</title>
+    <title>bindable - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,98 +124,93 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/plugins/decor/sections.js <small>File</small></h1>
+    <h1>bindable <small>Module</small></h1>
 </div>
 
-<div class="file">
-    <pre class="prettyprint linenums">
-var type   = require(&quot;type-component&quot;),
-protoclass = require(&quot;protoclass&quot;),
-_ = require(&quot;underscore&quot;);
+<div class="clearfix well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/packages_mojo.js_lib_views_states_index.js.html#l9"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;states&#x2F;index.js:9</code></a>
+        </div>
+    
+
+    
+</div>
 
 
-function SectionsDecorator (view, sectionOptions) {
-  this.view           = view;
-  this.sectionOptions = sectionOptions;
-  view.sections = { __decorated: true };
 
-  view.once(&quot;render&quot;, _.bind(this.init, this));
-}
-
-protoclass(SectionsDecorator, {
-
-  /**
-   */
+<div class="moduledesc well well-small">
+    
+</div>
 
 
-  init: function () {
-    for (var sectionName in this.sectionOptions) {
-      this._addSection(sectionName, this._fixOptions(this.sectionOptions[sectionName]));
-    }
-  },
 
-  /**
-   */
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
 
-  _addSection: function (name, options) {
-    if (!options) return;
+            <ul class="module-classes">
+            
+                <li class="module-class">
+                    <a href="../classes/BaseView.html">
+                        BaseView
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/BindableCollection.html">
+                        BindableCollection
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/BindableObject.html">
+                        BindableObject
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/Binding.html">
+                        Binding
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/BindingTransformer.html">
+                        BindingTransformer
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/EventEmitter.html">
+                        EventEmitter
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/ListView.html">
+                        ListView
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/StateView.html">
+                        StateView
+                    </a>
+                </li>
+            
+            </ul>
+        
+    </div>
 
-    var view = this._createSectionView(options);
-
-    view.once(&quot;render&quot;, function () {
-      view.decorate(options);
-    });
-
-
-    this.view.setChild(name, view);
-  },
-
-  /**
-   */
-
-  _fixOptions: function (options) {
-
-    if (!options) {
-      throw new Error(&quot;&#x27;sections&#x27; is invalid for view &#x27;&quot;+this.view.path+&quot;&#x27;&quot;);
-    }
-
-    if (!options.type) {
-      options = { type: options };
-    }
-
-    return options;
-  },
-
-  /**
-   */
-
-  _createSectionView: function (options) {
-    var t;
-    if ((t = type(options.type)) === &quot;object&quot;) {
-      return options.type;
-    } else if (t === &quot;function&quot;) {
-      return new options.type(options);
-    } else if (t === &quot;string&quot;) {
-      return this.view.application.createView(options.type, options);
-    } else {
-      throw new Error(&quot;cannot create section for type &#x27;&quot; + t + &quot;&#x27;&quot;);
-    }
-  }
-
-});
-
-SectionsDecorator.priority = &quot;init&quot;;
-SectionsDecorator.getOptions = function (view) {
-  if (view.sections &amp;&amp; !view.sections.__decorated) {
-    return view.sections;
-  }
-}
-SectionsDecorator.decorate = function (view, options) {
-  return new SectionsDecorator(view, options);
-}
-
-module.exports = SectionsDecorator;
-    </pre>
+    <div class="yui3-u-1-2">
+        
+    </div>
 </div>
 
                     </div>

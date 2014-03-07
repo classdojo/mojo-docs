@@ -4,15 +4,26 @@ YUI.add("yuidoc-meta", function(Y) {
         "Animator",
         "Application",
         "BaseView",
+        "BindableCollection",
+        "BindableObject",
+        "Binding",
+        "BindingTransformer",
+        "EventEmitter",
         "ListView",
         "Mojo",
         "RegisteredClasses",
-        "StateView"
+        "StateView",
+        "SubindableObject"
     ],
     "modules": [
+        "bindable",
         "mojo"
     ],
     "allModules": [
+        {
+            "displayName": "bindable",
+            "name": "bindable"
+        },
         {
             "displayName": "mojo",
             "name": "mojo",

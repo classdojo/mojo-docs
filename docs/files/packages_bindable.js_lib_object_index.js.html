@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/views/states/index.js - Mojo.js Docs</title>
+    <title>packages/bindable.js/lib/object/index.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -124,283 +124,271 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/views/states/index.js <small>File</small></h1>
+    <h1>packages/bindable.js/lib/object/index.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var bindable = require(&quot;bindable&quot;)
-State        = require(&quot;./state&quot;),
-protoclass   = require(&quot;protoclass&quot;),
-BaseView     = require(&quot;../base&quot;),
-_            = require(&quot;underscore&quot;),
-flatstack    = require(&quot;flatstack&quot;);
+var EventEmitter    = require(&quot;../core/eventEmitter&quot;),
+protoclass          = require(&quot;protoclass&quot;),
+watchProperty       = require(&quot;./watchProperty&quot;);
+
+/**
+ * Emitted when the bindable object is disposed. This happens
+ * when the object is no-longer needed.
+ * @event dispose
+ */
 
 
 /**
- * States View. This is usually defined in &#x60;{ sections: { pages: { type: &#x27;states&#x27;}} }&#x60;
- * @class StateView
- * @extends BaseView
+ * Emitted everytime a property changes
+ * @event change
+ * @param {String} property
+ * @param {Object} value
+ * @param {Object} oldValue
  */
 
-function StateView (data, application) {
-  BaseView.call(this, data, application);
+/**
+ * Emitted when a specific property changes
+ * @event change:*
+ * @param {Object} value
+ * @param {Object} oldValue
+ */
+
+/**
+ * @class BindableObject
+ * @extends EventEmitter
+ */
+
+/**
+ * @constructor
+ * @param {Object} context context of the bindable object
+ */
+
+function Bindable (context) {
+
+  if (context) {
+    this.context(context);
+  } else {
+    this.__context = {};
+  }
+
+  Bindable.parent.call(this);
 }
 
+watchProperty.BindableObject = Bindable;
 
-protoclass(BaseView, StateView, {
-
-  /**
-   * prevent states from being decorated
-   */
-
-  _decorated: true,
-
-  /**
-   * Transitions from one state to another
-   * @param {BaseView} from view to transition from. This can be null.
-   * @param {BaseView} to view to transition to.
-   * @param {Function} complete called when the transition finishes
-   */
-
-  transition: function (from, to, next) {
-    next()
-  },
+protoclass(EventEmitter, Bindable, {
 
   /**
    */
 
-  define: [
-
-    /**
-     * current state name
-     * @property currentName
-     */
-
-    &quot;currentName&quot;, 
-
-    /**
-     * current state index
-     * @property index
-     */
-
-    &quot;index&quot;, 
-
-    /**
-     * TODO - change this to &#x27;states&#x27;
-     */
-
-    &quot;source&quot;, 
-
-    /**
-     * The current view being displayed
-     * @property currentView
-     * @type {BaseView}
-     */
-
-    &quot;currentView&quot;, 
-
-    &quot;rotate&quot;, 
-    &quot;ended&quot;, 
-
-    /**
-     * The collection of view classes to use
-     * @property views
-     * @type {Array}
-     */
-
-    &quot;views&quot;
-  ],
+  __isBindable: true,
 
   /**
+   * The context of the bindable object. Note that the context can be &#x60;this&#x60;.
+   * @method context
+   * @param {Object} data (optional) sets the context
+   * @returns {Object} context
    */
 
-  ended: false,
+  context: function (data) {
+    if (!arguments.length) return this.__context;
 
-  /**
-   */
-
-  initialize: function (data) {
-    this.source = new bindable.Collection();    
-    BaseView.prototype.initialize.call(this, data);
-    this._q = flatstack();
-
-    this.next = _.bind(this.next, this);
-    this.prev = _.bind(this.prev, this);
-
-    this.bind(&quot;views&quot;, { to: _.bind(this._setViews, this) }).now();
-  },
-
-  /**
-   */
-
-  _setViews: function (views) {
-    var self = this;
-    this.source.reset(views.map(function (stateOptions, i) {
-      return new State(self, stateOptions, i);
-    }));
-
-    if(this._rendered) {
-      this._createBindings();
-    }
-  },
-
-  /**
-   */
-
-  render: function () {
-    var section = BaseView.prototype.render.call(this);
-    this._createBindings();
-    return section;
-  },
-
-  /**
-   */
-
-  _createBindings: function () {
-
-    if (this._indexBinding) {
-      this._indexBinding.dispose();
-      this._cnameBinding.dispose();
+    // only exception is 
+    if (data.__isBindable &amp;&amp; data !== this) {
+      throw new Error(&quot;context cannot be a bindable object&quot;);
     }
 
-    this._indexbinding = this.bind(&quot;index&quot;, { to: _.bind(this._setIndexWithAnimation, this) }).now();
-    this._cnameBinding = this.bind(&quot;currentName&quot;, { to: _.bind(this._setName, this) }).now();
+    this.__context = data;
   },
 
   /**
-   * Selects a specific index
-   * @method select
-   * @param {Number} stateOrIndex 
+   * Returns the keys in the context
+   * @method keys
+   * @returns {Array}
    */
 
-  select: function (stateOrIndex) {
-    if (typeof stateOrIndex === &quot;number&quot;) {
-      this.set(&quot;index&quot;, stateOrIndex);
+  keys: function () {
+    return Object.keys(this.toJSON());
+  },
+
+  /**
+   * Returns TRUE if a property exists in the context
+   * @method has
+   * @param {String} path
+   * @returns {Boolean}
+   */
+
+  has: function (key) {
+    return this.get(key) != null;
+  },
+
+  /**
+   * Returns a property stored in the bindable object context
+   * @method get
+   * @param {String} path path to the value. Can be something like &#x60;person.city.name&#x60;.
+   */
+
+  get: function (property) {
+
+    var isString;
+
+    // optimal
+    if ((isString = (typeof property === &quot;string&quot;)) &amp;&amp; !~property.indexOf(&quot;.&quot;)) {
+      return this.__context[property];
+    }
+
+    // avoid split if possible
+    var chain    = isString ? property.split(&quot;.&quot;) : property,
+    ctx          = this.__context,
+    currentValue = ctx,
+    currentProperty;
+
+    // go through all the properties
+    for (var i = 0, n = chain.length - 1; i &lt; n; i++) {
+
+      currentValue    = currentValue[chain[i]];
+
+      if (!currentValue) return;
+
+      // current value is a bindable item? grab the context
+      if (currentValue.__isBindable &amp;&amp; currentValue !== ctx) {  
+        currentValue = currentValue.__context;
+      }
+    }
+    // might be a bindable object
+    if(currentValue) return currentValue[chain[i]];
+  },
+
+  /**
+   * Properties to set on the bindable object
+   * @method setProperties
+   * @param {Object} properties properties to set
+   * @returns {BindableObject} this
+   */
+
+  setProperties: function (properties) {
+    for (var property in properties) {
+      this.set(property, properties[property]);
+    }
+    return this;
+  },
+
+  /**
+   * Sets a property on the bindable object&#x27;s context
+   * @method set
+   * @param {String} path path to the value. Can be something like &#x60;person.city.name&#x60;.
+   */
+
+  set: function (property, value) {
+
+    var isString, hasChanged, oldValue;
+
+    // optimal
+    if ((isString = (typeof property === &quot;string&quot;)) &amp;&amp; !~property.indexOf(&quot;.&quot;)) {
+      hasChanged = (oldValue = this.__context[property]) !== value;
+      if (hasChanged) this.__context[property] = value;
     } else {
-      var i = this.source.indexOf(stateOrIndex);
-      if (~i) {
-        this.select(i);
+
+      // avoid split if possible
+      var chain     = isString ? property.split(&quot;.&quot;) : property,
+      ctx           = this.__context,
+      currentValue  = ctx,
+      previousValue,
+      currentProperty,
+      newChain;
+
+
+      for (var i = 0, n = chain.length - 1; i &lt; n; i++) {
+
+        currentProperty = chain[i];
+        previousValue   = currentValue;
+        currentValue    = currentValue[currentProperty];
+
+
+        // need to take into account functions - easier not to check
+        // if value exists
+        if (!currentValue /* || (typeof currentValue !== &quot;object&quot;)*/) {
+          currentValue = previousValue[currentProperty] = {};
+        }
+
+        // is the previous value bindable? pass it on
+        if (currentValue.__isBindable) {
+
+
+
+          newChain = chain.slice(i + 1);
+          // check if the value has changed
+          hasChanged = (oldValue = currentValue.get(newChain)) !== value;
+          currentValue.set(newChain, value);
+          currentValue = oldValue;
+          break;
+        }
       }
-    }
-  },
 
-  /**
-   * moves to the next state
-   * @method next
-   */
 
-  next: function () {
-    this.move(1);
-  },
-
-  /**
-   * moves to the previous state
-   * @method prev
-   */
-
-  prev: function () {
-    this.move(-1);
-  },
-
-  /**
-   * moves to a specific state index
-   * @method move
-   * @param position steps to move. Can be something like &#x60;-1&#x60;, or &#x60;1&#x60;.
-   */
-
-  move: function (position) {
-    var newIndex = this.index + position;
-
-    if (newIndex &lt; 0) {
-      if (this.rotate) {
-        newIndex = this.source.length - 1;
-      } else {
-        newIndex = 0;
-        this.set(&quot;ended&quot;, true);
-      }
-    } else if (newIndex &gt;= this.source.length) {
-      if (this.rotate) {
-        newIndex = 0;
-      } else {
-        newIndex = this.source.length - 1;
-        this.set(&quot;ended&quot;, true);
+      if (!newChain &amp;&amp; (hasChanged = (currentValue !== value))) {
+        currentProperty = chain[i];
+        oldValue = currentValue[currentProperty];
+        currentValue[currentProperty] = value;
       }
     }
 
-    this.set(&quot;index&quot;, newIndex);
+    if (!hasChanged) return value;
+
+    var prop = chain ? chain.join(&quot;.&quot;) : property;
+
+    this.emit(&quot;change:&quot; + prop, value, oldValue);
+    this.emit(&quot;change&quot;, prop, value, oldValue);
+    return value;
   },
 
   /**
+   * Binds a property to a function
+   * @method bind
+   * @param {String} property path to bind to.
+   * @param {Object} listener &#x60;function&#x60; or &#x60;transformer&#x60; to bind to
+   * @param {Boolean} now (optional) call binding now. Otherwise wait till property changes.
+   * @returns {Binding} 
    */
 
-  _setName: function (name) {
-    if (!name) return;
-    for (var i = this.source.length; i--;) {
-      var state = this.source.at(i);
-      if (state.get(&quot;name&quot;) === name) {
-        this.set(&quot;index&quot;, i);
-        break;
-      }
-    }
+  bind: function (property, fn, now) {
+    return watchProperty(this, property, fn, now);
   },
 
   /**
+   * Disposes the bindable object. Emits &#x60;dispose&#x60;.
+   * @method dispose
    */
 
-  _setIndexWithAnimation: function () {
-    this.application.animate(this);
+  dispose: function () {
+    this.emit(&quot;dispose&quot;);
   },
 
   /**
+   * Converts the context to a JSON object
+   * @method toJSON
    */
 
-  update: function () {
-    if (!this.source.length) return;  
+  toJSON: function () {
+    var obj = {}, value;
 
-    var self = this;
-
-
-    var cs = this.currentState,
-    os = cs;
-
-    if (cs) cs.set(&quot;selected&quot;, false);
-
-    var self     = this,
-    state        = cs = this.currentState = this.source.at(Number(this.index || 0)),
-    isNew        = !state.hasView(),
-    newStateView = state.getView();
-
-    this.setChild(&quot;currentChild&quot;, newStateView);
-    cs.set(&quot;selected&quot;, true);
-
-    if (this._displayListener) this._displayListener.dispose();
-
-    state.render();
-
-    if (isNew) {
-      self.section.append(newStateView.section.render());
-    }
-
-    function onTransition () {
-      if (os &amp;&amp; os !== cs) os.removeLater();
+    for (var key in this.__context) {
+      value = this.__context[key];
       
-      self.set(&quot;currentView&quot;, newStateView);
-    }
+      if(value &amp;&amp; value.__isBindable) {
+        value = value.toJSON()
+      }
 
-    if (!os) {
-      this.transition(os ? os._view : os, state._view, function () {
-        self.application.animate({ update: onTransition })
-      });
-    } else {
-      onTransition();
+      obj[key] = value;
     }
-
+    return obj;
   }
 });
 
+module.exports = Bindable;
 
-module.exports = StateView;
     </pre>
 </div>
 
