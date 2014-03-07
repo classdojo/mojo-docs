@@ -266,7 +266,43 @@
                     </a>
 
                     <div class="module-submodule-description">
-                        created when the second parameter on <code>bind(property, listener)</code> is an object.
+                        BindableObjects make it easy to link properties of two separate objects - when one changes, 
+the other will automatically update with that change. It enables much easier interactions between data models and UIs, 
+among other uses outside of MVC.
+<br> 
+<br>
+BindableObjects provide a way to maintain the state between server <-> client for a realtime front-end 
+application (similar to Firebase), or perhaps a way to communicate between server <-> server for a realtime distributed Node.js 
+application.
+### Example
+<code>&#x60;</code>javascript
+var bindable = require("bindable");
+var person = new bindable.Object({
+  name: "craig",
+  last: "condon",
+  location: {
+    city: "San Francisco"
+  }
+});
+person.bind("location.zip", function(value) {
+  // 94102
+}).now();
+//triggers the binding
+person.set("location.zip", "94102"); 
+//bind location.zip to another property in the model, and do it only once
+person.bind("location.zip", { to: "zip", max: 1 }).now();
+//bind location.zip to another object, and make it bi-directional.
+person.bind("location.zip", { target: anotherModel, to: "location.zip", bothWays: true }).now();
+//chain to multiple items, and limit it!
+person.bind("location.zip", { to: ["property", "anotherProperty"], max: 1 }).now();
+//you can also transform data as it's being bound
+person.bind("name", {
+  to: "name2",
+  map: function (name) {
+    return name.toUpperCase();
+  }
+}).now();
+<code>&#x60;</code>
                     </div>
                 </li>
             

@@ -149,6 +149,63 @@ watchProperty       = require(&quot;./watchProperty&quot;);
  */
 
 /**
+
+BindableObjects make it easy to link properties of two separate objects - when one changes, 
+the other will automatically update with that change. It enables much easier interactions between data models and UIs, 
+among other uses outside of MVC.
+
+&lt;br&gt; 
+&lt;br&gt;
+
+BindableObjects provide a way to maintain the state between server &lt;-&gt; client for a realtime front-end 
+application (similar to Firebase), or perhaps a way to communicate between server &lt;-&gt; server for a realtime distributed Node.js 
+application.
+
+
+### Example
+
+&#x60;&#x60;&#x60;javascript
+var bindable = require(&quot;bindable&quot;);
+
+var person = new bindable.Object({
+  name: &quot;craig&quot;,
+  last: &quot;condon&quot;,
+  location: {
+    city: &quot;San Francisco&quot;
+  }
+});
+
+person.bind(&quot;location.zip&quot;, function(value) {
+  // 94102
+}).now();
+
+//triggers the binding
+person.set(&quot;location.zip&quot;, &quot;94102&quot;); 
+
+//bind location.zip to another property in the model, and do it only once
+person.bind(&quot;location.zip&quot;, { to: &quot;zip&quot;, max: 1 }).now();
+
+//bind location.zip to another object, and make it bi-directional.
+person.bind(&quot;location.zip&quot;, { target: anotherModel, to: &quot;location.zip&quot;, bothWays: true }).now();
+
+//chain to multiple items, and limit it!
+person.bind(&quot;location.zip&quot;, { to: [&quot;property&quot;, &quot;anotherProperty&quot;], max: 1 }).now();
+
+
+//you can also transform data as it&#x27;s being bound
+person.bind(&quot;name&quot;, {
+  to: &quot;name2&quot;,
+  map: function (name) {
+    return name.toUpperCase();
+  }
+}).now();
+&#x60;&#x60;&#x60;
+
+@class BindableObject
+@extends EventEmitter
+*/
+
+/**
  * Emitted when the bindable object is disposed. This happens
  * when the object is no-longer needed.
  * @event dispose
@@ -170,10 +227,7 @@ watchProperty       = require(&quot;./watchProperty&quot;);
  * @param {Object} oldValue
  */
 
-/**
- * @class BindableObject
- * @extends EventEmitter
- */
+
 
 /**
  * @constructor

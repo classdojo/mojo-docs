@@ -154,7 +154,41 @@
 
 
 <div class="moduledesc well well-small">
-    <p>created when the second parameter on <code>bind(property, listener)</code> is an object.</p>
+    <p>BindableObjects make it easy to link properties of two separate objects - when one changes, 
+the other will automatically update with that change. It enables much easier interactions between data models and UIs, 
+among other uses outside of MVC.
+<br> 
+<br>
+BindableObjects provide a way to maintain the state between server &lt;-&gt; client for a realtime front-end 
+application (similar to Firebase), or perhaps a way to communicate between server &lt;-&gt; server for a realtime distributed Node.js 
+application.</p>
+<h3 id="example">Example</h3>
+<pre class="code prettyprint"><code class="lang-javascript">var bindable = require("bindable");
+var person = new bindable.Object({
+  name: "craig",
+  last: "condon",
+  location: {
+    city: "San Francisco"
+  }
+});
+person.bind("location.zip", function(value) {
+  // 94102
+}).now();
+//triggers the binding
+person.set("location.zip", "94102"); 
+//bind location.zip to another property in the model, and do it only once
+person.bind("location.zip", { to: "zip", max: 1 }).now();
+//bind location.zip to another object, and make it bi-directional.
+person.bind("location.zip", { target: anotherModel, to: "location.zip", bothWays: true }).now();
+//chain to multiple items, and limit it!
+person.bind("location.zip", { to: ["property", "anotherProperty"], max: 1 }).now();
+//you can also transform data as it&#39;s being bound
+person.bind("name", {
+  to: "name2",
+  map: function (name) {
+    return name.toUpperCase();
+  }
+}).now();</code></pre>
 
 </div>
 

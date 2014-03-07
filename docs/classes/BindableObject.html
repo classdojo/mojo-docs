@@ -148,7 +148,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/packages_bindable.js_lib_object_index.js.html#l32"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:32</code></a>
+            Defined in: <a href="../files/packages_bindable.js_lib_object_index.js.html#l10"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:10</code></a>
         </div>
     
 
@@ -165,7 +165,42 @@
 
 
 <div class="well well-small">
-    
+    <p>BindableObjects make it easy to link properties of two separate objects - when one changes, 
+the other will automatically update with that change. It enables much easier interactions between data models and UIs, 
+among other uses outside of MVC.
+<br> 
+<br>
+BindableObjects provide a way to maintain the state between server &lt;-&gt; client for a realtime front-end 
+application (similar to Firebase), or perhaps a way to communicate between server &lt;-&gt; server for a realtime distributed Node.js 
+application.</p>
+<h3 id="example">Example</h3>
+<pre class="code prettyprint"><code class="lang-javascript">var bindable = require("bindable");
+var person = new bindable.Object({
+  name: "craig",
+  last: "condon",
+  location: {
+    city: "San Francisco"
+  }
+});
+person.bind("location.zip", function(value) {
+  // 94102
+}).now();
+//triggers the binding
+person.set("location.zip", "94102"); 
+//bind location.zip to another property in the model, and do it only once
+person.bind("location.zip", { to: "zip", max: 1 }).now();
+//bind location.zip to another object, and make it bi-directional.
+person.bind("location.zip", { target: anotherModel, to: "location.zip", bothWays: true }).now();
+//chain to multiple items, and limit it!
+person.bind("location.zip", { to: ["property", "anotherProperty"], max: 1 }).now();
+//you can also transform data as it&#39;s being bound
+person.bind("name", {
+  to: "name2",
+  map: function (name) {
+    return name.toUpperCase();
+  }
+}).now();</code></pre>
+
 </div>
 
 
@@ -402,7 +437,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l228"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:228</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l282"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:282</code></a>
         
         </p>
 
@@ -539,7 +574,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l69"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:69</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l123"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:123</code></a>
         
         </p>
 
@@ -632,7 +667,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l241"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:241</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l295"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:295</code></a>
         
         </p>
 
@@ -804,7 +839,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l108"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:108</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l162"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:162</code></a>
         
         </p>
 
@@ -897,7 +932,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l97"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:97</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l151"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:151</code></a>
         
         </p>
 
@@ -991,7 +1026,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l87"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:87</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l141"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:141</code></a>
         
         </p>
 
@@ -1510,7 +1545,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l159"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:159</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l213"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:213</code></a>
         
         </p>
 
@@ -1603,7 +1638,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l145"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:145</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l199"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:199</code></a>
         
         </p>
 
@@ -1696,7 +1731,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l250"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:250</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l304"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:304</code></a>
         
         </p>
 
@@ -1754,7 +1789,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l17"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:17</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l74"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:74</code></a>
         
         </p>
 
@@ -1851,7 +1886,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l25"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:25</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l82"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:82</code></a>
         
         </p>
 
@@ -1933,7 +1968,7 @@
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l10"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:10</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l67"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:67</code></a>
         
         </p>
 
@@ -1978,7 +2013,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_bindable.js_lib_object_index.js.html#l43"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:43</code></a>
+        <a href="../files/packages_bindable.js_lib_object_index.js.html#l97"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;object&#x2F;index.js:97</code></a>
         
         </p>
 

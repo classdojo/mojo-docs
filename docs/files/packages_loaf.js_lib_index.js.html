@@ -205,12 +205,12 @@ console.log(section.getInnerChildNodes().length); // 2 - contains only text elem
 var Section = function (nodeFactory, start, end) {
 
   /**
-   * the node factory which creates elements, text nodes, comments, and document fragments. 
+   * the node factory which creates elements, text nodes, comments, and document fragments
    * @property nodeFactory
    * @type {BaseNodeFactory}
    */
-  this.nodeFactory = nodeFactory = nodeFactory || nofactor[&quot;default&quot;];
 
+  this.nodeFactory = nodeFactory = nodeFactory || nofactor[&quot;default&quot;];
 
   /**
    * start marker for the section
@@ -219,7 +219,6 @@ var Section = function (nodeFactory, start, end) {
    */
 
   this.start       = start || nodeFactory.createTextNode(&quot;&quot;);
-
 
   /**
    * end marker for the section
