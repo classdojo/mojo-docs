@@ -9,7 +9,8 @@
       "./packages/mojo.js/lib",
       "./packages/bindable.js/lib",
       "./packages/subindable.js/lib",
-      "./packages/nofactor.js/lib"
+      "./packages/nofactor.js/lib",
+      "./packages/loaf.js/lib"
     ],
     "outdir":   "./docs",
     "themedir": "themes/yuidoc-bootstrap-theme",

@@ -51,6 +51,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "packages/loaf.js/lib/index.js": {
+            "name": "packages/loaf.js/lib/index.js",
+            "modules": {},
+            "classes": {
+                "Section": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "packages/mojo.js/lib/plugins/decor/events.js": {
             "name": "packages/mojo.js/lib/plugins/decor/events.js",
             "modules": {},
@@ -280,6 +289,7 @@
                 "BindableObject": 1,
                 "BindingTransformer": 1,
                 "Binding": 1,
+                "Section": 1,
                 "Animator": 1,
                 "StringNodeFactory": 1,
                 "BaseNodeFactory": 1,
@@ -390,6 +400,38 @@
             "namespace": "",
             "file": "packages/bindable.js/lib/object/watchProperty.js",
             "line": 10
+        },
+        "Section": {
+            "name": "Section",
+            "shortname": "Section",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo-core",
+            "namespace": "",
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 10,
+            "description": "Sections allow you to manage groups of elements. This is important for components\nsuch as the `ListView` where you might have many list items that share the same parent node.\nFor instance, a list component might generate the following HTML:\n```html\n<!-- ContactsListView -->\n<ul id=\"contacts\">\n  <!-- ContactView 1 -->\n  <li>Monica</li>\n  <!-- ContactView 2 -->\n  <li>Sam</li>\n  <!-- ContactView 3 -->\n  <li>Liam</li>\n</ul>\n```\nSections work by sandwiching elements between two marker marker elements: `start` and `end`. These\nAre empty text nodes that are invisible to the user, but allow the application to maintain groups of elements.\n### Example\n```javascript\nvar loaf    = require(\"loaf\"),\nnodeFactory = require(\"nofactor\").nodeFactory;\n// set the node factory. In this case, we're creating a section\n// that can be used in node.js\nvar section = loaf(nodeFactory.string);\n// append some elements in the section\nsection.append(nodeFactory.createTextNode(\"Hello\"));\nsection.append(nodeFactory.createTextNode(\"John\"));\nconsole.log(section.toString()); // Hello John\nconsole.log(section.getChildNodes().length); // 4 - includes start & end markers\nconsole.log(section.getInnerChildNodes().length); // 2 - contains only text elements appended\n```",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "nodeFactory",
+                    "description": "nodeFactory to use when creating sections",
+                    "type": "BaseNodeFactory"
+                },
+                {
+                    "name": "start",
+                    "description": "(optional) the start element",
+                    "type": "Element"
+                },
+                {
+                    "name": "end",
+                    "description": "(optional) the end element",
+                    "type": "Element"
+                }
+            ]
         },
         "BaseView": {
             "name": "BaseView",
@@ -1335,88 +1377,281 @@
             "submodule": "mojo-core"
         },
         {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 66,
+            "description": "the node factory which creates elements, text nodes, comments, and document fragments.",
+            "itemtype": "property",
+            "name": "nodeFactory",
+            "type": "{BaseNodeFactory}",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 74,
+            "description": "start marker for the section",
+            "itemtype": "property",
+            "name": "start",
+            "type": "{Node}",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 83,
+            "description": "end marker for the section",
+            "itemtype": "property",
+            "name": "end",
+            "type": "{Node}",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 91,
+            "description": "visibile property which is toggled on hide / show",
+            "itemtype": "property",
+            "name": "visible",
+            "type": "{Boolean}",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 109,
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 114,
+            "description": "Renders the section, and returns the start parent node",
+            "itemtype": "method",
+            "name": "render",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 123,
+            "description": "Removes the entire section from the DOM, including the start & end markers",
+            "itemtype": "method",
+            "name": "remove",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 133,
+            "description": "shows the section if it's hidden",
+            "itemtype": "method",
+            "name": "show",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 147,
+            "description": "hides the fragment, but maintains the start / end elements\nso it can be shown again in the same spot",
+            "itemtype": "method",
+            "name": "hide",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 160,
+            "description": "Removes all section elements inside the start & end elements",
+            "itemtype": "method",
+            "name": "removeAll",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 169,
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 188,
+            "description": "appends elements at the end of the section",
+            "itemtype": "method",
+            "name": "append",
+            "params": [
+                {
+                    "name": "elements...",
+                    "description": "elements to append",
+                    "type": "Node"
+                }
+            ],
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 198,
+            "description": "appends elements at the beginning of the section",
+            "itemtype": "method",
+            "name": "prepend",
+            "params": [
+                {
+                    "name": "elements...",
+                    "description": "elements to prepend",
+                    "type": "Node"
+                }
+            ],
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 208,
+            "description": "replaces all child nodes within the start & end elements",
+            "itemtype": "method",
+            "name": "replaceChildNodes",
+            "params": [
+                {
+                    "name": "elements...",
+                    "description": "elements to replace",
+                    "type": "Node"
+                }
+            ],
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 221,
+            "description": "Stringifies sections",
+            "itemtype": "method",
+            "name": "toString",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 233,
+            "description": "disposes the section, including start & end elements",
+            "itemtype": "method",
+            "name": "dispose",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 248,
+            "description": "returns all elements in the section, including start & end elements",
+            "itemtype": "method",
+            "name": "getChildNodes",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 267,
+            "description": "returns all inner elements in the section, not including start & end elements",
+            "itemtype": "method",
+            "name": "getInnerChildNodes",
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 279,
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/loaf.js/lib/index.js",
+            "line": 294,
+            "class": "Section",
+            "module": "mojo-core"
+        },
+        {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 21,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 34,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 41,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 84,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 93,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 11,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 19,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 29,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 48,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 16,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 26,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 42,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 58,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/pools/index.js",
             "line": 46,
             "class": "BaseView",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
@@ -2244,7 +2479,7 @@
             "description": "The node factory to use. Changes depending on the platform.",
             "itemtype": "property",
             "name": "nodeFactory",
-            "type": "NodeFactory",
+            "type": "BaseNodeFactory",
             "class": "Application",
             "module": "mojo"
         },
@@ -2875,6 +3110,22 @@
         {
             "message": "Missing item type",
             "line": " packages/bindable.js/lib/object/watchProperty.js:238"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/loaf.js/lib/index.js:109"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/loaf.js/lib/index.js:169"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/loaf.js/lib/index.js:279"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/loaf.js/lib/index.js:294"
         },
         {
             "message": "Missing item type",

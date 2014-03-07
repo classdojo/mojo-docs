@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/views/states/index.js - Mojo.js Docs</title>
+    <title>packages/loaf.js/lib/index.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -134,287 +134,317 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/views/states/index.js <small>File</small></h1>
+    <h1>packages/loaf.js/lib/index.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var bindable = require(&quot;bindable&quot;)
-State        = require(&quot;./state&quot;),
-protoclass   = require(&quot;protoclass&quot;),
-BaseView     = require(&quot;../base&quot;),
-_            = require(&quot;underscore&quot;),
-flatstack    = require(&quot;flatstack&quot;);
+var protoclass = require(&quot;protoclass&quot;),
+nofactor       = require(&quot;nofactor&quot;);
 
 /**
  * @module mojo
- * @submodule mojo-views
+ * @module mojo-core
  */
+
 
 /**
- * States View. This is usually defined in &#x60;{ sections: { pages: { type: &#x27;states&#x27;}} }&#x60;
- * @class StateView
- * @extends BaseView
- */
 
-function StateView (data, application) {
-  BaseView.call(this, data, application);
-}
+Sections allow you to manage groups of elements. This is important for components
+such as the &#x60;ListView&#x60; where you might have many list items that share the same parent node.
+For instance, a list component might generate the following HTML:
+
+&#x60;&#x60;&#x60;html
+&lt;!-- ContactsListView --&gt;
+&lt;ul id=&quot;contacts&quot;&gt;
+
+  &lt;!-- ContactView 1 --&gt;
+  &lt;li&gt;Monica&lt;/li&gt;
 
 
-protoclass(BaseView, StateView, {
+  &lt;!-- ContactView 2 --&gt;
+  &lt;li&gt;Sam&lt;/li&gt;
+
+
+  &lt;!-- ContactView 3 --&gt;
+  &lt;li&gt;Liam&lt;/li&gt;
+&lt;/ul&gt;
+&#x60;&#x60;&#x60;
+
+Sections work by sandwiching elements between two marker marker elements: &#x60;start&#x60; and &#x60;end&#x60;. These
+Are empty text nodes that are invisible to the user, but allow the application to maintain groups of elements.
+
+
+### Example
+
+&#x60;&#x60;&#x60;javascript
+var loaf    = require(&quot;loaf&quot;),
+nodeFactory = require(&quot;nofactor&quot;).nodeFactory;
+
+// set the node factory. In this case, we&#x27;re creating a section
+// that can be used in node.js
+var section = loaf(nodeFactory.string);
+
+// append some elements in the section
+section.append(nodeFactory.createTextNode(&quot;Hello&quot;));
+section.append(nodeFactory.createTextNode(&quot;John&quot;));
+
+console.log(section.toString()); // Hello John
+console.log(section.getChildNodes().length); // 4 - includes start &amp; end markers
+console.log(section.getInnerChildNodes().length); // 2 - contains only text elements appended
+&#x60;&#x60;&#x60;
+
+@class Section
+@constructor
+@param {BaseNodeFactory} nodeFactory nodeFactory to use when creating sections
+@param {Element} start (optional) the start element 
+@param {Element} end (optional) the end element
+*/
+
+
+var Section = function (nodeFactory, start, end) {
 
   /**
-   * prevent states from being decorated
+   * the node factory which creates elements, text nodes, comments, and document fragments. 
+   * @property nodeFactory
+   * @type {BaseNodeFactory}
+   */
+  this.nodeFactory = nodeFactory = nodeFactory || nofactor[&quot;default&quot;];
+
+
+  /**
+   * start marker for the section
+   * @property start
+   * @type {Node}
    */
 
-  _decorated: true,
+  this.start       = start || nodeFactory.createTextNode(&quot;&quot;);
+
 
   /**
-   * Transitions from one state to another
-   * @param {BaseView} from view to transition from. This can be null.
-   * @param {BaseView} to view to transition to.
-   * @param {Function} complete called when the transition finishes
+   * end marker for the section
+   * @property end
+   * @type {Node}
    */
 
-  transition: function (from, to, next) {
-    next()
-  },
+  this.end         = end   || nodeFactory.createTextNode(&quot;&quot;);
 
   /**
+   * visibile property which is toggled on hide / show
+   * @property visible
+   * @type {Boolean}
    */
 
-  define: [
+  this.visible     = true;
 
-    /**
-     * current state name
-     * @property currentName
-     */
+  if (!this.start.parentNode) {
+    var parent  = nodeFactory.createFragment();
+    parent.appendChild(this.start);
+    parent.appendChild(this.end);
+  }
+};
 
-    &quot;currentName&quot;, 
 
-    /**
-     * current state index
-     * @property index
-     */
-
-    &quot;index&quot;, 
-
-    /**
-     * TODO - change this to &#x27;states&#x27;
-     */
-
-    &quot;source&quot;, 
-
-    /**
-     * The current view being displayed
-     * @property currentView
-     * @type {BaseView}
-     */
-
-    &quot;currentView&quot;, 
-
-    &quot;rotate&quot;, 
-    &quot;ended&quot;, 
-
-    /**
-     * The collection of view classes to use
-     * @property views
-     * @type {Array}
-     */
-
-    &quot;views&quot;
-  ],
+Section = protoclass(Section, {
 
   /**
    */
 
-  ended: false,
+  __isLoafSection: true,
 
   /**
-   */
-
-  initialize: function (data) {
-    this.source = new bindable.Collection();    
-    BaseView.prototype.initialize.call(this, data);
-    this._q = flatstack();
-
-    this.next = _.bind(this.next, this);
-    this.prev = _.bind(this.prev, this);
-
-    this.bind(&quot;views&quot;, { to: _.bind(this._setViews, this) }).now();
-  },
-
-  /**
-   */
-
-  _setViews: function (views) {
-    var self = this;
-    this.source.reset(views.map(function (stateOptions, i) {
-      return new State(self, stateOptions, i);
-    }));
-
-    if(this._rendered) {
-      this._createBindings();
-    }
-  },
-
-  /**
+   * Renders the section, and returns the start parent node
+   * @method render
    */
 
   render: function () {
-    var section = BaseView.prototype.render.call(this);
-    this._createBindings();
+    return this.start.parentNode;
+  },
+
+  /**
+   * Removes the entire section from the DOM, including the start &amp; end markers
+   * @method remove
+   */
+
+  remove: function () {
+    // this removes the child nodes completely
+    return this.nodeFactory.createFragment(this.getChildNodes());
+  },
+
+  /** 
+   * shows the section if it&#x27;s hidden
+   * @method show
+   */
+
+
+  show: function () {
+    if(!this._detached) return this;
+    this.append.apply(this, this._detached.getInnerChildNodes());
+    this._detached = void 0;
+    this.visible = true;
+    return this;
+  },
+
+  /**
+   * hides the fragment, but maintains the start / end elements
+   * so it can be shown again in the same spot
+   *
+   * @method hide
+   */
+
+  hide: function () {
+    this._detached = this.removeAll();
+    this.visible = false;
+    return this;
+  },
+
+  /**
+   * Removes all section elements inside the start &amp; end elements
+   * @method removeAll
+   */
+
+  removeAll: function () {
+    return this._section(this._removeAll());
+  },
+
+  /**
+   */
+
+  _removeAll: function () {
+
+    var start = this.start,
+    end       = this.end,
+    current   = start.nextSibling,
+    children  = [];
+
+    while (current != end) {
+      current.parentNode.removeChild(current);
+      children.push(current);
+      current = this.start.nextSibling;
+    }
+
+    return children;
+  },
+
+  /** 
+   * appends elements at the end of the section
+   * @method append
+   * @param {Node} elements... elements to append
+   */
+
+  append: function () {
+    this._insertAfter(Array.prototype.slice.call(arguments, 0), this.end.previousSibling);
+  },
+
+  /** 
+   * appends elements at the beginning of the section
+   * @method prepend
+   * @param {Node} elements... elements to prepend
+   */
+
+  prepend: function () {
+    this._insertAfter(Array.prototype.slice.call(arguments, 0), this.start);
+  },
+
+  /**
+   * replaces all child nodes within the start &amp; end elements
+   * @method replaceChildNodes
+   * @param {Node} elements... elements to replace
+   */
+
+  replaceChildNodes: function () {
+
+    //remove the children - children should have a parent though
+    this.removeAll();
+    this.append.apply(this, arguments);
+  },
+
+  /**
+   * Stringifies sections
+   * @method toString
+   */
+
+  toString: function () {
+    var buffer = this.getChildNodes().map(function (node) {
+      return node.outerHTML || (node.nodeValue != undefined ? node.nodeValue : String(node));
+    });
+    return buffer.join(&quot;&quot;);
+  },
+
+  /**
+   * disposes the section, including start &amp; end elements
+   * @method dispose
+   */
+
+  dispose: function () {
+    if(this._disposed) return;
+    this._disposed = true;
+
+    // might have sub sections, so need to remove with a parent node
+    this.removeAll();
+    this.start.parentNode.removeChild(this.start);
+    this.end.parentNode.removeChild(this.end);
+  },
+
+  /**
+   * returns all elements in the section, including start &amp; end elements
+   * @method getChildNodes
+   */
+
+  getChildNodes: function () {
+    var cn   = this.start,
+    end      = this.end.nextSibling,
+    children = [];
+
+
+    while (cn != end) {
+      children.push(cn);
+      cn = cn.nextSibling;
+    }
+
+    return children;
+  },
+
+  /**
+   * returns all inner elements in the section, not including start &amp; end elements
+   * @method getInnerChildNodes
+   */
+
+  getInnerChildNodes: function () {
+    var cn = this.getChildNodes();
+    cn.shift();
+    cn.pop()
+    return cn;
+  },
+
+  /**
+   */
+
+  _insertAfter: function(newNodes, refNode) {
+    if(!newNodes.length) return;
+
+    if(newNodes.length &gt; 1) {
+      newNodes = this.nodeFactory.createFragment(newNodes);
+    } else {
+      newNodes = newNodes[0];
+    }
+
+    return refNode.parentNode.insertBefore(newNodes, refNode.nextSibling);
+  },
+
+  /**
+   */
+
+  _section: function (children) {
+    var section = new Section(this.nodeFactory);
+    section.append.apply(section, children);
     return section;
-  },
-
-  /**
-   */
-
-  _createBindings: function () {
-
-    if (this._indexBinding) {
-      this._indexBinding.dispose();
-      this._cnameBinding.dispose();
-    }
-
-    this._indexbinding = this.bind(&quot;index&quot;, { to: _.bind(this._setIndexWithAnimation, this) }).now();
-    this._cnameBinding = this.bind(&quot;currentName&quot;, { to: _.bind(this._setName, this) }).now();
-  },
-
-  /**
-   * Selects a specific index
-   * @method select
-   * @param {Number} stateOrIndex 
-   */
-
-  select: function (stateOrIndex) {
-    if (typeof stateOrIndex === &quot;number&quot;) {
-      this.set(&quot;index&quot;, stateOrIndex);
-    } else {
-      var i = this.source.indexOf(stateOrIndex);
-      if (~i) {
-        this.select(i);
-      }
-    }
-  },
-
-  /**
-   * moves to the next state
-   * @method next
-   */
-
-  next: function () {
-    this.move(1);
-  },
-
-  /**
-   * moves to the previous state
-   * @method prev
-   */
-
-  prev: function () {
-    this.move(-1);
-  },
-
-  /**
-   * moves to a specific state index
-   * @method move
-   * @param position steps to move. Can be something like &#x60;-1&#x60;, or &#x60;1&#x60;.
-   */
-
-  move: function (position) {
-    var newIndex = this.index + position;
-
-    if (newIndex &lt; 0) {
-      if (this.rotate) {
-        newIndex = this.source.length - 1;
-      } else {
-        newIndex = 0;
-        this.set(&quot;ended&quot;, true);
-      }
-    } else if (newIndex &gt;= this.source.length) {
-      if (this.rotate) {
-        newIndex = 0;
-      } else {
-        newIndex = this.source.length - 1;
-        this.set(&quot;ended&quot;, true);
-      }
-    }
-
-    this.set(&quot;index&quot;, newIndex);
-  },
-
-  /**
-   */
-
-  _setName: function (name) {
-    if (!name) return;
-    for (var i = this.source.length; i--;) {
-      var state = this.source.at(i);
-      if (state.get(&quot;name&quot;) === name) {
-        this.set(&quot;index&quot;, i);
-        break;
-      }
-    }
-  },
-
-  /**
-   */
-
-  _setIndexWithAnimation: function () {
-    this.application.animate(this);
-  },
-
-  /**
-   */
-
-  update: function () {
-    if (!this.source.length) return;  
-
-    var self = this;
-
-
-    var cs = this.currentState,
-    os = cs;
-
-    if (cs) cs.set(&quot;selected&quot;, false);
-
-    var self     = this,
-    state        = cs = this.currentState = this.source.at(Number(this.index || 0)),
-    isNew        = !state.hasView(),
-    newStateView = state.getView();
-
-    this.setChild(&quot;currentChild&quot;, newStateView);
-    cs.set(&quot;selected&quot;, true);
-
-    if (this._displayListener) this._displayListener.dispose();
-
-    state.render();
-
-    if (isNew) {
-      self.section.append(newStateView.section.render());
-    }
-
-    function onTransition () {
-      if (os &amp;&amp; os !== cs) os.removeLater();
-      
-      self.set(&quot;currentView&quot;, newStateView);
-    }
-
-    if (!os) {
-      this.transition(os ? os._view : os, state._view, function () {
-        self.application.animate({ update: onTransition })
-      });
-    } else {
-      onTransition();
-    }
-
   }
 });
 
-
-module.exports = StateView;
+module.exports = function (nodeFactory, start, end)  {
+  return new Section(nodeFactory, start, end);
+}
     </pre>
 </div>
 

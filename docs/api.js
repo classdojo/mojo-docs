@@ -15,6 +15,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ListView",
         "Mojo",
         "RegisteredClasses",
+        "Section",
         "StateView",
         "StringNodeFactory",
         "SubindableObject"
