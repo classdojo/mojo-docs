@@ -145,13 +145,37 @@ decorators        = require(&quot;./plugins/decor&quot;);
 
 
 /**
- * Main entry point to your application. This is where everything is initialized.
- *
  * @module mojo
- * @class Application
- * @param {Object} options
- * @extends BindableObject
  */
+
+/**
+
+Main entry point to your application. This is where everything is initialized.
+
+### Example
+
+&#x60;&#x60;&#x60;javascript
+var mojo = require(&quot;mojo&quot;), 
+nofactor = require(&quot;nofactor&quot;);
+
+var app = new mojo.Application({ nodeFactory: nofactor.default });
+app.use(require(&quot;./views&quot;));
+app.viewClasses.create(&quot;main&quot;).attach($(&quot;#application&quot;));
+&#x60;&#x60;&#x60;
+
+views.js
+
+&#x60;&#x60;&#x60;javascript
+module.exports = function (app) {
+  app.viewClasses.add(&quot;main&quot;, MainView);
+}
+&#x60;&#x60;&#x60;
+
+
+@class Application
+@param {Object} options
+@extends BindableObject
+*/
 
 
 
