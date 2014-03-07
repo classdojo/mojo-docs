@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>packages/mojo.js/lib/views/states/index.js - Mojo.js Docs</title>
+    <title>packages/nofactor.js/lib/string/style.js - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -132,287 +132,124 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>packages/mojo.js/lib/views/states/index.js <small>File</small></h1>
+    <h1>packages/nofactor.js/lib/string/style.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
-var bindable = require(&quot;bindable&quot;)
-State        = require(&quot;./state&quot;),
-protoclass   = require(&quot;protoclass&quot;),
-BaseView     = require(&quot;../base&quot;),
-_            = require(&quot;underscore&quot;),
-flatstack    = require(&quot;flatstack&quot;);
+var protoclass = require(&quot;protoclass&quot;);
 
-/**
- * @module mojo
- * @submodule mojo-views
- */
-
-/**
- * States View. This is usually defined in &#x60;{ sections: { pages: { type: &#x27;states&#x27;}} }&#x60;
- * @class StateView
- * @extends BaseView
- */
-
-function StateView (data, application) {
-  BaseView.call(this, data, application);
+function Style () {
+  this._currentStyles = {};
 }
 
-
-protoclass(BaseView, StateView, {
-
-  /**
-   * prevent states from being decorated
-   */
-
-  _decorated: true,
-
-  /**
-   * Transitions from one state to another
-   * @param {BaseView} from view to transition from. This can be null.
-   * @param {BaseView} to view to transition to.
-   * @param {Function} complete called when the transition finishes
-   */
-
-  transition: function (from, to, next) {
-    next()
-  },
+protoclass(Style, {
 
   /**
    */
 
-  define: [
-
-    /**
-     * current state name
-     * @property currentName
-     */
-
-    &quot;currentName&quot;, 
-
-    /**
-     * current state index
-     * @property index
-     */
-
-    &quot;index&quot;, 
-
-    /**
-     * TODO - change this to &#x27;states&#x27;
-     */
-
-    &quot;source&quot;, 
-
-    /**
-     * The current view being displayed
-     * @property currentView
-     * @type {BaseView}
-     */
-
-    &quot;currentView&quot;, 
-
-    &quot;rotate&quot;, 
-    &quot;ended&quot;, 
-
-    /**
-     * The collection of view classes to use
-     * @property views
-     * @type {Array}
-     */
-
-    &quot;views&quot;
-  ],
+  _hasStyle: false,
 
   /**
    */
 
-  ended: false,
 
-  /**
-   */
+  setProperty: function(key, value) {
 
-  initialize: function (data) {
-    this.source = new bindable.Collection();    
-    BaseView.prototype.initialize.call(this, data);
-    this._q = flatstack();
-
-    this.next = _.bind(this.next, this);
-    this.prev = _.bind(this.prev, this);
-
-    this.bind(&quot;views&quot;, { to: _.bind(this._setViews, this) }).now();
-  },
-
-  /**
-   */
-
-  _setViews: function (views) {
-    var self = this;
-    this.source.reset(views.map(function (stateOptions, i) {
-      return new State(self, stateOptions, i);
-    }));
-
-    if(this._rendered) {
-      this._createBindings();
-    }
-  },
-
-  /**
-   */
-
-  render: function () {
-    var section = BaseView.prototype.render.call(this);
-    this._createBindings();
-    return section;
-  },
-
-  /**
-   */
-
-  _createBindings: function () {
-
-    if (this._indexBinding) {
-      this._indexBinding.dispose();
-      this._cnameBinding.dispose();
+    if (value === &quot;&quot; || value == undefined) {
+      delete this[key];
+      return;
     }
 
-    this._indexbinding = this.bind(&quot;index&quot;, { to: _.bind(this._setIndexWithAnimation, this) }).now();
-    this._cnameBinding = this.bind(&quot;currentName&quot;, { to: _.bind(this._setName, this) }).now();
+    this[key] = value;
   },
 
   /**
-   * Selects a specific index
-   * @method select
-   * @param {Number} stateOrIndex 
    */
 
-  select: function (stateOrIndex) {
-    if (typeof stateOrIndex === &quot;number&quot;) {
-      this.set(&quot;index&quot;, stateOrIndex);
-    } else {
-      var i = this.source.indexOf(stateOrIndex);
-      if (~i) {
-        this.select(i);
+  reset: function (styles) {
+    
+    var styleParts = styles.split(/;\s*/);
+
+    for (var i = 0, n = styleParts.length; i &lt; n; i++) {
+      var sp = styleParts[i].split(/:\s*/);
+
+      if (sp[1] == undefined || sp[1] == &quot;&quot;) {
+        continue;
       }
+
+      this[sp[0]] = sp[1];
     }
   },
 
   /**
-   * moves to the next state
-   * @method next
    */
 
-  next: function () {
-    this.move(1);
+  toString: function () {
+    var buffer = &quot;&quot;, styles = this.getStyles();
+
+    for (var key in styles) {
+      buffer += key + &quot;:&quot; + styles[key] + &quot;;&quot;
+    }
+
+    return buffer;
   },
 
   /**
-   * moves to the previous state
-   * @method prev
    */
 
-  prev: function () {
-    this.move(-1);
-  },
+  hasStyles: function () {
+    if(this._hasStyle) return true;
 
-  /**
-   * moves to a specific state index
-   * @method move
-   * @param position steps to move. Can be something like &#x60;-1&#x60;, or &#x60;1&#x60;.
-   */
-
-  move: function (position) {
-    var newIndex = this.index + position;
-
-    if (newIndex &lt; 0) {
-      if (this.rotate) {
-        newIndex = this.source.length - 1;
-      } else {
-        newIndex = 0;
-        this.set(&quot;ended&quot;, true);
-      }
-    } else if (newIndex &gt;= this.source.length) {
-      if (this.rotate) {
-        newIndex = 0;
-      } else {
-        newIndex = this.source.length - 1;
-        this.set(&quot;ended&quot;, true);
+    for (var key in this) {
+      if (key.substr(0, 1) !== &quot;_&quot; &amp;&amp; this[key] != undefined &amp;&amp; this.constructor.prototype[key] == undefined) {
+        return this._hasStyle = true;
       }
     }
 
-    this.set(&quot;index&quot;, newIndex);
+    return false;
   },
 
   /**
    */
 
-  _setName: function (name) {
-    if (!name) return;
-    for (var i = this.source.length; i--;) {
-      var state = this.source.at(i);
-      if (state.get(&quot;name&quot;) === name) {
-        this.set(&quot;index&quot;, i);
-        break;
+  hasChanged: function () {
+
+    var newStyles       = this.getStyles(),
+    oldStyles           = this._currentStyles;
+    this._currentStyles = newStyles;
+
+    for (var key in newStyles) {
+      if (newStyles[key] !== oldStyles[key]) {
+        return true;
       }
     }
+
+    for (var key in oldStyles) {
+      if (newStyles[key] !== oldStyles[key]) {
+        return true;
+      }
+    }
+
+    return false;
   },
 
   /**
    */
 
-  _setIndexWithAnimation: function () {
-    this.application.animate(this);
-  },
-
-  /**
-   */
-
-  update: function () {
-    if (!this.source.length) return;  
-
-    var self = this;
-
-
-    var cs = this.currentState,
-    os = cs;
-
-    if (cs) cs.set(&quot;selected&quot;, false);
-
-    var self     = this,
-    state        = cs = this.currentState = this.source.at(Number(this.index || 0)),
-    isNew        = !state.hasView(),
-    newStateView = state.getView();
-
-    this.setChild(&quot;currentChild&quot;, newStateView);
-    cs.set(&quot;selected&quot;, true);
-
-    if (this._displayListener) this._displayListener.dispose();
-
-    state.render();
-
-    if (isNew) {
-      self.section.append(newStateView.section.render());
+  getStyles: function () {
+    var styles = {};
+    for (var key in this) {
+      var k = this[key];
+      if (key.substr(0, 1) !== &quot;_&quot; &amp;&amp; k !== &quot;&quot; &amp;&amp; this[key] != undefined &amp;&amp; this.constructor.prototype[key] == undefined) {
+        styles[key] = this[key];
+      }
     }
-
-    function onTransition () {
-      if (os &amp;&amp; os !== cs) os.removeLater();
-      
-      self.set(&quot;currentView&quot;, newStateView);
-    }
-
-    if (!os) {
-      this.transition(os ? os._view : os, state._view, function () {
-        self.application.animate({ update: onTransition })
-      });
-    } else {
-      onTransition();
-    }
-
+    return styles;
   }
 });
 
-
-module.exports = StateView;
+module.exports = Style;
     </pre>
 </div>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>EventEmitter - Mojo.js Docs</title>
+    <title>StringNodeFactory - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -132,17 +132,21 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>EventEmitter <small>Class</small></h1>
+    <h1>StringNodeFactory <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
     
 
     
+        <div class="extends">
+            Extends <a href="../classes/BaseNodeFactory.html" class="crosslink">BaseNodeFactory</a>
+        </div>
+    
 
     
         <div class="foundat">
-            Defined in: <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l8"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:8</code></a>
+            Defined in: <a href="../files/packages_nofactor.js_lib_string_index.js.html#l15"><code>packages&#x2F;nofactor.js&#x2F;lib&#x2F;string&#x2F;index.js:15</code></a>
         </div>
     
 
@@ -184,38 +188,31 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods">
+                    <ul class="index-list methods extends">
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_emit" data-tablink="emit">emit</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_createComment" data-tablink="createComment">createComment</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_off" data-tablink="off">off</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_createElement" data-tablink="createElement">createElement</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_on" data-tablink="on">on</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_createFragment" data-tablink="createFragment">createFragment</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_once" data-tablink="once">once</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_removeAllListeners" data-tablink="removeAllListeners">removeAllListeners</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_createTextNode" data-tablink="createTextNode">createTextNode</a>
 
                                 
                                 
@@ -237,253 +234,16 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_emit" class="method item">
-    <h3 class="name"><code>emit</code></h3>
+                    <div id="method_createComment" class="method item inherited">
+    <h3 class="name"><code>createComment</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>,</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l101"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:101</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>emits an event</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">,</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p><code>data...</code> data to emit</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_off" class="method item">
-    <h3 class="name"><code>off</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>listener</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l54"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:54</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>removes an event emitter</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>to remove</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">listener</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>to remove</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_on" class="method item">
-    <h3 class="name"><code>on</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>listener</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
     
         <span class="returns-inline">
-            <span class="type">Disposable</span>
+            <span class="type">CommentNode</span>
         </span>
     
 
@@ -502,15 +262,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/BaseNodeFactory.html#method_createComment">BaseNodeFactory</a>:
             
         
         
-        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l20"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:20</code></a>
+        <a href="../files/packages_nofactor.js_lib_base.js.html#l40"><code>packages&#x2F;nofactor.js&#x2F;lib&#x2F;base.js:40</code></a>
         
         </p>
 
@@ -521,50 +278,10 @@
     </div>
 
     <div class="description">
-        <p>adds a listener on the event emitter</p>
+        <p>creates a new comment</p>
 
     </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>event to listen on</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">listener</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>to callback when <code>event</code> is emitted.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
@@ -574,7 +291,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Disposable</span>:
+                        <span class="type">CommentNode</span>:
                     
                 
             </div>
@@ -585,8 +302,8 @@
 </div>
 
                 
-                    <div id="method_once" class="method item">
-    <h3 class="name"><code>once</code></h3>
+                    <div id="method_createElement" class="method item inherited">
+    <h3 class="name"><code>createElement</code></h3>
 
     
         <div class="args">
@@ -594,13 +311,7 @@
             
                 <li class="arg">
                     
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>listener</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -610,7 +321,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Disposable</span>
+            <span class="type">ElementNode</span>
         </span>
     
 
@@ -629,15 +340,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/BaseNodeFactory.html#method_createElement">BaseNodeFactory</a>:
             
         
         
-        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l80"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:80</code></a>
+        <a href="../files/packages_nofactor.js_lib_base.js.html#l23"><code>packages&#x2F;nofactor.js&#x2F;lib&#x2F;base.js:23</code></a>
         
         </p>
 
@@ -648,7 +356,7 @@
     </div>
 
     <div class="description">
-        <p>adds a listener on the event emitter</p>
+        <p>creates a new element</p>
 
     </div>
 
@@ -660,30 +368,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">event</code>
+                        <code class="param-name">name</code>
                         <span class="type">String</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>event to listen on</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">listener</code>
-                        <span class="type">Function</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>to callback when <code>event</code> is emitted.</p>
+                        <p>name of the element</p>
 
                     </div>
 
@@ -701,7 +393,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Disposable</span>:
+                        <span class="type">ElementNode</span>:
                     
                 
             </div>
@@ -712,23 +404,17 @@
 </div>
 
                 
-                    <div id="method_removeAllListeners" class="method item">
-    <h3 class="name"><code>removeAllListeners</code></h3>
+                    <div id="method_createFragment" class="method item inherited">
+    <h3 class="name"><code>createFragment</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
+    
+        <span class="returns-inline">
+            <span class="type">FragmentNode</span>
+        </span>
     
 
     
@@ -746,15 +432,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/BaseNodeFactory.html#method_createFragment">BaseNodeFactory</a>:
             
         
         
-        <a href="../files/packages_bindable.js_lib_core_eventEmitter.js.html#l147"><code>packages&#x2F;bindable.js&#x2F;lib&#x2F;core&#x2F;eventEmitter.js:147</code></a>
+        <a href="../files/packages_nofactor.js_lib_base.js.html#l32"><code>packages&#x2F;nofactor.js&#x2F;lib&#x2F;base.js:32</code></a>
         
         </p>
 
@@ -765,36 +448,92 @@
     </div>
 
     <div class="description">
-        <p>removes all listeners</p>
+        <p>creates a new fragment</p>
 
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
                     
-                        <code class="param-name">event</code>
-                        <span class="type">String</span>
+                        <span class="type">FragmentNode</span>:
                     
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) removes all listeners of <code>event</code>. Omitting will remove everything.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
+                
+            </div>
         </div>
     
 
+    
+</div>
+
+                
+                    <div id="method_createTextNode" class="method item inherited">
+    <h3 class="name"><code>createTextNode</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">TextNode</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/BaseNodeFactory.html#method_createTextNode">BaseNodeFactory</a>:
+            
+        
+        
+        <a href="../files/packages_nofactor.js_lib_base.js.html#l48"><code>packages&#x2F;nofactor.js&#x2F;lib&#x2F;base.js:48</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>creates a new text node</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">TextNode</span>:
+                    
+                
+            </div>
+        </div>
     
 
     

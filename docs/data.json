@@ -126,9 +126,7 @@
         },
         "packages/mojo.js/lib/application.js": {
             "name": "packages/mojo.js/lib/application.js",
-            "modules": {
-                "mojo": 1
-            },
+            "modules": {},
             "classes": {
                 "Application": 1
             },
@@ -153,11 +151,90 @@
             "fors": {},
             "namespaces": {}
         },
-        "packages/subindable.js/lib/index.js": {
-            "name": "packages/subindable.js/lib/index.js",
+        "packages/nofactor.js/lib/string/comment.js": {
+            "name": "packages/nofactor.js/lib/string/comment.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/container.js": {
+            "name": "packages/nofactor.js/lib/string/container.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/element.js": {
+            "name": "packages/nofactor.js/lib/string/element.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/fragment.js": {
+            "name": "packages/nofactor.js/lib/string/fragment.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/index.js": {
+            "name": "packages/nofactor.js/lib/string/index.js",
+            "modules": {},
+            "classes": {
+                "StringNodeFactory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/style.js": {
+            "name": "packages/nofactor.js/lib/string/style.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/string/text.js": {
+            "name": "packages/nofactor.js/lib/string/text.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/base.js": {
+            "name": "packages/nofactor.js/lib/base.js",
+            "modules": {},
+            "classes": {
+                "BaseNodeFactory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/custom.js": {
+            "name": "packages/nofactor.js/lib/custom.js",
+            "modules": {},
+            "classes": {
+                "CustomNodeFactory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/nofactor.js/lib/dom.js": {
+            "name": "packages/nofactor.js/lib/dom.js",
             "modules": {
+                "mojo": 1,
                 "mojo-core": 1
             },
+            "classes": {
+                "DomFactory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "packages/subindable.js/lib/index.js": {
+            "name": "packages/subindable.js/lib/index.js",
+            "modules": {},
             "classes": {
                 "SubindableObject": 1
             },
@@ -184,13 +261,15 @@
                 "Animator": 1,
                 "Application": 1,
                 "Mojo": 1,
-                "RegisteredClasses": 1
+                "RegisteredClasses": 1,
+                "StringNodeFactory": 1,
+                "CustomNodeFactory": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "packages/mojo.js/lib/registeredClasses.js",
-            "line": 3
+            "file": "packages/nofactor.js/lib/custom.js",
+            "line": 9
         },
         "mojo-core": {
             "name": "mojo-core",
@@ -202,6 +281,10 @@
                 "BindingTransformer": 1,
                 "Binding": 1,
                 "Animator": 1,
+                "StringNodeFactory": 1,
+                "BaseNodeFactory": 1,
+                "CustomNodeFactory": 1,
+                "DomFactory": 1,
                 "SubindableObject": 1
             },
             "fors": {},
@@ -419,6 +502,72 @@
             "file": "packages/mojo.js/lib/registeredClasses.js",
             "line": 3,
             "description": "Collection of registered classes that can be used throughout the mojo applicaiton (views/models)."
+        },
+        "StringNodeFactory": {
+            "name": "StringNodeFactory",
+            "shortname": "StringNodeFactory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "submodule": "mojo-core",
+            "namespace": "",
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 15,
+            "extends": "BaseNodeFactory"
+        },
+        "BaseNodeFactory": {
+            "name": "BaseNodeFactory",
+            "shortname": "BaseNodeFactory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo-core",
+            "namespace": "",
+            "file": "packages/nofactor.js/lib/base.js",
+            "line": 10
+        },
+        "CustomNodeFactory": {
+            "name": "CustomNodeFactory",
+            "shortname": "CustomNodeFactory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo",
+            "submodule": "mojo-core",
+            "namespace": "",
+            "file": "packages/nofactor.js/lib/custom.js",
+            "line": 9,
+            "description": "### Example\n```javascript\nvar nofactor = require(\"nofactor\");\n// use string factory\ncustomNodeFactory = nofactor.custom(nofactor.string);\n// register BR void element\ncustomNodeFactory.registerElement(\"br\", nofactor.string.Element.extend({\n\ttoString: function () {\n\t\treturn \"<\" + this.name + \">\";\n\t}\n}));\n// <br>\nconsole.log(customNodeFactory.createElement(\"br\").toString());\n```",
+            "extends": "BaseNodeFactory",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "nodeFactory",
+                    "description": "the main node factory to call",
+                    "type": "BaseNodeFactory"
+                }
+            ]
+        },
+        "DomFactory": {
+            "name": "DomFactory",
+            "shortname": "DomFactory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "mojo-core",
+            "namespace": "",
+            "file": "packages/nofactor.js/lib/dom.js",
+            "line": 8,
+            "extends": "BaseNodeFactory"
         },
         "SubindableObject": {
             "name": "SubindableObject",
@@ -963,14 +1112,24 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 57,
+            "line": 43,
+            "description": "emitted when a property is being watched",
+            "itemtype": "event",
+            "name": "watching",
             "class": "BindableObject",
             "module": "mojo",
             "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 62,
+            "line": 64,
+            "class": "BindableObject",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/bindable.js/lib/object/index.js",
+            "line": 69,
             "description": "The context of the bindable object. Note that the context can be `this`.",
             "itemtype": "method",
             "name": "context",
@@ -991,7 +1150,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 80,
+            "line": 87,
             "description": "Returns the keys in the context",
             "itemtype": "method",
             "name": "keys",
@@ -1005,7 +1164,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 90,
+            "line": 97,
             "description": "Returns TRUE if a property exists in the context",
             "itemtype": "method",
             "name": "has",
@@ -1026,7 +1185,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 101,
+            "line": 108,
             "description": "Returns a property stored in the bindable object context",
             "itemtype": "method",
             "name": "get",
@@ -1043,7 +1202,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 138,
+            "line": 145,
             "description": "Properties to set on the bindable object",
             "itemtype": "method",
             "name": "setProperties",
@@ -1064,7 +1223,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 152,
+            "line": 159,
             "description": "Sets a property on the bindable object's context",
             "itemtype": "method",
             "name": "set",
@@ -1081,7 +1240,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 221,
+            "line": 228,
             "description": "Binds a property to a function",
             "itemtype": "method",
             "name": "bind",
@@ -1112,7 +1271,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 234,
+            "line": 241,
             "description": "Disposes the bindable object. Emits `dispose`.",
             "itemtype": "method",
             "name": "dispose",
@@ -1122,7 +1281,7 @@
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 243,
+            "line": 250,
             "description": "Converts the context to a JSON object",
             "itemtype": "method",
             "name": "toJSON",
@@ -1281,17 +1440,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 62,
-            "description": "emitted when a property is being watched",
-            "itemtype": "event",
-            "name": "watching",
-            "class": "BaseView",
-            "module": "mojo",
-            "submodule": "mojo-views"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 74,
+            "line": 68,
             "description": "The main application that instantiated this view",
             "itemtype": "property",
             "name": "application",
@@ -1302,21 +1451,21 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 90,
+            "line": 84,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 95,
+            "line": 89,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 100,
+            "line": 94,
             "description": "adds a disposable object to cleanup when the view is destroyed.",
             "itemtype": "method",
             "name": "disposable",
@@ -1333,14 +1482,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 115,
+            "line": 109,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 133,
+            "line": 127,
             "description": "Called when the view is instantiated",
             "itemtype": "method",
             "name": "initialize",
@@ -1357,14 +1506,25 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 149,
+            "line": 143,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 168,
+            "line": 156,
+            "description": "The section that manages the `document fragment` owned by this view controller.",
+            "itemtype": "property",
+            "name": "section",
+            "type": "{Section}",
+            "class": "BaseView",
+            "module": "mojo",
+            "submodule": "mojo-views"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/base/index.js",
+            "line": 169,
             "description": "Returns the path to the view",
             "itemtype": "method",
             "name": "path",
@@ -1374,7 +1534,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 184,
+            "line": 185,
             "description": "Renders the view",
             "itemtype": "method",
             "name": "render",
@@ -1388,7 +1548,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 209,
+            "line": 210,
             "description": "called in `render()`, before emitting `render` event",
             "itemtype": "method",
             "name": "_render",
@@ -1400,7 +1560,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 219,
+            "line": 220,
             "description": "Removes the view from the parent, or DOM",
             "itemtype": "method",
             "name": "remove",
@@ -1410,7 +1570,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 234,
+            "line": 235,
             "description": "jquery selector for elements owned by the view",
             "itemtype": "method",
             "name": "$",
@@ -1427,7 +1587,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 252,
+            "line": 253,
             "description": "Attaches the view to an element. This is mostly used for the main view.",
             "itemtype": "method",
             "name": "attach",
@@ -1444,14 +1604,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 272,
+            "line": 273,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 280,
+            "line": 281,
             "description": "Sort of a mix-in for the view. This is how `sections`, and `events` are added.",
             "itemtype": "method",
             "name": "decorate",
@@ -1471,7 +1631,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 309,
+            "line": 310,
             "description": "Bubbles an event up to the root view",
             "itemtype": "method",
             "name": "bubble",
@@ -1493,28 +1653,28 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 321,
+            "line": 322,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 343,
+            "line": 344,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 353,
+            "line": 354,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 364,
+            "line": 365,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
@@ -2263,6 +2423,316 @@
             "module": "mojo"
         },
         {
+            "file": "packages/nofactor.js/lib/string/comment.js",
+            "line": 9,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/comment.js",
+            "line": 14,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/comment.js",
+            "line": 21,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 9,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 26,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 37,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 55,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 71,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 86,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/container.js",
+            "line": 95,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 16,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 21,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 48,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 64,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 72,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/element.js",
+            "line": 105,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/fragment.js",
+            "line": 9,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/fragment.js",
+            "line": 14,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/fragment.js",
+            "line": 21,
+            "class": "StringNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 27,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 32,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 39,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 46,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 53,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/index.js",
+            "line": 69,
+            "class": "StringNodeFactory",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 9,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 14,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 28,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 46,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 59,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 74,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/style.js",
+            "line": 98,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/text.js",
+            "line": 12,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/text.js",
+            "line": 17,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/text.js",
+            "line": 24,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/string/text.js",
+            "line": 31,
+            "class": "BaseNodeFactory",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/nofactor.js/lib/base.js",
+            "line": 23,
+            "description": "creates a new element",
+            "itemtype": "method",
+            "name": "createElement",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "name of the element",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "ElementNode"
+            },
+            "class": "BaseNodeFactory",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/base.js",
+            "line": 32,
+            "description": "creates a new fragment",
+            "itemtype": "method",
+            "name": "createFragment",
+            "return": {
+                "description": "",
+                "type": "FragmentNode"
+            },
+            "class": "BaseNodeFactory",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/base.js",
+            "line": 40,
+            "description": "creates a new comment",
+            "itemtype": "method",
+            "name": "createComment",
+            "return": {
+                "description": "",
+                "type": "CommentNode"
+            },
+            "class": "BaseNodeFactory",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/base.js",
+            "line": 48,
+            "description": "creates a new text node",
+            "itemtype": "method",
+            "name": "createTextNode",
+            "return": {
+                "description": "",
+                "type": "TextNode"
+            },
+            "class": "BaseNodeFactory",
+            "module": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/custom.js",
+            "line": 52,
+            "description": "Registers a new element class",
+            "itemtype": "method",
+            "name": "registerElement",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "name of the element",
+                    "type": "String"
+                },
+                {
+                    "name": "The",
+                    "description": "element class",
+                    "type": "Class"
+                }
+            ],
+            "class": "CustomNodeFactory",
+            "module": "",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/nofactor.js/lib/custom.js",
+            "line": 95,
+            "class": "CustomNodeFactory",
+            "module": "",
+            "submodule": "mojo-core"
+        },
+        {
             "file": "packages/subindable.js/lib/index.js",
             "line": 70,
             "description": "The parent subindable object",
@@ -2324,27 +2794,43 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:62"
+            "line": " packages/bindable.js/lib/object/index.js:69"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:80"
+            "line": " packages/bindable.js/lib/object/index.js:87"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:90"
+            "line": " packages/bindable.js/lib/object/index.js:97"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:138"
+            "line": " packages/bindable.js/lib/object/index.js:145"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:221"
+            "line": " packages/bindable.js/lib/object/index.js:228"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/mojo.js/lib/views/base/index.js:280"
+            "line": " packages/mojo.js/lib/views/base/index.js:281"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " packages/nofactor.js/lib/base.js:23"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " packages/nofactor.js/lib/base.js:32"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " packages/nofactor.js/lib/base.js:40"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " packages/nofactor.js/lib/base.js:48"
         },
         {
             "message": "Missing item type",
@@ -2380,7 +2866,7 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/object/index.js:57"
+            "line": " packages/bindable.js/lib/object/index.js:64"
         },
         {
             "message": "Missing item type",
@@ -2448,39 +2934,39 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:90"
+            "line": " packages/mojo.js/lib/views/base/index.js:84"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:95"
+            "line": " packages/mojo.js/lib/views/base/index.js:89"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:115"
+            "line": " packages/mojo.js/lib/views/base/index.js:109"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:149"
+            "line": " packages/mojo.js/lib/views/base/index.js:143"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:272"
+            "line": " packages/mojo.js/lib/views/base/index.js:273"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:321"
+            "line": " packages/mojo.js/lib/views/base/index.js:322"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:343"
+            "line": " packages/mojo.js/lib/views/base/index.js:344"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:353"
+            "line": " packages/mojo.js/lib/views/base/index.js:354"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:364"
+            "line": " packages/mojo.js/lib/views/base/index.js:365"
         },
         {
             "message": "Missing item type",
@@ -2665,6 +3151,154 @@
         {
             "message": "Missing item type\nDEPRECATED",
             "line": " packages/mojo.js/lib/application.js:140"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/comment.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/comment.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/comment.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:26"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:37"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:55"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:71"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:86"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/container.js:95"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:16"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:64"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:72"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/element.js:105"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/fragment.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/fragment.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/fragment.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:27"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:32"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:39"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:46"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:53"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/index.js:69"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:46"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:59"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:74"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/style.js:98"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/text.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/text.js:17"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/text.js:24"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/string/text.js:31"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/nofactor.js/lib/custom.js:95"
         }
     ]
 }

@@ -8,7 +8,8 @@
     "paths": [
       "./packages/mojo.js/lib",
       "./packages/bindable.js/lib",
-      "./packages/subindable.js/lib"
+      "./packages/subindable.js/lib",
+      "./packages/nofactor.js/lib"
     ],
     "outdir":   "./docs",
     "themedir": "themes/yuidoc-bootstrap-theme",

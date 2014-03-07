@@ -11,6 +11,8 @@ link-packages:
 	ln -s `cbd dir mojo-model` ./packages/mojo-model
 	ln -s `cbd dir mediocre.js` ./packages/mediocre
 	ln -s `cbd dir paperclip.js` ./packages/paperclip.js
+	ln -s `cbd dir nofactor.js` ./packages/nofactor.js
+	ln -s `cbd dir loaf.js` ./packages/loaf.js
 	ln -s `cbd dir paperclip-view` ./packages/paperclip-component
 	ln -s `cbd dir subindable.js` ./packages/subindable.js
 

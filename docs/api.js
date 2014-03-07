@@ -3,16 +3,20 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "Animator",
         "Application",
+        "BaseNodeFactory",
         "BaseView",
         "BindableCollection",
         "BindableObject",
         "Binding",
         "BindingTransformer",
+        "CustomNodeFactory",
+        "DomFactory",
         "EventEmitter",
         "ListView",
         "Mojo",
         "RegisteredClasses",
         "StateView",
+        "StringNodeFactory",
         "SubindableObject"
     ],
     "modules": [
