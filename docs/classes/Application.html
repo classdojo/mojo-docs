@@ -29,7 +29,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/mojo", "modules/mojo-core", "modules/mojo-views"]'>
         </form>
     </div>
 </div>
@@ -64,8 +64,6 @@
                     
                         <li><a href="../classes/Binding.html">Binding</a></li>
                     
-                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
-                    
                         <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
                     
                         <li><a href="../classes/ListView.html">ListView</a></li>
@@ -84,9 +82,11 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
-                        <li><a href="../modules/bindable.html">bindable</a></li>
-                    
                         <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                        <li><a href="../modules/mojo-core.html">mojo-core</a></li>
+                    
+                        <li><a href="../modules/mojo-views.html">mojo-views</a></li>
                     
                 </ul>
             </div>
@@ -205,7 +205,28 @@
                     <ul class="index-list properties">
                         
                             <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_fake" data-tablink="fake">fake</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_modelClasses" data-tablink="modelClasses">modelClasses</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_models" data-tablink="models">models</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_nodeFactory" data-tablink="nodeFactory">nodeFactory</a>
 
                                 
                                 
@@ -274,7 +295,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l108"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:108</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l130"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:130</code></a>
         
         </p>
 
@@ -363,7 +384,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l61"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:61</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l83"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:83</code></a>
         
         </p>
 
@@ -418,6 +439,51 @@
                 <h2 class="off-left">Properties</h2>
 
                 
+                    <div id="property_fake" class="property item">
+    <h3 class="name"><code>fake</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_application.js.html#l49"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:49</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>TRUE if testing mode</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_modelClasses" class="property item">
     <h3 class="name"><code>modelClasses</code></h3>
     <span class="type"><a href="../classes/RegisteredClasses.html" class="crosslink">RegisteredClasses</a></span>
@@ -441,7 +507,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l35"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:35</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l57"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:57</code></a>
         
         </p>
 
@@ -452,6 +518,96 @@
 
     <div class="description">
         <p>List of registered model classes</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_models" class="property item">
+    <h3 class="name"><code>models</code></h3>
+    <span class="type"><a href="../classes/BindableObject.html" class="crosslink">BindableObject</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_application.js.html#l41"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:41</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Where all the instantiated models live.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_nodeFactory" class="property item">
+    <h3 class="name"><code>nodeFactory</code></h3>
+    <span class="type">NodeFactory</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/packages_mojo.js_lib_application.js.html#l33"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:33</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The node factory to use. Changes depending on the platform.</p>
 
     </div>
 
@@ -486,7 +642,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l43"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:43</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l65"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:65</code></a>
         
         </p>
 

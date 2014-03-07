@@ -29,7 +29,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/mojo", "modules/mojo-core", "modules/mojo-views"]'>
         </form>
     </div>
 </div>
@@ -64,8 +64,6 @@
                     
                         <li><a href="../classes/Binding.html">Binding</a></li>
                     
-                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
-                    
                         <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
                     
                         <li><a href="../classes/ListView.html">ListView</a></li>
@@ -84,9 +82,11 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
-                        <li><a href="../modules/bindable.html">bindable</a></li>
-                    
                         <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                        <li><a href="../modules/mojo-core.html">mojo-core</a></li>
+                    
+                        <li><a href="../modules/mojo-views.html">mojo-views</a></li>
                     
                 </ul>
             </div>
@@ -132,10 +132,14 @@
 var toarray = require(&quot;toarray&quot;),
 _           = require(&quot;underscore&quot;);
 
+/** 
+ * @module mojo
+ * @submodule mojo-core
+ */
+
 /**
  * created when the second parameter on &#x60;bind(property, listener)&#x60; is an object.
  *
- * @module bindable
  * @class BindingTransformer
  * @protected
  */

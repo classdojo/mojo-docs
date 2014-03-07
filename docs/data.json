@@ -17,9 +17,7 @@
         },
         "packages/bindable.js/lib/core/eventEmitter.js": {
             "name": "packages/bindable.js/lib/core/eventEmitter.js",
-            "modules": {
-                "bindable": 1
-            },
+            "modules": {},
             "classes": {
                 "EventEmitter": 1
             },
@@ -83,7 +81,9 @@
         },
         "packages/mojo.js/lib/views/base/index.js": {
             "name": "packages/mojo.js/lib/views/base/index.js",
-            "modules": {},
+            "modules": {
+                "mojo-views": 1
+            },
             "classes": {
                 "BaseView": 1
             },
@@ -117,9 +117,7 @@
         },
         "packages/mojo.js/lib/animator.js": {
             "name": "packages/mojo.js/lib/animator.js",
-            "modules": {
-                "mojo": 1
-            },
+            "modules": {},
             "classes": {
                 "Animator": 1
             },
@@ -128,7 +126,9 @@
         },
         "packages/mojo.js/lib/application.js": {
             "name": "packages/mojo.js/lib/application.js",
-            "modules": {},
+            "modules": {
+                "mojo": 1
+            },
             "classes": {
                 "Application": 1
             },
@@ -155,7 +155,9 @@
         },
         "packages/subindable.js/lib/index.js": {
             "name": "packages/subindable.js/lib/index.js",
-            "modules": {},
+            "modules": {
+                "mojo-core": 1
+            },
             "classes": {
                 "SubindableObject": 1
             },
@@ -164,9 +166,12 @@
         }
     },
     "modules": {
-        "bindable": {
-            "name": "bindable",
-            "submodules": {},
+        "mojo": {
+            "name": "mojo",
+            "submodules": {
+                "mojo-core": 1,
+                "mojo-views": 1
+            },
             "classes": {
                 "BindableCollection": 1,
                 "EventEmitter": 1,
@@ -175,39 +180,65 @@
                 "Binding": 1,
                 "BaseView": 1,
                 "ListView": 1,
-                "StateView": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 9,
-            "access": "protected",
-            "tagname": ""
-        },
-        "mojo": {
-            "name": "mojo",
-            "submodules": {},
-            "classes": {
+                "StateView": 1,
                 "Animator": 1,
                 "Application": 1,
                 "Mojo": 1,
-                "RegisteredClasses": 1,
-                "SubindableObject": 1
+                "RegisteredClasses": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "packages/subindable.js/lib/index.js",
-            "line": 33,
-            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing.",
+            "file": "packages/mojo.js/lib/registeredClasses.js",
+            "line": 3,
+            "description": "Main entry point to your application. This is where everything is initialized.",
             "params": [
                 {
                     "name": "options",
                     "description": "",
                     "type": "Object"
                 }
-            ]
+            ],
+            "extends": "BindableObject"
+        },
+        "mojo-core": {
+            "name": "mojo-core",
+            "submodules": {},
+            "classes": {
+                "BindableCollection": 1,
+                "EventEmitter": 1,
+                "BindableObject": 1,
+                "BindingTransformer": 1,
+                "Binding": 1,
+                "Animator": 1,
+                "SubindableObject": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/subindable.js/lib/index.js",
+            "line": 37,
+            "tag": "module",
+            "description": "created when the second parameter on `bind(property, listener)` is an object."
+        },
+        "mojo-views": {
+            "name": "mojo-views",
+            "submodules": {},
+            "classes": {
+                "BaseView": 1,
+                "ListView": 1,
+                "StateView": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "mojo",
+            "namespace": "",
+            "file": "packages/mojo.js/lib/views/states/index.js",
+            "line": 13,
+            "description": "## Usage\n<br>\n```javascript\nvar SubView = mojo.View.extend({\n  name: \"craig\"\n});\nvar view = new SubView();\nconsole.log(view.get(\"name\")); //craig\n```\n## Sections Property\nThe sections property allows you to define sub-views.\n```javascript\nvar PagesView = mojo.View.extend({\n  sections: {\n    header: require(\"./headerView\"),\n    content: require(\"./contentView\")\n  }\n})\n```\n## Events Property"
         }
     },
     "classes": {
@@ -219,9 +250,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-core",
+            "namespace": "",
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 5,
+            "line": 10,
             "extends": "BindableObject"
         },
         "EventEmitter": {
@@ -232,10 +265,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-core",
             "namespace": "",
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 3
+            "line": 8
         },
         "BindableObject": {
             "name": "BindableObject",
@@ -245,10 +279,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-core",
             "namespace": "",
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 27,
+            "line": 32,
             "extends": "EventEmitter"
         },
         "BindingTransformer": {
@@ -259,11 +294,14 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-core",
             "namespace": "",
             "file": "packages/bindable.js/lib/object/transform.js",
-            "line": 4,
-            "description": "created when the second parameter on `bind(property, listener)` is an object."
+            "line": 9,
+            "description": "created when the second parameter on `bind(property, listener)` is an object.",
+            "access": "protected",
+            "tagname": ""
         },
         "Binding": {
             "name": "Binding",
@@ -273,10 +311,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-core",
             "namespace": "",
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 5
+            "line": 10
         },
         "BaseView": {
             "name": "BaseView",
@@ -286,11 +325,12 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-views",
             "namespace": "",
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 10,
-            "description": "The Base View",
+            "line": 15,
+            "description": "## Usage\n<br>\n```javascript\nvar SubView = mojo.View.extend({\n  name: \"craig\"\n});\nvar view = new SubView();\nconsole.log(view.get(\"name\")); //craig\n```\n## Sections Property\nThe sections property allows you to define sub-views.\n```javascript\nvar PagesView = mojo.View.extend({\n  sections: {\n    header: require(\"./headerView\"),\n    content: require(\"./contentView\")\n  }\n})\n```\n## Events Property",
             "extends": "SubindableObject"
         },
         "ListView": {
@@ -301,10 +341,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-views",
             "namespace": "",
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 12,
+            "line": 17,
             "description": "List View",
             "extends": "BaseView"
         },
@@ -316,10 +357,11 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "bindable",
+            "module": "mojo",
+            "submodule": "mojo-views",
             "namespace": "",
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 9,
+            "line": 13,
             "description": "States View. This is usually defined in `{ sections: { pages: { type: 'states'}} }`",
             "extends": "BaseView"
         },
@@ -332,9 +374,10 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "mojo",
+            "submodule": "mojo-core",
             "namespace": "",
             "file": "packages/mojo.js/lib/animator.js",
-            "line": 3,
+            "line": 8,
             "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
         },
         "Application": {
@@ -362,7 +405,7 @@
             "module": "mojo",
             "namespace": "",
             "file": "packages/mojo.js/lib/index.js",
-            "line": 5
+            "line": 10
         },
         "RegisteredClasses": {
             "name": "RegisteredClasses",
@@ -386,10 +429,10 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "mojo",
+            "module": "mojo-core",
             "namespace": "",
             "file": "packages/subindable.js/lib/index.js",
-            "line": 33,
+            "line": 37,
             "description": "Allows you to inherit properties from a parent bindable.",
             "extends": "BindableObject"
         }
@@ -397,7 +440,7 @@
     "classitems": [
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 10,
+            "line": 15,
             "description": "Emitted when an item is inserted",
             "itemtype": "event",
             "name": "insert",
@@ -408,11 +451,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 17,
+            "line": 22,
             "description": "Emitted when an item is removed",
             "itemtype": "event",
             "name": "remove",
@@ -423,11 +468,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 23,
+            "line": 28,
             "description": "Emitted when items are replaced",
             "itemtype": "event",
             "name": "replace",
@@ -443,27 +490,35 @@
                     "type": "Array"
                 }
             ],
-            "class": "BindableCollection"
-        },
-        {
-            "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 38,
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
             "line": 43,
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
             "line": 48,
-            "description": "Resets the collection. Same as `source(value)`.",
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 56,
+            "line": 53,
+            "description": "Resets the collection. Same as `source(value)`.",
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/bindable.js/lib/collection/index.js",
+            "line": 61,
             "description": "Sets / Gets source array",
             "itemtype": "method",
             "name": "source",
@@ -477,11 +532,13 @@
             "return": {
                 "description": "[Array] source"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 73,
+            "line": 78,
             "description": "Returns the index of a value",
             "itemtype": "method",
             "name": "indexOf",
@@ -496,11 +553,13 @@
                 "description": "index or -1 (not found)",
                 "type": "Number"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 84,
+            "line": 89,
             "description": "filters the collection",
             "itemtype": "method",
             "name": "filter",
@@ -508,21 +567,27 @@
                 "description": "array of filtered items",
                 "type": "Array"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 94,
-            "class": "BindableCollection"
+            "line": 99,
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 101,
-            "class": "BindableCollection"
+            "line": 106,
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 108,
+            "line": 113,
             "description": "Returns an object at the given index",
             "itemtype": "method",
             "name": "at",
@@ -530,11 +595,13 @@
                 "description": "Object at specific index",
                 "type": "Object"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 118,
+            "line": 123,
             "description": "forEach item",
             "itemtype": "method",
             "name": "each",
@@ -545,21 +612,27 @@
                     "type": "Function"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 128,
-            "class": "BindableCollection"
+            "line": 133,
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 135,
-            "class": "BindableCollection"
+            "line": 140,
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 142,
+            "line": 147,
             "description": "Pushes an item onto the collection",
             "itemtype": "method",
             "name": "push",
@@ -570,11 +643,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 154,
+            "line": 159,
             "description": "Unshifts an item onto the collection",
             "itemtype": "method",
             "name": "unshift",
@@ -585,11 +660,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 166,
+            "line": 171,
             "description": "Removes N Number of items",
             "itemtype": "method",
             "name": "splice",
@@ -605,11 +682,13 @@
                     "type": "Number"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 181,
+            "line": 186,
             "description": "Removes an item from the collection",
             "itemtype": "method",
             "name": "remove",
@@ -620,11 +699,13 @@
                     "type": "Object"
                 }
             ],
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 196,
+            "line": 201,
             "description": "Removes an item from the end",
             "itemtype": "method",
             "name": "pop",
@@ -632,11 +713,13 @@
                 "description": "removed item",
                 "type": "Object"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 207,
+            "line": 212,
             "description": "Removes an item from the beginning",
             "itemtype": "method",
             "name": "shift",
@@ -644,47 +727,57 @@
                 "description": "removed item",
                 "type": "Object"
             },
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 232,
+            "line": 237,
             "description": "First item in the collection",
             "itemtype": "property",
             "name": "first",
             "type": "Object",
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 241,
+            "line": 246,
             "description": "length of the collection",
             "itemtype": "property",
             "name": "length",
             "type": "Number",
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 250,
+            "line": 255,
             "description": "True of the collection is empty",
             "itemtype": "property",
             "name": "empty",
             "type": "Boolean",
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/collection/index.js",
-            "line": 258,
+            "line": 263,
             "description": "Last item in the collection",
             "itemtype": "property",
             "name": "last",
             "type": "Object",
-            "class": "BindableCollection"
+            "class": "BindableCollection",
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 16,
+            "line": 20,
             "description": "adds a listener on the event emitter",
             "itemtype": "method",
             "name": "on",
@@ -705,11 +798,12 @@
                 "type": "Disposable"
             },
             "class": "EventEmitter",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 50,
+            "line": 54,
             "description": "removes an event emitter",
             "itemtype": "method",
             "name": "off",
@@ -726,11 +820,12 @@
                 }
             ],
             "class": "EventEmitter",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 76,
+            "line": 80,
             "description": "adds a listener on the event emitter",
             "itemtype": "method",
             "name": "once",
@@ -751,11 +846,12 @@
                 "type": "Disposable"
             },
             "class": "EventEmitter",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 97,
+            "line": 101,
             "description": "emits an event",
             "itemtype": "method",
             "name": "emit",
@@ -772,11 +868,12 @@
                 }
             ],
             "class": "EventEmitter",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/core/eventEmitter.js",
-            "line": 143,
+            "line": 147,
             "description": "removes all listeners",
             "itemtype": "method",
             "name": "removeAllListeners",
@@ -788,20 +885,22 @@
                 }
             ],
             "class": "EventEmitter",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 5,
+            "line": 10,
             "description": "Emitted when the bindable object is disposed. This happens\nwhen the object is no-longer needed.",
             "itemtype": "event",
             "name": "dispose",
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 12,
+            "line": 17,
             "description": "Emitted everytime a property changes",
             "itemtype": "event",
             "name": "change",
@@ -823,11 +922,12 @@
                 }
             ],
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 20,
+            "line": 25,
             "description": "Emitted when a specific property changes",
             "itemtype": "event",
             "name": "change:*",
@@ -844,11 +944,12 @@
                 }
             ],
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 32,
+            "line": 37,
             "is_constructor": 1,
             "params": [
                 {
@@ -858,17 +959,19 @@
                 }
             ],
             "class": "BindableObject",
-            "module": "bindable"
-        },
-        {
-            "file": "packages/bindable.js/lib/object/index.js",
-            "line": 52,
-            "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
             "line": 57,
+            "class": "BindableObject",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/bindable.js/lib/object/index.js",
+            "line": 62,
             "description": "The context of the bindable object. Note that the context can be `this`.",
             "itemtype": "method",
             "name": "context",
@@ -884,11 +987,12 @@
                 "type": "Object"
             },
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 75,
+            "line": 80,
             "description": "Returns the keys in the context",
             "itemtype": "method",
             "name": "keys",
@@ -897,11 +1001,12 @@
                 "type": "Array"
             },
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 85,
+            "line": 90,
             "description": "Returns TRUE if a property exists in the context",
             "itemtype": "method",
             "name": "has",
@@ -917,11 +1022,12 @@
                 "type": "Boolean"
             },
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 96,
+            "line": 101,
             "description": "Returns a property stored in the bindable object context",
             "itemtype": "method",
             "name": "get",
@@ -933,11 +1039,12 @@
                 }
             ],
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 133,
+            "line": 138,
             "description": "Properties to set on the bindable object",
             "itemtype": "method",
             "name": "setProperties",
@@ -953,11 +1060,12 @@
                 "type": "BindableObject"
             },
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 147,
+            "line": 152,
             "description": "Sets a property on the bindable object's context",
             "itemtype": "method",
             "name": "set",
@@ -969,11 +1077,12 @@
                 }
             ],
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 216,
+            "line": 221,
             "description": "Binds a property to a function",
             "itemtype": "method",
             "name": "bind",
@@ -999,202 +1108,216 @@
                 "type": "Binding"
             },
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 229,
+            "line": 234,
             "description": "Disposes the bindable object. Emits `dispose`.",
             "itemtype": "method",
             "name": "dispose",
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/index.js",
-            "line": 238,
+            "line": 243,
             "description": "Converts the context to a JSON object",
             "itemtype": "method",
             "name": "toJSON",
             "class": "BindableObject",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 26,
+            "line": 28,
             "description": "the target bindable object",
             "itemtype": "property",
             "name": "target",
             "type": "{BindableObject}",
             "class": "Binding",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 34,
+            "line": 36,
             "description": "triggers the binding listener",
             "itemtype": "method",
             "name": "now",
             "class": "Binding",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 44,
+            "line": 46,
             "description": "disposes the binding",
             "itemtype": "method",
             "name": "dispose",
             "class": "Binding",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 198,
+            "line": 200,
             "class": "Binding",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/bindable.js/lib/object/watchProperty.js",
-            "line": 236,
+            "line": 238,
             "class": "Binding",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-core"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 21,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 34,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 41,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 84,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/events.js",
             "line": 93,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 11,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 19,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 29,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/factory.js",
             "line": 48,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 16,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 26,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 42,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/plugins/decor/sections.js",
             "line": 58,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/pools/index.js",
             "line": 46,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 17,
+            "line": 49,
             "description": "Called when the view is rendered",
             "itemtype": "event",
             "name": "render",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 23,
+            "line": 54,
             "description": "Called when the view is remove",
             "itemtype": "event",
             "name": "remove",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 29,
+            "line": 59,
             "description": "emitted when a property is being watched",
             "itemtype": "event",
             "name": "watching",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 41,
+            "line": 71,
             "description": "The main application that instantiated this view",
             "itemtype": "property",
             "name": "application",
             "type": "{Application}",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 57,
+            "line": 87,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 62,
+            "line": 92,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 67,
+            "line": 97,
             "description": "adds a disposable object to cleanup when the view is destroyed.",
             "itemtype": "method",
             "name": "disposable",
@@ -1206,17 +1329,19 @@
                 }
             ],
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 82,
+            "line": 112,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 100,
+            "line": 130,
             "description": "Called when the view is instantiated",
             "itemtype": "method",
             "name": "initialize",
@@ -1228,26 +1353,29 @@
                 }
             ],
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 116,
+            "line": 146,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 135,
+            "line": 165,
             "description": "Returns the path to the view",
             "itemtype": "method",
             "name": "path",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 151,
+            "line": 181,
             "description": "Renders the view",
             "itemtype": "method",
             "name": "render",
@@ -1256,31 +1384,34 @@
                 "type": "Object"
             },
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 176,
+            "line": 206,
             "description": "called in `render()`, before emitting `render` event",
             "itemtype": "method",
             "name": "_render",
             "access": "protected",
             "tagname": "",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 186,
+            "line": 216,
             "description": "Removes the view from the parent, or DOM",
             "itemtype": "method",
             "name": "remove",
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 201,
+            "line": 231,
             "description": "jquery selector for elements owned by the view",
             "itemtype": "method",
             "name": "$",
@@ -1292,11 +1423,12 @@
                 }
             ],
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 219,
+            "line": 249,
             "description": "Attaches the view to an element. This is mostly used for the main view.",
             "itemtype": "method",
             "name": "attach",
@@ -1308,17 +1440,19 @@
                 }
             ],
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 239,
+            "line": 269,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 247,
+            "line": 277,
             "description": "Sort of a mix-in for the view. This is how `sections`, and `events` are added.",
             "itemtype": "method",
             "name": "decorate",
@@ -1333,11 +1467,12 @@
                 "type": "Object"
             },
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 276,
+            "line": 306,
             "description": "Bubbles an event up to the root view",
             "itemtype": "method",
             "name": "bubble",
@@ -1354,84 +1489,96 @@
                 }
             ],
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 288,
+            "line": 318,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 310,
+            "line": 340,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 320,
+            "line": 350,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 331,
+            "line": 361,
             "class": "BaseView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 22,
+            "line": 27,
             "class": "ListView",
-            "module": "bindable"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 42,
-            "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 47,
+            "class": "ListView",
+            "module": "mojo",
+            "submodule": "mojo-views"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 52,
             "description": "Number of items to asyncronously add to the list (optimization).",
             "itemtype": "property",
             "name": "chunk",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 54,
+            "line": 59,
             "description": "Delay between adding chunked items to the list (optimization).",
             "itemtype": "property",
             "name": "delay",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 61,
+            "line": 66,
             "description": "make sure decorations don't get activated for this view",
             "class": "ListView",
-            "module": "bindable"
-        },
-        {
-            "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 67,
-            "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 72,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 77,
+            "class": "ListView",
+            "module": "mojo",
+            "submodule": "mojo-views"
+        },
+        {
+            "file": "packages/mojo.js/lib/views/list/index.js",
+            "line": 82,
             "description": "The filter method for the list view",
             "itemtype": "method",
             "name": "filter",
@@ -1443,11 +1590,12 @@
                 }
             ],
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 85,
+            "line": 90,
             "description": "The sort method for the list",
             "itemtype": "method",
             "name": "sort",
@@ -1464,11 +1612,12 @@
                 }
             ],
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 94,
+            "line": 99,
             "description": "Maps model data before setting to the instantiated list item view",
             "itemtype": "method",
             "name": "map",
@@ -1484,184 +1633,211 @@
                 "type": "Number"
             },
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 103,
+            "line": 108,
             "description": "The size of the list view",
             "itemtype": "property",
             "name": "length",
             "type": "{Number}",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 111,
+            "line": 116,
             "description": "The model view factory for creating each list item",
             "itemtype": "property",
             "name": "modelViewFactory",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 118,
+            "line": 123,
             "description": "The model view class for each list item. Use this or `modelViewFactory`.",
             "itemtype": "property",
             "name": "modelViewClass",
             "type": "{BaseView}",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 126,
+            "line": 131,
             "description": "DEPRECATED",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 132,
+            "line": 137,
             "description": "The collection of models to use. Each model is assigned as `model` to each instantiated `modelViewClass`.",
             "itemtype": "property",
             "name": "source",
             "type": "{BindableCollection}",
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 141,
+            "line": 146,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 170,
+            "line": 175,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 194,
+            "line": 199,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 234,
+            "line": 239,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 241,
+            "line": 246,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 254,
+            "line": 259,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 262,
+            "line": 267,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 301,
+            "line": 306,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 311,
+            "line": 316,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 319,
+            "line": 324,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 326,
+            "line": 331,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 365,
+            "line": 370,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 379,
+            "line": 384,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 420,
+            "line": 425,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 431,
+            "line": 436,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 445,
+            "line": 450,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 474,
+            "line": 479,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 482,
+            "line": 487,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 496,
+            "line": 501,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 507,
+            "line": 512,
             "class": "ListView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 22,
+            "line": 26,
             "description": "prevent states from being decorated",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 28,
+            "line": 32,
             "description": "Transitions from one state to another",
             "params": [
                 {
@@ -1681,92 +1857,104 @@
                 }
             ],
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 39,
+            "line": 43,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 44,
+            "line": 48,
             "description": "current state name",
             "itemtype": "property",
             "name": "currentName",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 51,
+            "line": 55,
             "description": "current state index",
             "itemtype": "property",
             "name": "index",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 58,
+            "line": 62,
             "description": "TODO - change this to 'states'",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 64,
+            "line": 68,
             "description": "The current view being displayed",
             "itemtype": "property",
             "name": "currentView",
             "type": "{BaseView}",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 75,
+            "line": 79,
             "description": "The collection of view classes to use",
             "itemtype": "property",
             "name": "views",
             "type": "{Array}",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 84,
+            "line": 88,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 89,
+            "line": 93,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 103,
+            "line": 107,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 117,
+            "line": 121,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 126,
+            "line": 130,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 140,
+            "line": 144,
             "description": "Selects a specific index",
             "itemtype": "method",
             "name": "select",
@@ -1778,29 +1966,32 @@
                 }
             ],
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 157,
+            "line": 161,
             "description": "moves to the next state",
             "itemtype": "method",
             "name": "next",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 166,
+            "line": 170,
             "description": "moves to the previous state",
             "itemtype": "method",
             "name": "prev",
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 175,
+            "line": 179,
             "description": "moves to a specific state index",
             "itemtype": "method",
             "name": "move",
@@ -1811,65 +2002,69 @@
                 }
             ],
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 203,
+            "line": 207,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 217,
+            "line": 221,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 224,
+            "line": 228,
             "class": "StateView",
-            "module": "bindable"
+            "module": "mojo",
+            "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 28,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 35,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 45,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 56,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 64,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/views/states/state.js",
             "line": 71,
             "class": "Animator",
-            "module": "bindable"
+            "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/animator.js",
-            "line": 16,
+            "line": 21,
             "description": "Runs animatable object on requestAnimationFrame. This gets\ncalled whenever the UI state changes.",
             "itemtype": "method",
             "name": "animate",
@@ -1881,11 +2076,42 @@
                 }
             ],
             "class": "Animator",
+            "module": "mojo",
+            "submodule": "mojo-core"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 33,
+            "description": "The node factory to use. Changes depending on the platform.",
+            "itemtype": "property",
+            "name": "nodeFactory",
+            "type": "NodeFactory",
+            "class": "Application",
             "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 35,
+            "line": 41,
+            "description": "Where all the instantiated models live.",
+            "itemtype": "property",
+            "name": "models",
+            "type": "BindableObject",
+            "class": "Application",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 49,
+            "description": "TRUE if testing mode",
+            "itemtype": "property",
+            "name": "fake",
+            "type": "{Boolean}",
+            "class": "Application",
+            "module": "mojo"
+        },
+        {
+            "file": "packages/mojo.js/lib/application.js",
+            "line": 57,
             "description": "List of registered model classes",
             "itemtype": "property",
             "name": "modelClasses",
@@ -1895,7 +2121,7 @@
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 43,
+            "line": 65,
             "description": "List of registered view classes",
             "itemtype": "property",
             "name": "viewClasses",
@@ -1905,7 +2131,7 @@
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 61,
+            "line": 83,
             "description": "Plugins to use for the mojo application.",
             "itemtype": "method",
             "name": "use",
@@ -1921,21 +2147,21 @@
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 78,
+            "line": 100,
             "description": "DEPRECATED",
             "class": "Application",
             "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 94,
+            "line": 116,
             "description": "DEPRECATED",
             "class": "Application",
             "module": "mojo"
         },
         {
             "file": "packages/mojo.js/lib/application.js",
-            "line": 108,
+            "line": 130,
             "description": "Runs `update()` on requestAnimationFrame. Used whenever the UI changes.",
             "itemtype": "method",
             "name": "animate",
@@ -1954,7 +2180,7 @@
         },
         {
             "file": "packages/mojo.js/lib/index.js",
-            "line": 14,
+            "line": 18,
             "description": "The base mojo.js View",
             "itemtype": "property",
             "name": "View",
@@ -1963,7 +2189,7 @@
         },
         {
             "file": "packages/mojo.js/lib/index.js",
-            "line": 21,
+            "line": 25,
             "description": "The base mojo.application. This is where all your models / views live.",
             "itemtype": "property",
             "name": "Application",
@@ -1972,7 +2198,7 @@
         },
         {
             "file": "packages/mojo.js/lib/index.js",
-            "line": 28,
+            "line": 32,
             "description": "Registers a class to pool",
             "itemtype": "property",
             "name": "pool",
@@ -2039,17 +2265,17 @@
         },
         {
             "file": "packages/subindable.js/lib/index.js",
-            "line": 66,
+            "line": 70,
             "description": "The parent subindable object",
             "itemtype": "property",
             "name": "parent",
             "type": "SubindableObject",
             "class": "SubindableObject",
-            "module": "mojo"
+            "module": "mojo-core"
         },
         {
             "file": "packages/subindable.js/lib/index.js",
-            "line": 141,
+            "line": 145,
             "description": "Inherits a property from the parent subindable object",
             "itemtype": "method",
             "name": "inherit",
@@ -2061,109 +2287,109 @@
                 }
             ],
             "class": "SubindableObject",
-            "module": "mojo"
+            "module": "mojo-core"
         }
     ],
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:56"
+            "line": " packages/bindable.js/lib/collection/index.js:61"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:73"
+            "line": " packages/bindable.js/lib/collection/index.js:78"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:84"
+            "line": " packages/bindable.js/lib/collection/index.js:89"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:108"
+            "line": " packages/bindable.js/lib/collection/index.js:113"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:196"
+            "line": " packages/bindable.js/lib/collection/index.js:201"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/collection/index.js:207"
+            "line": " packages/bindable.js/lib/collection/index.js:212"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/core/eventEmitter.js:16"
+            "line": " packages/bindable.js/lib/core/eventEmitter.js:20"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/core/eventEmitter.js:76"
+            "line": " packages/bindable.js/lib/core/eventEmitter.js:80"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:57"
+            "line": " packages/bindable.js/lib/object/index.js:62"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:75"
+            "line": " packages/bindable.js/lib/object/index.js:80"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:85"
+            "line": " packages/bindable.js/lib/object/index.js:90"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:133"
+            "line": " packages/bindable.js/lib/object/index.js:138"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/bindable.js/lib/object/index.js:216"
+            "line": " packages/bindable.js/lib/object/index.js:221"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/mojo.js/lib/views/base/index.js:247"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/bindable.js/lib/collection/index.js:38"
+            "line": " packages/mojo.js/lib/views/base/index.js:277"
         },
         {
             "message": "Missing item type",
             "line": " packages/bindable.js/lib/collection/index.js:43"
         },
         {
-            "message": "Missing item type\nResets the collection. Same as `source(value)`.",
+            "message": "Missing item type",
             "line": " packages/bindable.js/lib/collection/index.js:48"
         },
         {
-            "message": "Missing item type",
-            "line": " packages/bindable.js/lib/collection/index.js:94"
+            "message": "Missing item type\nResets the collection. Same as `source(value)`.",
+            "line": " packages/bindable.js/lib/collection/index.js:53"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/collection/index.js:101"
+            "line": " packages/bindable.js/lib/collection/index.js:99"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/collection/index.js:128"
+            "line": " packages/bindable.js/lib/collection/index.js:106"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/collection/index.js:135"
+            "line": " packages/bindable.js/lib/collection/index.js:133"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/object/index.js:32"
+            "line": " packages/bindable.js/lib/collection/index.js:140"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/object/index.js:52"
+            "line": " packages/bindable.js/lib/object/index.js:37"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/object/watchProperty.js:198"
+            "line": " packages/bindable.js/lib/object/index.js:57"
         },
         {
             "message": "Missing item type",
-            "line": " packages/bindable.js/lib/object/watchProperty.js:236"
+            "line": " packages/bindable.js/lib/object/watchProperty.js:200"
+        },
+        {
+            "message": "Missing item type",
+            "line": " packages/bindable.js/lib/object/watchProperty.js:238"
         },
         {
             "message": "Missing item type",
@@ -2223,191 +2449,191 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:57"
+            "line": " packages/mojo.js/lib/views/base/index.js:87"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:62"
+            "line": " packages/mojo.js/lib/views/base/index.js:92"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:82"
+            "line": " packages/mojo.js/lib/views/base/index.js:112"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:116"
+            "line": " packages/mojo.js/lib/views/base/index.js:146"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:239"
+            "line": " packages/mojo.js/lib/views/base/index.js:269"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:288"
+            "line": " packages/mojo.js/lib/views/base/index.js:318"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:310"
+            "line": " packages/mojo.js/lib/views/base/index.js:340"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:320"
+            "line": " packages/mojo.js/lib/views/base/index.js:350"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:331"
+            "line": " packages/mojo.js/lib/views/base/index.js:361"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:22"
+            "line": " packages/mojo.js/lib/views/list/index.js:27"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:42"
+            "line": " packages/mojo.js/lib/views/list/index.js:47"
         },
         {
             "message": "Missing item type\nmake sure decorations don't get activated for this view",
-            "line": " packages/mojo.js/lib/views/list/index.js:61"
-        },
-        {
-            "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:67"
+            "line": " packages/mojo.js/lib/views/list/index.js:66"
         },
         {
             "message": "Missing item type",
             "line": " packages/mojo.js/lib/views/list/index.js:72"
         },
         {
+            "message": "Missing item type",
+            "line": " packages/mojo.js/lib/views/list/index.js:77"
+        },
+        {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/views/list/index.js:126"
+            "line": " packages/mojo.js/lib/views/list/index.js:131"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:141"
+            "line": " packages/mojo.js/lib/views/list/index.js:146"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:170"
+            "line": " packages/mojo.js/lib/views/list/index.js:175"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:194"
+            "line": " packages/mojo.js/lib/views/list/index.js:199"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:234"
+            "line": " packages/mojo.js/lib/views/list/index.js:239"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:241"
+            "line": " packages/mojo.js/lib/views/list/index.js:246"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:254"
+            "line": " packages/mojo.js/lib/views/list/index.js:259"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:262"
+            "line": " packages/mojo.js/lib/views/list/index.js:267"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:301"
+            "line": " packages/mojo.js/lib/views/list/index.js:306"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:311"
+            "line": " packages/mojo.js/lib/views/list/index.js:316"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:319"
+            "line": " packages/mojo.js/lib/views/list/index.js:324"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:326"
+            "line": " packages/mojo.js/lib/views/list/index.js:331"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:365"
+            "line": " packages/mojo.js/lib/views/list/index.js:370"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:379"
+            "line": " packages/mojo.js/lib/views/list/index.js:384"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:420"
+            "line": " packages/mojo.js/lib/views/list/index.js:425"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:431"
+            "line": " packages/mojo.js/lib/views/list/index.js:436"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:445"
+            "line": " packages/mojo.js/lib/views/list/index.js:450"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:474"
+            "line": " packages/mojo.js/lib/views/list/index.js:479"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:482"
+            "line": " packages/mojo.js/lib/views/list/index.js:487"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:496"
+            "line": " packages/mojo.js/lib/views/list/index.js:501"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:507"
+            "line": " packages/mojo.js/lib/views/list/index.js:512"
         },
         {
             "message": "Missing item type\nprevent states from being decorated",
-            "line": " packages/mojo.js/lib/views/states/index.js:22"
+            "line": " packages/mojo.js/lib/views/states/index.js:26"
         },
         {
             "message": "Missing item type\nTransitions from one state to another",
-            "line": " packages/mojo.js/lib/views/states/index.js:28"
+            "line": " packages/mojo.js/lib/views/states/index.js:32"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:39"
+            "line": " packages/mojo.js/lib/views/states/index.js:43"
         },
         {
             "message": "Missing item type\nTODO - change this to 'states'",
-            "line": " packages/mojo.js/lib/views/states/index.js:58"
+            "line": " packages/mojo.js/lib/views/states/index.js:62"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:84"
+            "line": " packages/mojo.js/lib/views/states/index.js:88"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:89"
+            "line": " packages/mojo.js/lib/views/states/index.js:93"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:103"
+            "line": " packages/mojo.js/lib/views/states/index.js:107"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:117"
+            "line": " packages/mojo.js/lib/views/states/index.js:121"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:126"
+            "line": " packages/mojo.js/lib/views/states/index.js:130"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:203"
+            "line": " packages/mojo.js/lib/views/states/index.js:207"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:217"
+            "line": " packages/mojo.js/lib/views/states/index.js:221"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:224"
+            "line": " packages/mojo.js/lib/views/states/index.js:228"
         },
         {
             "message": "Missing item type",
@@ -2435,11 +2661,11 @@
         },
         {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/application.js:78"
+            "line": " packages/mojo.js/lib/application.js:100"
         },
         {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/application.js:94"
+            "line": " packages/mojo.js/lib/application.js:116"
         }
     ]
 }

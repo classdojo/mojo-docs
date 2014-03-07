@@ -29,7 +29,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/mojo", "modules/mojo-core", "modules/mojo-views"]'>
         </form>
     </div>
 </div>
@@ -64,8 +64,6 @@
                     
                         <li><a href="../classes/Binding.html">Binding</a></li>
                     
-                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
-                    
                         <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
                     
                         <li><a href="../classes/ListView.html">ListView</a></li>
@@ -84,9 +82,11 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
-                        <li><a href="../modules/bindable.html">bindable</a></li>
-                    
                         <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                        <li><a href="../modules/mojo-core.html">mojo-core</a></li>
+                    
+                        <li><a href="../modules/mojo-views.html">mojo-views</a></li>
                     
                 </ul>
             </div>
@@ -139,23 +139,53 @@ decor            = require(&quot;../../plugins/decor&quot;),
 generateId       = require(&quot;../../utils/idGenerator&quot;);
 
 /**
- * The Base View
- * @class BaseView
- * @extends SubindableObject
+ * @module mojo
+ * @submodule mojo-views
  */
 
+/**
+
+## Usage
+
+&lt;br&gt;
+
+&#x60;&#x60;&#x60;javascript
+var SubView = mojo.View.extend({
+  name: &quot;craig&quot;
+});
+var view = new SubView();
+console.log(view.get(&quot;name&quot;)); //craig
+&#x60;&#x60;&#x60;
+
+## Sections Property
+
+The sections property allows you to define sub-views.
+
+&#x60;&#x60;&#x60;javascript
+var PagesView = mojo.View.extend({
+  sections: {
+    header: require(&quot;./headerView&quot;),
+    content: require(&quot;./contentView&quot;)
+  }
+})
+&#x60;&#x60;&#x60;
+
+## Events Property
+
+
+@class BaseView
+@extends SubindableObject
+*/
 
 /**
  * Called when the view is rendered
  * @event render
  */
 
-
 /**
  * Called when the view is remove
  * @event remove
  */
-
 
 /**
  * emitted when a property is being watched

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>bindable - Mojo.js Docs</title>
+    <title>mojo-views - Mojo.js Docs</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -29,7 +29,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/bindable", "modules/mojo"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Animator", "classes/Application", "classes/BaseView", "classes/BindableCollection", "classes/BindableObject", "classes/Binding", "classes/BindingTransformer", "classes/EventEmitter", "classes/ListView", "classes/Mojo", "classes/RegisteredClasses", "classes/StateView", "classes/SubindableObject", "modules/mojo", "modules/mojo-core", "modules/mojo-views"]'>
         </form>
     </div>
 </div>
@@ -64,8 +64,6 @@
                     
                         <li><a href="../classes/Binding.html">Binding</a></li>
                     
-                        <li><a href="../classes/BindingTransformer.html">BindingTransformer</a></li>
-                    
                         <li><a href="../classes/EventEmitter.html">EventEmitter</a></li>
                     
                         <li><a href="../classes/ListView.html">ListView</a></li>
@@ -84,9 +82,11 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
-                        <li><a href="../modules/bindable.html">bindable</a></li>
-                    
                         <li><a href="../modules/mojo.html">mojo</a></li>
+                    
+                        <li><a href="../modules/mojo-core.html">mojo-core</a></li>
+                    
+                        <li><a href="../modules/mojo-views.html">mojo-views</a></li>
                     
                 </ul>
             </div>
@@ -124,7 +124,7 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>bindable <small>Module</small></h1>
+    <h1>mojo-views <small>Module</small></h1>
 </div>
 
 <div class="clearfix well well-small">
@@ -134,7 +134,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/packages_mojo.js_lib_views_states_index.js.html#l9"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;states&#x2F;index.js:9</code></a>
+            Defined in: <a href="../files/packages_mojo.js_lib_views_states_index.js.html#l13"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;states&#x2F;index.js:13</code></a>
         </div>
     
 
@@ -144,7 +144,23 @@
 
 
 <div class="moduledesc well well-small">
-    
+    <h2 id="usage">Usage</h2>
+<p><br></p>
+<pre class="code prettyprint"><code class="lang-javascript">var SubView = mojo.View.extend({
+  name: "craig"
+});
+var view = new SubView();
+console.log(view.get("name")); //craig</code></pre>
+<h2 id="sections-property">Sections Property</h2>
+<p>The sections property allows you to define sub-views.</p>
+<pre class="code prettyprint"><code class="lang-javascript">var PagesView = mojo.View.extend({
+  sections: {
+    header: require("./headerView"),
+    content: require("./contentView")
+  }
+})</code></pre>
+<h2 id="events-property">Events Property</h2>
+
 </div>
 
 
@@ -159,36 +175,6 @@
                 <li class="module-class">
                     <a href="../classes/BaseView.html">
                         BaseView
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/BindableCollection.html">
-                        BindableCollection
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/BindableObject.html">
-                        BindableObject
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/Binding.html">
-                        Binding
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/BindingTransformer.html">
-                        BindingTransformer
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/EventEmitter.html">
-                        EventEmitter
                     </a>
                 </li>
             

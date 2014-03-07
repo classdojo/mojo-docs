@@ -16,18 +16,25 @@ YUI.add("yuidoc-meta", function(Y) {
         "SubindableObject"
     ],
     "modules": [
-        "bindable",
-        "mojo"
+        "mojo",
+        "mojo-core",
+        "mojo-views"
     ],
     "allModules": [
         {
-            "displayName": "bindable",
-            "name": "bindable"
-        },
-        {
             "displayName": "mojo",
             "name": "mojo",
-            "description": "Animator that makes changes to the UI state of the application. Prevents layout thrashing."
+            "description": "Main entry point to your application. This is where everything is initialized."
+        },
+        {
+            "displayName": "mojo-core",
+            "name": "mojo-core",
+            "description": "created when the second parameter on `bind(property, listener)` is an object."
+        },
+        {
+            "displayName": "mojo-views",
+            "name": "mojo-views",
+            "description": "## Usage\n<br>\n```javascript\nvar SubView = mojo.View.extend({\n  name: \"craig\"\n});\nvar view = new SubView();\nconsole.log(view.get(\"name\")); //craig\n```\n## Sections Property\nThe sections property allows you to define sub-views.\n```javascript\nvar PagesView = mojo.View.extend({\n  sections: {\n    header: require(\"./headerView\"),\n    content: require(\"./contentView\")\n  }\n})\n```\n## Events Property"
         }
     ]
 } };
