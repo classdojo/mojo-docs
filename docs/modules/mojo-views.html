@@ -155,22 +155,36 @@
 
 <div class="moduledesc well well-small">
     <h2 id="usage">Usage</h2>
-<pre class="code prettyprint"><code class="lang-javascript">var SubView = mojo.View.extend({
-  name: "craig"
+<p><p>Views are simply models with a few special properties: <code>render</code>, and <code>remove</code>, and <code>decorators</code>. Decorators are essentially plugins 
+that allow you to customize view&#39;s behavior to fit your needs. This means you can do something like add your own template engine.
+Mojo was design this way to allow better compatibility between different web frameworks. </p>
+At the core, this is what a mojo view is:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var SubView = mojo.View.extend();
+var view = new SubView({ name: "craig" }, new mojo.Application());
+console.log(view.get("name")); //craig
+console.log(view.render().toString()); // blank string, no template engine specified</code></pre>
+<p>Mojo does however come with some built-in decorators. However, you can use whatever you need. </p>
+<h2 id="paperclip-decorator">Paperclip Decorator</h2>
+<p>The paperclip decorator allows you to use <a href="https://github.com/classdojo/paperclip.js">paperclip</a> templates with mojo. 
+Note that the following example assumes that you&#39;re running in either <code>node.js</code>, or have <code>browserified</code> your paperclip template: 
+<br />
+hello.js:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+  paper: require("./hello.pc")
 });
-var view = new SubView();
-console.log(view.get("name")); //craig</code></pre>
-<h2 id="sections-property">Sections Property</h2>
-<p>The sections property allows you to define sub-views.</p>
-<pre class="code prettyprint"><code class="lang-javascript">var PagesView = mojo.View.extend({
-  sections: {
-    header: require("./headerView"),
-    content: require("./contentView")
-  }
+new HelloView({ name: "Mojo" }, new mojo.Application()).attach($("#application"));</code></pre>
+<p>hello.pc:</p>
+<pre class="code prettyprint"><code class="lang-mustache">hello  {{name}}!</code></pre>
+<p>Here&#39;s what you get:</p>
+<p><iframe width="100%" height="300" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<h2 id="sections-decorator">Sections Decorator</h2>
+<p>The sections decorator allows you to easily define sub-views to your view. Here&#39;s a basic example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var HeaderView = mojo.View.extend({
+  paper: require("./header.pc")
+});
+var PageView = mojo.View.extend({
+
 })</code></pre>
-<h2 id="events-property">Events Property</h2>
-<p>Events property allows you listen to events emitted by the DOM, or view controller.
-<code>&#x60;</code>javascript</p>
 
 </div>
 

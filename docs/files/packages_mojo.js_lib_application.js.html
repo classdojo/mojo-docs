@@ -160,16 +160,24 @@ decorators        = require(&quot;./plugins/decor&quot;);
 
 /**
 
-Main entry point to your application. This is where everything is initialized.
+Main entry point to your mojo application. The application is an access point to other parts of the application,
+such as a third-party &#x60;mediator&#x60;, &#x60;router&#x60;, &#x60;models&#x60;, and &#x60;views&#x60; (note mojo only comes with the &#x60;view&#x60; by default). It also keeps your mojo application from polluting the global
+scope.
 
 ### Example
 
 &#x60;&#x60;&#x60;javascript
-var mojo = require(&quot;mojo&quot;), 
-nofactor = require(&quot;nofactor&quot;);
 
-var app = new mojo.Application({ nodeFactory: nofactor.default });
+// load in mojo, browserify will make it accessible from the web. 
+var mojo = require(&quot;mojo&quot;);
+
+// create the app
+var app = new mojo.Application();
+
+// point to the views to
 app.use(require(&quot;./views&quot;));
+
+// create the main view, then attach to a DOM element. 
 app.viewClasses.create(&quot;main&quot;).attach($(&quot;#application&quot;));
 &#x60;&#x60;&#x60;
 
@@ -177,10 +185,15 @@ views.js
 
 &#x60;&#x60;&#x60;javascript
 module.exports = function (app) {
-  app.viewClasses.add(&quot;main&quot;, MainView);
+  app.viewClasses.add(&quot;main&quot;, mojo.View.extend({
+      paper: paperclip.compile(&quot;hello&quot;)
+  }));
 }
 &#x60;&#x60;&#x60;
 
+Here&#x27;s what you get:
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/BZA8K/58/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 @class Application
 @param {Object} options

@@ -157,33 +157,65 @@ generateId       = require(&quot;../../utils/idGenerator&quot;);
 
 ## Usage
 
+&lt;p&gt;Views are simply models with a few special properties: &#x60;render&#x60;, and &#x60;remove&#x60;, and &#x60;decorators&#x60;. Decorators are essentially plugins 
+that allow you to customize view&#x27;s behavior to fit your needs. This means you can do something like add your own template engine.
+
+Mojo was design this way to allow better compatibility between different web frameworks. &lt;/p&gt;
+
+At the core, this is what a mojo view is:
 
 &#x60;&#x60;&#x60;javascript
-var SubView = mojo.View.extend({
-  name: &quot;craig&quot;
-});
-var view = new SubView();
+var SubView = mojo.View.extend();
+var view = new SubView({ name: &quot;craig&quot; }, new mojo.Application());
 console.log(view.get(&quot;name&quot;)); //craig
+console.log(view.render().toString()); // blank string, no template engine specified
 &#x60;&#x60;&#x60;
 
-## Sections Property
+Mojo does however come with some built-in decorators. However, you can use whatever you need. 
 
-The sections property allows you to define sub-views.
+## Paperclip Decorator
+
+The paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo. 
+
+Note that the following example assumes that you&#x27;re running in either &#x60;node.js&#x60;, or have &#x60;browserified&#x60; your paperclip template: 
+
+&lt;br /&gt;
+
+hello.js:
 
 &#x60;&#x60;&#x60;javascript
-var PagesView = mojo.View.extend({
-  sections: {
-    header: require(&quot;./headerView&quot;),
-    content: require(&quot;./contentView&quot;)
-  }
+var HelloView = mojo.View.extend({
+  paper: require(&quot;./hello.pc&quot;)
+});
+
+new HelloView({ name: &quot;Mojo&quot; }, new mojo.Application()).attach($(&quot;#application&quot;));
+&#x60;&#x60;&#x60;
+
+hello.pc:
+
+&#x60;&#x60;&#x60;mustache
+hello  \{{name}}!
+&#x60;&#x60;&#x60;
+
+Here&#x27;s what you get:
+
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/BZA8K/59/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+## Sections Decorator
+
+The sections decorator allows you to easily define sub-views to your view. Here&#x27;s a basic example:
+
+&#x60;&#x60;&#x60;javascript
+
+var HeaderView = mojo.View.extend({
+  paper: require(&quot;./header.pc&quot;)
+});
+
+var PageView = mojo.View.extend({
+  
 })
 &#x60;&#x60;&#x60;
-
-## Events Property
-
-Events property allows you listen to events emitted by the DOM, or view controller.
-
-&#x60;&#x60;&#x60;javascript
 
 
 @class BaseView

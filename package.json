@@ -1,6 +1,6 @@
 {
   "name": "mojo-docs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "mojo-docs =========",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,12 @@
     "url": "https://github.com/classdojo/mojo-docs/issues"
   },
   "devDependencies": {
+    "yuidocjs": "~0.3.48"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
     "yuidocjs": "~0.3.48"
   }
 }

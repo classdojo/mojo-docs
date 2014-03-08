@@ -164,18 +164,26 @@
 
 
 <div class="well well-small">
-    <p>Main entry point to your application. This is where everything is initialized.</p>
+    <p>Main entry point to your mojo application. The application is an access point to other parts of the application,
+such as a third-party <code>mediator</code>, <code>router</code>, <code>models</code>, and <code>views</code> (note mojo only comes with the <code>view</code> by default). It also keeps your mojo application from polluting the global
+scope.</p>
 <h3 id="example">Example</h3>
-<pre class="code prettyprint"><code class="lang-javascript">var mojo = require("mojo"), 
-nofactor = require("nofactor");
-var app = new mojo.Application({ nodeFactory: nofactor.default });
+<pre class="code prettyprint"><code class="lang-javascript">// load in mojo, browserify will make it accessible from the web. 
+var mojo = require("mojo");
+// create the app
+var app = new mojo.Application();
+// point to the views to
 app.use(require("./views"));
+// create the main view, then attach to a DOM element. 
 app.viewClasses.create("main").attach($("#application"));</code></pre>
 <p>views.js</p>
 <pre class="code prettyprint"><code class="lang-javascript">module.exports = function (app) {
-  app.viewClasses.add("main", MainView);
+  app.viewClasses.add("main", mojo.View.extend({
+      paper: paperclip.compile("hello")
+  }));
 }</code></pre>
-
+<p>Here&#39;s what you get:</p>
+<iframe width="100%" height="300" src="http://jsfiddle.net/BZA8K/58/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </div>
 
 
@@ -455,7 +463,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l154"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:154</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l167"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:167</code></a>
         
         </p>
 
@@ -1892,7 +1900,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l107"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:107</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l120"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:120</code></a>
         
         </p>
 
@@ -1970,7 +1978,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l73"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:73</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l86"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:86</code></a>
         
         </p>
 
@@ -2015,7 +2023,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l81"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:81</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l94"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:94</code></a>
         
         </p>
 
@@ -2060,7 +2068,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l65"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:65</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l78"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:78</code></a>
         
         </p>
 
@@ -2105,7 +2113,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l57"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:57</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l70"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:70</code></a>
         
         </p>
 
@@ -2150,7 +2158,7 @@ app.viewClasses.create("main").attach($("#application"));</code></pre>
             
         
         
-        <a href="../files/packages_mojo.js_lib_application.js.html#l89"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:89</code></a>
+        <a href="../files/packages_mojo.js_lib_application.js.html#l102"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;application.js:102</code></a>
         
         </p>
 
