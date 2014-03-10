@@ -166,7 +166,7 @@
 
 <div class="well well-small">
     <h2 id="usage">Usage</h2>
-<p><p>Views are simply models with a few special properties: <code>render</code>, and <code>remove</code>, and <code>decorators</code>. Decorators are essentially plugins 
+<p><p>Views are simply models with a few special properties: <code>render</code>, and <code>remove</code>, and <code>decorators</code>. Decorators are essentially plugins
 that allow you to customize view&#39;s behavior to fit your needs. This means you can do something like add your own template engine.
 Mojo was design this way to allow better compatibility between different web frameworks. </p>
 At the core, this is what a mojo view is:</p>
@@ -174,10 +174,10 @@ At the core, this is what a mojo view is:</p>
 var view = new SubView({ name: "craig" }, new mojo.Application());
 console.log(view.get("name")); //craig
 console.log(view.render().toString()); // blank string, no template engine specified</code></pre>
-<p>Mojo does however come with some built-in decorators. However, you can use whatever you need. </p>
+<p>Mojo does however come with some built-in decorators. However, you can use whatever you need.</p>
 <h2 id="paperclip-decorator">Paperclip Decorator</h2>
-<p>The paperclip decorator allows you to use <a href="https://github.com/classdojo/paperclip.js">paperclip</a> templates with mojo. 
-Note that the following example assumes that you&#39;re running in either <code>node.js</code>, or have <code>browserified</code> your paperclip template: 
+<p>The paperclip decorator allows you to use <a href="https://github.com/classdojo/paperclip.js">paperclip</a> templates with mojo.
+Note that the following example assumes that you&#39;re running in either <code>node.js</code>, or have <code>browserified</code> your paperclip template:
 <br />
 hello.js:</p>
 <pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
@@ -187,15 +187,93 @@ new HelloView({ name: "Mojo" }, new mojo.Application()).attach($("#application")
 <p>hello.pc:</p>
 <pre class="code prettyprint"><code class="lang-mustache">hello  {{name}}!</code></pre>
 <p>Here&#39;s what you get:</p>
-<p><iframe width="100%" height="300" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
 <h2 id="sections-decorator">Sections Decorator</h2>
 <p>The sections decorator allows you to easily define sub-views to your view. Here&#39;s a basic example:</p>
-<pre class="code prettyprint"><code class="lang-javascript">var HeaderView = mojo.View.extend({
-  paper: require("./header.pc")
+<pre class="code prettyprint"><code class="lang-javascript">var ContentView = mojo.View.extend({
+    paper: paperclip.compile("content")
 });
-var PageView = mojo.View.extend({
-
-})</code></pre>
+var MainView = mojo.View.extend({
+    paper: paperclip.compile("main"),
+    sections: {
+        content: ContentView
+    }
+});</code></pre>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/60/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Note that you can also use registered components for each section, like so:</p>
+<pre class="code prettyprint"><code class="lang-javascript">//setup model data for the contacts view
+var contacts = new bindable.Collection([
+  new bindable.Object({ name: "John" }),
+  new bindable.Object({ name: "Jane" }),
+  new bindable.Object({ name: "Jeff" })
+]);
+// an individual contact
+var ContactVew = mojo.View.extend({
+  paper: require("./contact.pc")
+});
+// creates a contact view for each contact model
+var ContactsView = mojo.View.extend({
+  paper: require("./contacts.pc"),
+  sections: {
+    contacts: {
+      // reference ListView, and pass the following properties to it
+      type           : "list",
+      source         : contacts,
+      modelViewClass : ContactView
+    }
+  }
+});</code></pre>
+<p>The above example creates a list of contacts. Here&#39;s what you get:</p>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/61/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<p><p>You&#39;ll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a <code>states</code>, and <code>list</code> component. See
+<code>ListView</code>, and <code>StatesView</code> for further documentation.</p>
+If you want to use your own custom component, you can do so by registering it to the application. For example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+  paper: require("./hello.pc")
+});
+var MainView = mojo.View.extend({
+  paper: require("./main.pc"),
+  sections: {
+    hello: {
+      type: "hello",
+      name: "John"
+    }
+  }
+});
+var app = new mojo.Application();
+app.viewClasses.add("hello", HelloView);
+app.viewClasses.add("main", MainView);
+app.viewClasses.create("main").attach($("#application"));</code></pre>
+<p>Here&#39;s what you get:</p>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/62/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
+<h2 id="property-scope">Property Scope</h2>
+<p>By default, sections inherit properties from their parent. Here&#39;s a basic example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+  paper: paperclip.compile("hello")
+});
+var MainView = mojo.View.extend({
+  paper: paperclip.compile("main"),
+  name: "jeff",
+  sections: {
+      hello: HelloView
+  }
+});</code></pre>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/63/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Note that since <code>name</code> is not defined in <code>HelloView</code>, it&#39;s being inherited from <code>MainView</code>. You can easily break inheritance by defining <code>name</code> in <code>HelloView</code>, like so:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+  paper: paperclip.compile("hello"),
+  define: ["name"]
+});
+var MainView = mojo.View.extend({
+  paper: paperclip.compile("main"),
+  name: "jeff",
+  sections: {
+      hello: HelloView
+  }
+});</code></pre>
+<p>Here&#39;s what you get:</p>
+<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/64/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+TODO</p>
 
 </div>
 
@@ -539,7 +617,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l267"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:267</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l392"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:392</code></a>
         
         </p>
 
@@ -619,7 +697,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l242"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:242</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l367"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:367</code></a>
         
         </p>
 
@@ -684,7 +762,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l285"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:285</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l410"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:410</code></a>
         
         </p>
 
@@ -925,7 +1003,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l342"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:342</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l467"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:467</code></a>
         
         </p>
 
@@ -1138,7 +1216,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l313"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:313</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l438"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:438</code></a>
         
         </p>
 
@@ -1240,7 +1318,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l126"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:126</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l251"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:251</code></a>
         
         </p>
 
@@ -1761,7 +1839,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l159"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:159</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l284"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:284</code></a>
         
         </p>
 
@@ -2264,7 +2342,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l201"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:201</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l326"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:326</code></a>
         
         </p>
 
@@ -2319,7 +2397,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l252"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:252</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l377"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:377</code></a>
         
         </p>
 
@@ -2464,7 +2542,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l217"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:217</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l342"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:342</code></a>
         
         </p>
 
@@ -2774,7 +2852,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l100"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:100</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l225"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:225</code></a>
         
         </p>
 
@@ -2861,7 +2939,7 @@ var PageView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l188"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:188</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l313"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:313</code></a>
         
         </p>
 
@@ -3131,7 +3209,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l89"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:89</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l214"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:214</code></a>
         
         </p>
 
@@ -3175,7 +3253,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l84"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:84</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l209"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:209</code></a>
         
         </p>
 

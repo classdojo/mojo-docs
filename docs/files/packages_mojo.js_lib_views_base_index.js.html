@@ -157,7 +157,7 @@ generateId       = require(&quot;../../utils/idGenerator&quot;);
 
 ## Usage
 
-&lt;p&gt;Views are simply models with a few special properties: &#x60;render&#x60;, and &#x60;remove&#x60;, and &#x60;decorators&#x60;. Decorators are essentially plugins 
+&lt;p&gt;Views are simply models with a few special properties: &#x60;render&#x60;, and &#x60;remove&#x60;, and &#x60;decorators&#x60;. Decorators are essentially plugins
 that allow you to customize view&#x27;s behavior to fit your needs. This means you can do something like add your own template engine.
 
 Mojo was design this way to allow better compatibility between different web frameworks. &lt;/p&gt;
@@ -171,13 +171,13 @@ console.log(view.get(&quot;name&quot;)); //craig
 console.log(view.render().toString()); // blank string, no template engine specified
 &#x60;&#x60;&#x60;
 
-Mojo does however come with some built-in decorators. However, you can use whatever you need. 
+Mojo does however come with some built-in decorators. However, you can use whatever you need.
 
 ## Paperclip Decorator
 
-The paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo. 
+The paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo.
 
-Note that the following example assumes that you&#x27;re running in either &#x60;node.js&#x60;, or have &#x60;browserified&#x60; your paperclip template: 
+Note that the following example assumes that you&#x27;re running in either &#x60;node.js&#x60;, or have &#x60;browserified&#x60; your paperclip template:
 
 &lt;br /&gt;
 
@@ -200,7 +200,7 @@ hello  \{{name}}!
 Here&#x27;s what you get:
 
 
-&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/BZA8K/59/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/59/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 ## Sections Decorator
 
@@ -208,14 +208,139 @@ The sections decorator allows you to easily define sub-views to your view. Here&
 
 &#x60;&#x60;&#x60;javascript
 
-var HeaderView = mojo.View.extend({
-  paper: require(&quot;./header.pc&quot;)
+var ContentView = mojo.View.extend({
+    paper: paperclip.compile(&quot;content&quot;)
 });
 
-var PageView = mojo.View.extend({
-  
-})
+var MainView = mojo.View.extend({
+    paper: paperclip.compile(&quot;main&quot;),
+    sections: {
+        content: ContentView
+    }
+});
+
 &#x60;&#x60;&#x60;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/60/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+Note that you can also use registered components for each section, like so:
+
+&#x60;&#x60;&#x60;javascript
+
+
+//setup model data for the contacts view
+var contacts = new bindable.Collection([
+  new bindable.Object({ name: &quot;John&quot; }),
+  new bindable.Object({ name: &quot;Jane&quot; }),
+  new bindable.Object({ name: &quot;Jeff&quot; })
+]);
+
+
+// an individual contact
+var ContactVew = mojo.View.extend({
+  paper: require(&quot;./contact.pc&quot;)
+});
+
+// creates a contact view for each contact model
+var ContactsView = mojo.View.extend({
+  paper: require(&quot;./contacts.pc&quot;),
+  sections: {
+    contacts: {
+
+      // reference ListView, and pass the following properties to it
+      type           : &quot;list&quot;,
+      source         : contacts,
+      modelViewClass : ContactView
+    }
+  }
+});
+
+&#x60;&#x60;&#x60;
+
+The above example creates a list of contacts. Here&#x27;s what you get:
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/61/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You&#x27;ll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a &#x60;states&#x60;, and &#x60;list&#x60; component. See
+&#x60;ListView&#x60;, and &#x60;StatesView&#x60; for further documentation.&lt;/p&gt;
+
+If you want to use your own custom component, you can do so by registering it to the application. For example:
+
+&#x60;&#x60;&#x60;javascript
+
+var HelloView = mojo.View.extend({
+  paper: require(&quot;./hello.pc&quot;)
+});
+
+
+var MainView = mojo.View.extend({
+  paper: require(&quot;./main.pc&quot;),
+  sections: {
+    hello: {
+      type: &quot;hello&quot;,
+      name: &quot;John&quot;
+    }
+  }
+});
+
+var app = new mojo.Application();
+app.viewClasses.add(&quot;hello&quot;, HelloView);
+app.viewClasses.add(&quot;main&quot;, MainView);
+
+app.viewClasses.create(&quot;main&quot;).attach($(&quot;#application&quot;));
+&#x60;&#x60;&#x60;
+
+Here&#x27;s what you get:
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/62/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+## Property Scope
+
+By default, sections inherit properties from their parent. Here&#x27;s a basic example:
+
+&#x60;&#x60;&#x60;javascript
+var HelloView = mojo.View.extend({
+  paper: paperclip.compile(&quot;hello&quot;)
+});
+
+
+var MainView = mojo.View.extend({
+  paper: paperclip.compile(&quot;main&quot;),
+  name: &quot;jeff&quot;,
+  sections: {
+      hello: HelloView
+  }
+});
+&#x60;&#x60;&#x60;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/63/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+Note that since &#x60;name&#x60; is not defined in &#x60;HelloView&#x60;, it&#x27;s being inherited from &#x60;MainView&#x60;. You can easily break inheritance by defining &#x60;name&#x60; in &#x60;HelloView&#x60;, like so:
+
+&#x60;&#x60;&#x60;javascript
+var HelloView = mojo.View.extend({
+  paper: paperclip.compile(&quot;hello&quot;),
+  define: [&quot;name&quot;]
+});
+
+
+var MainView = mojo.View.extend({
+  paper: paperclip.compile(&quot;main&quot;),
+  name: &quot;jeff&quot;,
+  sections: {
+      hello: HelloView
+  }
+});
+&#x60;&#x60;&#x60;
+
+Here&#x27;s what you get:
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/64/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+TODO
+
 
 
 @class BaseView
@@ -299,7 +424,7 @@ protoclass(SubindableObject, DecorableView, {
 
   /**
    * Called when the view is instantiated
-   * @method initialize 
+   * @method initialize
    * @param {Object} options options passed when creating the view
    */
 
@@ -347,7 +472,7 @@ protoclass(SubindableObject, DecorableView, {
   path: function () {
     var path = [], cp = this;
 
-    while (cp) { 
+    while (cp) {
       path.unshift(cp.constructor.name);
       cp = cp.parent;
     }
@@ -372,7 +497,7 @@ protoclass(SubindableObject, DecorableView, {
     }
 
     if (!this._decorated)  this._initDecor();
-    
+
     this._render(this.section.show());
 
     this.emit(&quot;render&quot;);
@@ -443,7 +568,7 @@ protoclass(SubindableObject, DecorableView, {
     }
   },
 
-  /** 
+  /**
    */
 
   setChild: function (name, child) {
@@ -544,6 +669,7 @@ protoclass(SubindableObject, DecorableView, {
 });
 
 module.exports = DecorableView;
+
     </pre>
 </div>
 
