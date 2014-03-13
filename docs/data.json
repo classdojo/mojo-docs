@@ -463,7 +463,7 @@
             "namespace": "",
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 17,
-            "description": "List Views are **not directly accessible**. You'll need to define them as a section, like so:\n```javascript\n// setup the models for the todo list. They must be bindable collections, & objects\nvar todos = new bindable.Collection([\n  new bindable.Object({ text: \"pick up groceries\", done: true }),\n  new bindable.Object({ text: \"do homework\", done: false }),\n  new bindable.Object({ text: \"Walk the dog\", done: false })\n]);\n// setup the view that represents each todo item\nvar TodoView = mojo.View.extend({\n  paper: require(\"./todo.pc\")\n})\n// setup the view that represents the todos collection\nvar TodosView = mojo.View.extend({\n  paper: require(\"./todos.pc\"),\n  sections: {\n    // todoItems is a section which uses the ListView component. Basically,\n    // todosView.sections.todoItems IS a ListView. The following\n    // properties are passed to the created list view\n    todoItems: {\n      type: \"list\",\n      // \"todos\" inherited from the TodosView, which\n      // is set when TodosView is instantiated\n      source: \"todos\",\n      modelViewClass: TodoView\n    }\n  }\n});\n// add the todos view to the DOM, and pass in the todos model\nnew TodosView({ todos: todos }, new mojo.Application()).attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"400\" src=\"http://jsfiddle.net/BZA8K/66/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>",
+            "description": "List Views are **not directly accessible**. You'll need to define them as a section, like so:\n```javascript\n// setup the models for the todo list. They must be bindable collections, & objects\nvar todos = new bindable.Collection([\n  new bindable.Object({ text: \"pick up groceries\", done: true }),\n  new bindable.Object({ text: \"do homework\", done: false }),\n  new bindable.Object({ text: \"Walk the dog\", done: false })\n]);\n// setup the view that represents each todo item\nvar TodoView = mojo.View.extend({\n  paper: require(\"./todo.pc\")\n})\n// setup the view that represents the todos collection\nvar TodosView = mojo.View.extend({\n  paper: require(\"./todos.pc\"),\n  sections: {\n    // todoItems is a section which uses the ListView component. Basically,\n    // todosView.sections.todoItems IS a ListView. The following\n    // properties are passed to the created list view\n    todoItems: {\n      type: \"list\",\n      // \"todos\" inherited from the TodosView, which\n      // is set when TodosView is instantiated\n      source: \"todos\",\n      modelViewClass: TodoView\n    }\n  }\n});\n// add the todos view to the DOM, and pass in the todos model\nnew TodosView({ todos: todos }, new mojo.Application()).attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"400\" src=\"http://jsfiddle.net/BZA8K/66/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nTODO",
             "extends": "BaseView"
         },
         "StateView": {
@@ -1655,7 +1655,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 197,
+            "line": 199,
             "description": "Called when the view is rendered",
             "itemtype": "event",
             "name": "render",
@@ -1665,7 +1665,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 202,
+            "line": 204,
             "description": "Called when the view is remove",
             "itemtype": "event",
             "name": "remove",
@@ -1675,7 +1675,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 213,
+            "line": 215,
             "description": "The main application that instantiated this view",
             "itemtype": "property",
             "name": "application",
@@ -1686,21 +1686,21 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 229,
+            "line": 231,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 234,
+            "line": 236,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 239,
+            "line": 241,
             "description": "adds a disposable object to cleanup when the view is destroyed.",
             "itemtype": "method",
             "name": "disposable",
@@ -1717,14 +1717,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 254,
+            "line": 256,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 272,
+            "line": 274,
             "description": "Called when the view is instantiated",
             "itemtype": "method",
             "name": "initialize",
@@ -1741,14 +1741,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 288,
+            "line": 290,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 301,
+            "line": 303,
             "description": "The section that manages the `document fragment` owned by this view controller.",
             "itemtype": "property",
             "name": "section",
@@ -1759,7 +1759,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 314,
+            "line": 316,
             "description": "Returns the path to the view",
             "itemtype": "method",
             "name": "path",
@@ -1769,7 +1769,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 330,
+            "line": 332,
             "description": "Renders the view",
             "itemtype": "method",
             "name": "render",
@@ -1783,7 +1783,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 355,
+            "line": 357,
             "description": "called in `render()`, before emitting `render` event",
             "itemtype": "method",
             "name": "_render",
@@ -1795,7 +1795,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 365,
+            "line": 367,
             "description": "Removes the view from the parent, or DOM",
             "itemtype": "method",
             "name": "remove",
@@ -1805,7 +1805,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 380,
+            "line": 382,
             "description": "jquery selector for elements owned by the view",
             "itemtype": "method",
             "name": "$",
@@ -1822,7 +1822,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 398,
+            "line": 400,
             "description": "Attaches the view to an element. This is mostly used for the main view.",
             "itemtype": "method",
             "name": "attach",
@@ -1839,14 +1839,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 418,
+            "line": 420,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 426,
+            "line": 428,
             "description": "Sort of a mix-in for the view. This is how `sections`, and `events` are added.",
             "itemtype": "method",
             "name": "decorate",
@@ -1866,7 +1866,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 455,
+            "line": 457,
             "description": "Bubbles an event up to the root view",
             "itemtype": "method",
             "name": "bubble",
@@ -1888,28 +1888,28 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 467,
+            "line": 469,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 489,
+            "line": 491,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 499,
+            "line": 501,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 510,
+            "line": 512,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
@@ -3049,7 +3049,7 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/mojo.js/lib/views/base/index.js:426"
+            "line": " packages/mojo.js/lib/views/base/index.js:428"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -3185,39 +3185,39 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:229"
+            "line": " packages/mojo.js/lib/views/base/index.js:231"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:234"
+            "line": " packages/mojo.js/lib/views/base/index.js:236"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:254"
+            "line": " packages/mojo.js/lib/views/base/index.js:256"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:288"
+            "line": " packages/mojo.js/lib/views/base/index.js:290"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:418"
+            "line": " packages/mojo.js/lib/views/base/index.js:420"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:467"
+            "line": " packages/mojo.js/lib/views/base/index.js:469"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:489"
+            "line": " packages/mojo.js/lib/views/base/index.js:491"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:499"
+            "line": " packages/mojo.js/lib/views/base/index.js:501"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:510"
+            "line": " packages/mojo.js/lib/views/base/index.js:512"
         },
         {
             "message": "Missing item type",
