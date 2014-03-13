@@ -165,8 +165,37 @@
 
 
 <div class="well well-small">
-    <p>List View</p>
-
+    <p>List Views are <strong>not directly accessible</strong>. You&#39;ll need to define them as a section, like so:</p>
+<pre class="code prettyprint"><code class="lang-javascript">// setup the models for the todo list. They must be bindable collections, &amp; objects
+var todos = new bindable.Collection([
+  new bindable.Object({ text: "pick up groceries", done: true }),
+  new bindable.Object({ text: "do homework", done: false }),
+  new bindable.Object({ text: "Walk the dog", done: false })
+]);
+// setup the view that represents each todo item
+var TodoView = mojo.View.extend({
+  paper: require("./todo.pc")
+})
+// setup the view that represents the todos collection
+var TodosView = mojo.View.extend({
+  paper: require("./todos.pc"),
+  sections: {
+    // todoItems is a section which uses the ListView component. Basically,
+    // todosView.sections.todoItems IS a ListView. The following
+    // properties are passed to the created list view
+    todoItems: {
+      type: "list",
+      // "todos" inherited from the TodosView, which
+      // is set when TodosView is instantiated
+      source: "todos",
+      modelViewClass: TodoView
+    }
+  }
+});
+// add the todos view to the DOM, and pass in the todos model
+new TodosView({ todos: todos }, new mojo.Application()).attach($("#application"));</code></pre>
+<p>Here&#39;s what you get:</p>
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/66/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </div>
 
 
@@ -569,7 +598,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l392"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:392</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l388"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:388</code></a>
         
         </p>
 
@@ -646,7 +675,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l367"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:367</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l363"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:363</code></a>
         
         </p>
 
@@ -708,7 +737,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l410"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:410</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l406"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:406</code></a>
         
         </p>
 
@@ -946,7 +975,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l467"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:467</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l463"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:463</code></a>
         
         </p>
 
@@ -1156,7 +1185,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l438"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:438</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l434"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:434</code></a>
         
         </p>
 
@@ -1255,7 +1284,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l251"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:251</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l247"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:247</code></a>
         
         </p>
 
@@ -1503,7 +1532,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l82"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:82</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l130"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:130</code></a>
         
         </p>
 
@@ -1862,7 +1891,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l284"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:284</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l280"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:280</code></a>
         
         </p>
 
@@ -2023,7 +2052,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l99"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:99</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l147"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:147</code></a>
         
         </p>
 
@@ -2468,7 +2497,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l326"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:326</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l322"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:322</code></a>
         
         </p>
 
@@ -2520,7 +2549,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l377"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:377</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l373"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:373</code></a>
         
         </p>
 
@@ -2662,7 +2691,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l342"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:342</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l338"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:338</code></a>
         
         </p>
 
@@ -2937,7 +2966,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l90"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:90</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l138"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:138</code></a>
         
         </p>
 
@@ -3078,7 +3107,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l225"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:225</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l221"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:221</code></a>
         
         </p>
 
@@ -3123,7 +3152,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l52"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:52</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l100"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:100</code></a>
         
         </p>
 
@@ -3168,7 +3197,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l59"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:59</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l107"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:107</code></a>
         
         </p>
 
@@ -3213,7 +3242,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l108"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:108</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l156"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:156</code></a>
         
         </p>
 
@@ -3258,7 +3287,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l123"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:123</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l171"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:171</code></a>
         
         </p>
 
@@ -3303,7 +3332,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l116"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:116</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l164"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:164</code></a>
         
         </p>
 
@@ -3387,7 +3416,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l313"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:313</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l309"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:309</code></a>
         
         </p>
 
@@ -3432,7 +3461,7 @@
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l137"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:137</code></a>
+        <a href="../files/packages_mojo.js_lib_views_list_index.js.html#l185"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;list&#x2F;index.js:185</code></a>
         
         </p>
 
@@ -3699,7 +3728,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l214"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:214</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l210"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:210</code></a>
         
         </p>
 
@@ -3740,7 +3769,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l209"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:209</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l205"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:205</code></a>
         
         </p>
 

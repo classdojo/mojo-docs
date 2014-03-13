@@ -154,12 +154,60 @@ idGenerator    = require(&quot;../../utils/idGenerator&quot;);
  * @module mojo
  * @submodule mojo-views
  */
- 
-/** 
- * List View
- * @class ListView
- * @extends BaseView
- */
+
+/**
+
+List Views are **not directly accessible**. You&#x27;ll need to define them as a section, like so:
+
+&#x60;&#x60;&#x60;javascript
+
+// setup the models for the todo list. They must be bindable collections, &amp; objects
+var todos = new bindable.Collection([
+  new bindable.Object({ text: &quot;pick up groceries&quot;, done: true }),
+  new bindable.Object({ text: &quot;do homework&quot;, done: false }),
+  new bindable.Object({ text: &quot;Walk the dog&quot;, done: false })
+]);
+
+
+// setup the view that represents each todo item
+var TodoView = mojo.View.extend({
+  paper: require(&quot;./todo.pc&quot;)
+})
+
+
+// setup the view that represents the todos collection
+var TodosView = mojo.View.extend({
+  paper: require(&quot;./todos.pc&quot;),
+  sections: {
+
+    // todoItems is a section which uses the ListView component. Basically,
+    // todosView.sections.todoItems IS a ListView. The following
+    // properties are passed to the created list view
+    todoItems: {
+      type: &quot;list&quot;,
+
+      // &quot;todos&quot; inherited from the TodosView, which
+      // is set when TodosView is instantiated
+      source: &quot;todos&quot;,
+      modelViewClass: TodoView
+    }
+  }
+});
+
+// add the todos view to the DOM, and pass in the todos model
+new TodosView({ todos: todos }, new mojo.Application()).attach($(&quot;#application&quot;));
+&#x60;&#x60;&#x60;
+
+Here&#x27;s what you get:
+
+
+&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/66/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+
+@class ListView
+@extends BaseView
+*/
 
 function ListView (data, application) {
   ListView.parent.call(this, data, application);
@@ -183,7 +231,7 @@ function onOptionChange (onRef) {
       onRef(value);
     }
   };
-} 
+}
 
 /**
  */
@@ -226,7 +274,7 @@ protoclass(BaseView, ListView, {
      * @param {BindableObject} the model to builder
      */
 
-    &quot;filter&quot;, 
+    &quot;filter&quot;,
 
     /**
      * The sort method for the list
@@ -235,7 +283,7 @@ protoclass(BaseView, ListView, {
      * @param {BaseView} b
      */
 
-    &quot;sort&quot;, 
+    &quot;sort&quot;,
 
     /**
      * Maps model data before setting to the instantiated list item view
@@ -244,7 +292,7 @@ protoclass(BaseView, ListView, {
      * @return {Number} 0, 1, or -1
      */
 
-    &quot;map&quot;, 
+    &quot;map&quot;,
 
     /**
      * The size of the list view
@@ -252,14 +300,14 @@ protoclass(BaseView, ListView, {
      * @type {Number}
      */
 
-    &quot;length&quot;, 
+    &quot;length&quot;,
 
     /**
      * The model view factory for creating each list item
      * @property modelViewFactory
      */
 
-    &quot;modelViewFactory&quot;, 
+    &quot;modelViewFactory&quot;,
 
     /**
      * The model view class for each list item. Use this or &#x60;modelViewFactory&#x60;.
@@ -267,13 +315,13 @@ protoclass(BaseView, ListView, {
      * @type {BaseView}
      */
 
-    &quot;modelViewClass&quot;, 
+    &quot;modelViewClass&quot;,
 
     /**
      * DEPRECATED
      */
 
-    &quot;viewClass&quot;, 
+    &quot;viewClass&quot;,
 
     /**
      * The collection of models to use. Each model is assigned as &#x60;model&#x60; to each instantiated &#x60;modelViewClass&#x60;.
@@ -451,7 +499,7 @@ protoclass(BaseView, ListView, {
     var self = this;
     models.forEach(function (model) {
       self._onRemoveModel(model);
-    }) 
+    })
   },
 
   /**
@@ -467,7 +515,7 @@ protoclass(BaseView, ListView, {
 
   _onInsertModel: function (model, index) {
     this._insertModels([model]);
-  },  
+  },
 
   /**
    */
@@ -689,6 +737,7 @@ protoclass(BaseView, ListView, {
 
 
 module.exports = ListView;
+
     </pre>
 </div>
 

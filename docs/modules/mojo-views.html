@@ -176,10 +176,11 @@ new HelloView({ name: "Mojo" }, new mojo.Application()).attach($("#application")
 <p>hello.pc:</p>
 <pre class="code prettyprint"><code class="lang-mustache">hello  {{name}}!</code></pre>
 <p>Here&#39;s what you get:</p>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
-<h2 id="sections-decorator">Sections Decorator</h2>
-<p>The sections decorator allows you to easily define sub-views to your view. Here&#39;s a basic example:</p>
-<pre class="code prettyprint"><code class="lang-javascript">var ContentView = mojo.View.extend({
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+## Sections Decorator
+The sections decorator allows you to easily define sub-views to your view. Here&#39;s a basic example:
+<code>javascript
+var ContentView = mojo.View.extend({
     paper: paperclip.compile("content")
 });
 var MainView = mojo.View.extend({
@@ -187,10 +188,11 @@ var MainView = mojo.View.extend({
     sections: {
         content: ContentView
     }
-});</code></pre>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/60/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-Note that you can also use registered components for each section, like so:</p>
-<pre class="code prettyprint"><code class="lang-javascript">//setup model data for the contacts view
+});</code>
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/60/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Note that you can also use registered components for each section, like so:
+<code>javascript
+//setup model data for the contacts view
 var contacts = new bindable.Collection([
   new bindable.Object({ name: "John" }),
   new bindable.Object({ name: "Jane" }),
@@ -211,13 +213,14 @@ var ContactsView = mojo.View.extend({
       modelViewClass : ContactView
     }
   }
-});</code></pre>
-<p>The above example creates a list of contacts. Here&#39;s what you get:</p>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/61/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
-<p><p>You&#39;ll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a <code>states</code>, and <code>list</code> component. See
+});</code>
+The above example creates a list of contacts. Here&#39;s what you get:
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/61/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<p>You&#39;ll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a <code>states</code>, and <code>list</code> component. See
 <code>ListView</code>, and <code>StatesView</code> for further documentation.</p>
-If you want to use your own custom component, you can do so by registering it to the application. For example:</p>
-<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+If you want to use your own custom component, you can do so by registering it to the application. For example:
+<code>javascript
+var HelloView = mojo.View.extend({
   paper: require("./hello.pc")
 });
 var MainView = mojo.View.extend({
@@ -232,12 +235,13 @@ var MainView = mojo.View.extend({
 var app = new mojo.Application();
 app.viewClasses.add("hello", HelloView);
 app.viewClasses.add("main", MainView);
-app.viewClasses.create("main").attach($("#application"));</code></pre>
-<p>Here&#39;s what you get:</p>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/62/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe></p>
-<h2 id="property-scope">Property Scope</h2>
-<p>By default, sections inherit properties from their parent. Here&#39;s a basic example:</p>
-<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+app.viewClasses.create("main").attach($("#application"));</code>
+Here&#39;s what you get:
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/62/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+## Property Scope
+By default, sections inherit properties from their parent. Here&#39;s a basic example:
+<code>javascript
+var HelloView = mojo.View.extend({
   paper: paperclip.compile("hello")
 });
 var MainView = mojo.View.extend({
@@ -246,10 +250,11 @@ var MainView = mojo.View.extend({
   sections: {
       hello: HelloView
   }
-});</code></pre>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/63/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-Note that since <code>name</code> is not defined in <code>HelloView</code>, it&#39;s being inherited from <code>MainView</code>. You can easily break inheritance by defining <code>name</code> in <code>HelloView</code>, like so:</p>
-<pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
+});</code>
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/63/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Note that since <code>name</code> is not defined in <code>HelloView</code>, it&#39;s being inherited from <code>MainView</code>. You can easily break inheritance by defining <code>name</code> in <code>HelloView</code>, like so:
+<code>javascript
+var HelloView = mojo.View.extend({
   paper: paperclip.compile("hello"),
   define: ["name"]
 });
@@ -259,11 +264,9 @@ var MainView = mojo.View.extend({
   sections: {
       hello: HelloView
   }
-});</code></pre>
-<p>Here&#39;s what you get:</p>
-<p><iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/64/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-TODO</p>
-
+});</code>
+Here&#39;s what you get:
+<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/64/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 </div>
 
 

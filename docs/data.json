@@ -322,7 +322,7 @@
             "namespace": "",
             "file": "packages/mojo.js/lib/views/states/index.js",
             "line": 13,
-            "description": "## Usage\n<p>Views are simply models with a few special properties: `render`, and `remove`, and `decorators`. Decorators are essentially plugins\nthat allow you to customize view's behavior to fit your needs. This means you can do something like add your own template engine.\nMojo was design this way to allow better compatibility between different web frameworks. </p>\nAt the core, this is what a mojo view is:\n```javascript\nvar SubView = mojo.View.extend();\nvar view = new SubView({ name: \"craig\" }, new mojo.Application());\nconsole.log(view.get(\"name\")); //craig\nconsole.log(view.render().toString()); // blank string, no template engine specified\n```\nMojo does however come with some built-in decorators. However, you can use whatever you need.\n## Paperclip Decorator\nThe paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo.\nNote that the following example assumes that you're running in either `node.js`, or have `browserified` your paperclip template:\n<br />\nhello.js:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nnew HelloView({ name: \"Mojo\" }, new mojo.Application()).attach($(\"#application\"));\n```\nhello.pc:\n```mustache\nhello  \\{{name}}!\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/59/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Sections Decorator\nThe sections decorator allows you to easily define sub-views to your view. Here's a basic example:\n```javascript\nvar ContentView = mojo.View.extend({\n    paper: paperclip.compile(\"content\")\n});\nvar MainView = mojo.View.extend({\n    paper: paperclip.compile(\"main\"),\n    sections: {\n        content: ContentView\n    }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/60/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that you can also use registered components for each section, like so:\n```javascript\n//setup model data for the contacts view\nvar contacts = new bindable.Collection([\n  new bindable.Object({ name: \"John\" }),\n  new bindable.Object({ name: \"Jane\" }),\n  new bindable.Object({ name: \"Jeff\" })\n]);\n// an individual contact\nvar ContactVew = mojo.View.extend({\n  paper: require(\"./contact.pc\")\n});\n// creates a contact view for each contact model\nvar ContactsView = mojo.View.extend({\n  paper: require(\"./contacts.pc\"),\n  sections: {\n    contacts: {\n      // reference ListView, and pass the following properties to it\n      type           : \"list\",\n      source         : contacts,\n      modelViewClass : ContactView\n    }\n  }\n});\n```\nThe above example creates a list of contacts. Here's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/61/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n<p>You'll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a `states`, and `list` component. See\n`ListView`, and `StatesView` for further documentation.</p>\nIf you want to use your own custom component, you can do so by registering it to the application. For example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nvar MainView = mojo.View.extend({\n  paper: require(\"./main.pc\"),\n  sections: {\n    hello: {\n      type: \"hello\",\n      name: \"John\"\n    }\n  }\n});\nvar app = new mojo.Application();\napp.viewClasses.add(\"hello\", HelloView);\napp.viewClasses.add(\"main\", MainView);\napp.viewClasses.create(\"main\").attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/62/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Property Scope\nBy default, sections inherit properties from their parent. Here's a basic example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\")\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/63/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that since `name` is not defined in `HelloView`, it's being inherited from `MainView`. You can easily break inheritance by defining `name` in `HelloView`, like so:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\"),\n  define: [\"name\"]\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/64/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nTODO"
+            "description": "## Usage\n<p>Views are simply models with a few special properties: `render`, and `remove`, and `decorators`. Decorators are essentially plugins\nthat allow you to customize view's behavior to fit your needs. This means you can do something like add your own template engine.\nMojo was design this way to allow better compatibility between different web frameworks. </p>\nAt the core, this is what a mojo view is:\n```javascript\nvar SubView = mojo.View.extend();\nvar view = new SubView({ name: \"craig\" }, new mojo.Application());\nconsole.log(view.get(\"name\")); //craig\nconsole.log(view.render().toString()); // blank string, no template engine specified\n```\nMojo does however come with some built-in decorators. However, you can use whatever you need.\n## Paperclip Decorator\nThe paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo.\nNote that the following example assumes that you're running in either `node.js`, or have `browserified` your paperclip template:\n<br />\nhello.js:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nnew HelloView({ name: \"Mojo\" }, new mojo.Application()).attach($(\"#application\"));\n```\nhello.pc:\n```mustache\nhello  \\{{name}}!\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/59/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Sections Decorator\nThe sections decorator allows you to easily define sub-views to your view. Here's a basic example:\n```javascript\nvar ContentView = mojo.View.extend({\n    paper: paperclip.compile(\"content\")\n});\nvar MainView = mojo.View.extend({\n    paper: paperclip.compile(\"main\"),\n    sections: {\n        content: ContentView\n    }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/60/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that you can also use registered components for each section, like so:\n```javascript\n//setup model data for the contacts view\nvar contacts = new bindable.Collection([\n  new bindable.Object({ name: \"John\" }),\n  new bindable.Object({ name: \"Jane\" }),\n  new bindable.Object({ name: \"Jeff\" })\n]);\n// an individual contact\nvar ContactVew = mojo.View.extend({\n  paper: require(\"./contact.pc\")\n});\n// creates a contact view for each contact model\nvar ContactsView = mojo.View.extend({\n  paper: require(\"./contacts.pc\"),\n  sections: {\n    contacts: {\n      // reference ListView, and pass the following properties to it\n      type           : \"list\",\n      source         : contacts,\n      modelViewClass : ContactView\n    }\n  }\n});\n```\nThe above example creates a list of contacts. Here's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/61/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n<p>You'll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a `states`, and `list` component. See\n`ListView`, and `StatesView` for further documentation.</p>\nIf you want to use your own custom component, you can do so by registering it to the application. For example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nvar MainView = mojo.View.extend({\n  paper: require(\"./main.pc\"),\n  sections: {\n    hello: {\n      type: \"hello\",\n      name: \"John\"\n    }\n  }\n});\nvar app = new mojo.Application();\napp.viewClasses.add(\"hello\", HelloView);\napp.viewClasses.add(\"main\", MainView);\napp.viewClasses.create(\"main\").attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/62/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Property Scope\nBy default, sections inherit properties from their parent. Here's a basic example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\")\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/63/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that since `name` is not defined in `HelloView`, it's being inherited from `MainView`. You can easily break inheritance by defining `name` in `HelloView`, like so:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\"),\n  define: [\"name\"]\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/64/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>"
         }
     },
     "classes": {
@@ -447,7 +447,7 @@
             "namespace": "",
             "file": "packages/mojo.js/lib/views/base/index.js",
             "line": 15,
-            "description": "## Usage\n<p>Views are simply models with a few special properties: `render`, and `remove`, and `decorators`. Decorators are essentially plugins\nthat allow you to customize view's behavior to fit your needs. This means you can do something like add your own template engine.\nMojo was design this way to allow better compatibility between different web frameworks. </p>\nAt the core, this is what a mojo view is:\n```javascript\nvar SubView = mojo.View.extend();\nvar view = new SubView({ name: \"craig\" }, new mojo.Application());\nconsole.log(view.get(\"name\")); //craig\nconsole.log(view.render().toString()); // blank string, no template engine specified\n```\nMojo does however come with some built-in decorators. However, you can use whatever you need.\n## Paperclip Decorator\nThe paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo.\nNote that the following example assumes that you're running in either `node.js`, or have `browserified` your paperclip template:\n<br />\nhello.js:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nnew HelloView({ name: \"Mojo\" }, new mojo.Application()).attach($(\"#application\"));\n```\nhello.pc:\n```mustache\nhello  \\{{name}}!\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/59/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Sections Decorator\nThe sections decorator allows you to easily define sub-views to your view. Here's a basic example:\n```javascript\nvar ContentView = mojo.View.extend({\n    paper: paperclip.compile(\"content\")\n});\nvar MainView = mojo.View.extend({\n    paper: paperclip.compile(\"main\"),\n    sections: {\n        content: ContentView\n    }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/60/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that you can also use registered components for each section, like so:\n```javascript\n//setup model data for the contacts view\nvar contacts = new bindable.Collection([\n  new bindable.Object({ name: \"John\" }),\n  new bindable.Object({ name: \"Jane\" }),\n  new bindable.Object({ name: \"Jeff\" })\n]);\n// an individual contact\nvar ContactVew = mojo.View.extend({\n  paper: require(\"./contact.pc\")\n});\n// creates a contact view for each contact model\nvar ContactsView = mojo.View.extend({\n  paper: require(\"./contacts.pc\"),\n  sections: {\n    contacts: {\n      // reference ListView, and pass the following properties to it\n      type           : \"list\",\n      source         : contacts,\n      modelViewClass : ContactView\n    }\n  }\n});\n```\nThe above example creates a list of contacts. Here's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/61/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n<p>You'll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a `states`, and `list` component. See\n`ListView`, and `StatesView` for further documentation.</p>\nIf you want to use your own custom component, you can do so by registering it to the application. For example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nvar MainView = mojo.View.extend({\n  paper: require(\"./main.pc\"),\n  sections: {\n    hello: {\n      type: \"hello\",\n      name: \"John\"\n    }\n  }\n});\nvar app = new mojo.Application();\napp.viewClasses.add(\"hello\", HelloView);\napp.viewClasses.add(\"main\", MainView);\napp.viewClasses.create(\"main\").attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/62/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Property Scope\nBy default, sections inherit properties from their parent. Here's a basic example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\")\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/63/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that since `name` is not defined in `HelloView`, it's being inherited from `MainView`. You can easily break inheritance by defining `name` in `HelloView`, like so:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\"),\n  define: [\"name\"]\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/64/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nTODO",
+            "description": "## Usage\n<p>Views are simply models with a few special properties: `render`, and `remove`, and `decorators`. Decorators are essentially plugins\nthat allow you to customize view's behavior to fit your needs. This means you can do something like add your own template engine.\nMojo was design this way to allow better compatibility between different web frameworks. </p>\nAt the core, this is what a mojo view is:\n```javascript\nvar SubView = mojo.View.extend();\nvar view = new SubView({ name: \"craig\" }, new mojo.Application());\nconsole.log(view.get(\"name\")); //craig\nconsole.log(view.render().toString()); // blank string, no template engine specified\n```\nMojo does however come with some built-in decorators. However, you can use whatever you need.\n## Paperclip Decorator\nThe paperclip decorator allows you to use [paperclip](https://github.com/classdojo/paperclip.js) templates with mojo.\nNote that the following example assumes that you're running in either `node.js`, or have `browserified` your paperclip template:\n<br />\nhello.js:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nnew HelloView({ name: \"Mojo\" }, new mojo.Application()).attach($(\"#application\"));\n```\nhello.pc:\n```mustache\nhello  \\{{name}}!\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/59/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Sections Decorator\nThe sections decorator allows you to easily define sub-views to your view. Here's a basic example:\n```javascript\nvar ContentView = mojo.View.extend({\n    paper: paperclip.compile(\"content\")\n});\nvar MainView = mojo.View.extend({\n    paper: paperclip.compile(\"main\"),\n    sections: {\n        content: ContentView\n    }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/60/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that you can also use registered components for each section, like so:\n```javascript\n//setup model data for the contacts view\nvar contacts = new bindable.Collection([\n  new bindable.Object({ name: \"John\" }),\n  new bindable.Object({ name: \"Jane\" }),\n  new bindable.Object({ name: \"Jeff\" })\n]);\n// an individual contact\nvar ContactVew = mojo.View.extend({\n  paper: require(\"./contact.pc\")\n});\n// creates a contact view for each contact model\nvar ContactsView = mojo.View.extend({\n  paper: require(\"./contacts.pc\"),\n  sections: {\n    contacts: {\n      // reference ListView, and pass the following properties to it\n      type           : \"list\",\n      source         : contacts,\n      modelViewClass : ContactView\n    }\n  }\n});\n```\nThe above example creates a list of contacts. Here's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/61/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n<p>You'll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a `states`, and `list` component. See\n`ListView`, and `StatesView` for further documentation.</p>\nIf you want to use your own custom component, you can do so by registering it to the application. For example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: require(\"./hello.pc\")\n});\nvar MainView = mojo.View.extend({\n  paper: require(\"./main.pc\"),\n  sections: {\n    hello: {\n      type: \"hello\",\n      name: \"John\"\n    }\n  }\n});\nvar app = new mojo.Application();\napp.viewClasses.add(\"hello\", HelloView);\napp.viewClasses.add(\"main\", MainView);\napp.viewClasses.create(\"main\").attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/62/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\n## Property Scope\nBy default, sections inherit properties from their parent. Here's a basic example:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\")\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/63/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>\nNote that since `name` is not defined in `HelloView`, it's being inherited from `MainView`. You can easily break inheritance by defining `name` in `HelloView`, like so:\n```javascript\nvar HelloView = mojo.View.extend({\n  paper: paperclip.compile(\"hello\"),\n  define: [\"name\"]\n});\nvar MainView = mojo.View.extend({\n  paper: paperclip.compile(\"main\"),\n  name: \"jeff\",\n  sections: {\n      hello: HelloView\n  }\n});\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/64/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>",
             "extends": "SubindableObject"
         },
         "ListView": {
@@ -463,7 +463,7 @@
             "namespace": "",
             "file": "packages/mojo.js/lib/views/list/index.js",
             "line": 17,
-            "description": "List View",
+            "description": "List Views are **not directly accessible**. You'll need to define them as a section, like so:\n```javascript\n// setup the models for the todo list. They must be bindable collections, & objects\nvar todos = new bindable.Collection([\n  new bindable.Object({ text: \"pick up groceries\", done: true }),\n  new bindable.Object({ text: \"do homework\", done: false }),\n  new bindable.Object({ text: \"Walk the dog\", done: false })\n]);\n// setup the view that represents each todo item\nvar TodoView = mojo.View.extend({\n  paper: require(\"./todo.pc\")\n})\n// setup the view that represents the todos collection\nvar TodosView = mojo.View.extend({\n  paper: require(\"./todos.pc\"),\n  sections: {\n    // todoItems is a section which uses the ListView component. Basically,\n    // todosView.sections.todoItems IS a ListView. The following\n    // properties are passed to the created list view\n    todoItems: {\n      type: \"list\",\n      // \"todos\" inherited from the TodosView, which\n      // is set when TodosView is instantiated\n      source: \"todos\",\n      modelViewClass: TodoView\n    }\n  }\n});\n// add the todos view to the DOM, and pass in the todos model\nnew TodosView({ todos: todos }, new mojo.Application()).attach($(\"#application\"));\n```\nHere's what you get:\n<iframe width=\"100%\" height=\"200\" src=\"http://jsfiddle.net/BZA8K/66/embedded/result,js,html\" allowfullscreen=\"allowfullscreen\" frameborder=\"0\"></iframe>",
             "extends": "BaseView"
         },
         "StateView": {
@@ -1656,7 +1656,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 209,
+            "line": 205,
             "description": "Called when the view is rendered",
             "itemtype": "event",
             "name": "render",
@@ -1666,7 +1666,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 214,
+            "line": 210,
             "description": "Called when the view is remove",
             "itemtype": "event",
             "name": "remove",
@@ -1676,7 +1676,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 225,
+            "line": 221,
             "description": "The main application that instantiated this view",
             "itemtype": "property",
             "name": "application",
@@ -1687,21 +1687,21 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 241,
+            "line": 237,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 246,
+            "line": 242,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 251,
+            "line": 247,
             "description": "adds a disposable object to cleanup when the view is destroyed.",
             "itemtype": "method",
             "name": "disposable",
@@ -1718,14 +1718,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 266,
+            "line": 262,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 284,
+            "line": 280,
             "description": "Called when the view is instantiated",
             "itemtype": "method",
             "name": "initialize",
@@ -1742,14 +1742,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 300,
+            "line": 296,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 313,
+            "line": 309,
             "description": "The section that manages the `document fragment` owned by this view controller.",
             "itemtype": "property",
             "name": "section",
@@ -1760,7 +1760,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 326,
+            "line": 322,
             "description": "Returns the path to the view",
             "itemtype": "method",
             "name": "path",
@@ -1770,7 +1770,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 342,
+            "line": 338,
             "description": "Renders the view",
             "itemtype": "method",
             "name": "render",
@@ -1784,7 +1784,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 367,
+            "line": 363,
             "description": "called in `render()`, before emitting `render` event",
             "itemtype": "method",
             "name": "_render",
@@ -1796,7 +1796,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 377,
+            "line": 373,
             "description": "Removes the view from the parent, or DOM",
             "itemtype": "method",
             "name": "remove",
@@ -1806,7 +1806,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 392,
+            "line": 388,
             "description": "jquery selector for elements owned by the view",
             "itemtype": "method",
             "name": "$",
@@ -1823,7 +1823,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 410,
+            "line": 406,
             "description": "Attaches the view to an element. This is mostly used for the main view.",
             "itemtype": "method",
             "name": "attach",
@@ -1840,14 +1840,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 430,
+            "line": 426,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 438,
+            "line": 434,
             "description": "Sort of a mix-in for the view. This is how `sections`, and `events` are added.",
             "itemtype": "method",
             "name": "decorate",
@@ -1867,7 +1867,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 467,
+            "line": 463,
             "description": "Bubbles an event up to the root view",
             "itemtype": "method",
             "name": "bubble",
@@ -1889,49 +1889,49 @@
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 479,
+            "line": 475,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 501,
+            "line": 497,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 511,
+            "line": 507,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/base/index.js",
-            "line": 522,
+            "line": 518,
             "class": "BaseView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 27,
+            "line": 75,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 47,
+            "line": 95,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 52,
+            "line": 100,
             "description": "Number of items to asyncronously add to the list (optimization).",
             "itemtype": "property",
             "name": "chunk",
@@ -1941,7 +1941,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 59,
+            "line": 107,
             "description": "Delay between adding chunked items to the list (optimization).",
             "itemtype": "property",
             "name": "delay",
@@ -1951,7 +1951,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 66,
+            "line": 114,
             "description": "make sure decorations don't get activated for this view",
             "class": "ListView",
             "module": "mojo",
@@ -1959,21 +1959,21 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 72,
+            "line": 120,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 77,
+            "line": 125,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 82,
+            "line": 130,
             "description": "The filter method for the list view",
             "itemtype": "method",
             "name": "filter",
@@ -1990,7 +1990,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 90,
+            "line": 138,
             "description": "The sort method for the list",
             "itemtype": "method",
             "name": "sort",
@@ -2012,7 +2012,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 99,
+            "line": 147,
             "description": "Maps model data before setting to the instantiated list item view",
             "itemtype": "method",
             "name": "map",
@@ -2033,7 +2033,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 108,
+            "line": 156,
             "description": "The size of the list view",
             "itemtype": "property",
             "name": "length",
@@ -2044,7 +2044,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 116,
+            "line": 164,
             "description": "The model view factory for creating each list item",
             "itemtype": "property",
             "name": "modelViewFactory",
@@ -2054,7 +2054,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 123,
+            "line": 171,
             "description": "The model view class for each list item. Use this or `modelViewFactory`.",
             "itemtype": "property",
             "name": "modelViewClass",
@@ -2065,7 +2065,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 131,
+            "line": 179,
             "description": "DEPRECATED",
             "class": "ListView",
             "module": "mojo",
@@ -2073,7 +2073,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 137,
+            "line": 185,
             "description": "The collection of models to use. Each model is assigned as `model` to each instantiated `modelViewClass`.",
             "itemtype": "property",
             "name": "source",
@@ -2084,140 +2084,140 @@
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 146,
+            "line": 194,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 175,
+            "line": 223,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 199,
+            "line": 247,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 239,
+            "line": 287,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 246,
+            "line": 294,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 259,
+            "line": 307,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 267,
+            "line": 315,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 306,
+            "line": 354,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 316,
+            "line": 364,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 324,
+            "line": 372,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 331,
+            "line": 379,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 370,
+            "line": 418,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 384,
+            "line": 432,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 425,
+            "line": 473,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 436,
+            "line": 484,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 450,
+            "line": 498,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 479,
+            "line": 527,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 487,
+            "line": 535,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 501,
+            "line": 549,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/list/index.js",
-            "line": 512,
+            "line": 560,
             "class": "ListView",
             "module": "mojo",
             "submodule": "mojo-views"
@@ -3050,7 +3050,7 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " packages/mojo.js/lib/views/base/index.js:438"
+            "line": " packages/mojo.js/lib/views/base/index.js:434"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -3186,143 +3186,143 @@
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:241"
+            "line": " packages/mojo.js/lib/views/base/index.js:237"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:246"
+            "line": " packages/mojo.js/lib/views/base/index.js:242"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:266"
+            "line": " packages/mojo.js/lib/views/base/index.js:262"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:300"
+            "line": " packages/mojo.js/lib/views/base/index.js:296"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:430"
+            "line": " packages/mojo.js/lib/views/base/index.js:426"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:479"
+            "line": " packages/mojo.js/lib/views/base/index.js:475"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:501"
+            "line": " packages/mojo.js/lib/views/base/index.js:497"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:511"
+            "line": " packages/mojo.js/lib/views/base/index.js:507"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/base/index.js:522"
+            "line": " packages/mojo.js/lib/views/base/index.js:518"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:27"
+            "line": " packages/mojo.js/lib/views/list/index.js:75"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:47"
+            "line": " packages/mojo.js/lib/views/list/index.js:95"
         },
         {
             "message": "Missing item type\nmake sure decorations don't get activated for this view",
-            "line": " packages/mojo.js/lib/views/list/index.js:66"
+            "line": " packages/mojo.js/lib/views/list/index.js:114"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:72"
+            "line": " packages/mojo.js/lib/views/list/index.js:120"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:77"
+            "line": " packages/mojo.js/lib/views/list/index.js:125"
         },
         {
             "message": "Missing item type\nDEPRECATED",
-            "line": " packages/mojo.js/lib/views/list/index.js:131"
+            "line": " packages/mojo.js/lib/views/list/index.js:179"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:146"
+            "line": " packages/mojo.js/lib/views/list/index.js:194"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:175"
+            "line": " packages/mojo.js/lib/views/list/index.js:223"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:199"
+            "line": " packages/mojo.js/lib/views/list/index.js:247"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:239"
+            "line": " packages/mojo.js/lib/views/list/index.js:287"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:246"
+            "line": " packages/mojo.js/lib/views/list/index.js:294"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:259"
+            "line": " packages/mojo.js/lib/views/list/index.js:307"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:267"
+            "line": " packages/mojo.js/lib/views/list/index.js:315"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:306"
+            "line": " packages/mojo.js/lib/views/list/index.js:354"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:316"
+            "line": " packages/mojo.js/lib/views/list/index.js:364"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:324"
+            "line": " packages/mojo.js/lib/views/list/index.js:372"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:331"
+            "line": " packages/mojo.js/lib/views/list/index.js:379"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:370"
+            "line": " packages/mojo.js/lib/views/list/index.js:418"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:384"
+            "line": " packages/mojo.js/lib/views/list/index.js:432"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:425"
+            "line": " packages/mojo.js/lib/views/list/index.js:473"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:436"
+            "line": " packages/mojo.js/lib/views/list/index.js:484"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:450"
+            "line": " packages/mojo.js/lib/views/list/index.js:498"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:479"
+            "line": " packages/mojo.js/lib/views/list/index.js:527"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:487"
+            "line": " packages/mojo.js/lib/views/list/index.js:535"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:501"
+            "line": " packages/mojo.js/lib/views/list/index.js:549"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/list/index.js:512"
+            "line": " packages/mojo.js/lib/views/list/index.js:560"
         },
         {
             "message": "Missing item type\nprevent states from being decorated",

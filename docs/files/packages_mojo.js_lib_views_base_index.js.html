@@ -143,7 +143,7 @@ var protoclass   = require(&quot;protoclass&quot;),
 loaf             = require(&quot;loaf&quot;),
 SubindableObject = require(&quot;subindable&quot;).Object,
 janitor          = require(&quot;janitorjs&quot;),
-runlater         = require(&quot;runlater&quot;).global,
+runlater         = require(&quot;runlater&quot;)(1, 100),
 _                = require(&quot;underscore&quot;),
 decor            = require(&quot;../../plugins/decor&quot;),
 generateId       = require(&quot;../../utils/idGenerator&quot;);
@@ -337,10 +337,6 @@ var MainView = mojo.View.extend({
 Here&#x27;s what you get:
 
 &lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/64/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-
-
-TODO
-
 
 
 @class BaseView
