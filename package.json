@@ -4,7 +4,8 @@
   "description": "mojo-docs =========",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "doc": "docs"
   },
   "dependencies": {
-    "yuidocjs": "~0.3.48"
+    "yuidocjs": "~0.3.48",
+    "express": "~3.4.8"
   }
 }
