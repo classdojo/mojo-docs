@@ -339,8 +339,7 @@ hello.pc:
 <code>&#x60;</code>mustache
 hello  \{{name}}!
 <code>&#x60;</code>
-Here's what you get:
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/59/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Here's what you get: http://jsfiddle.net/BZA8K/59
 ## Sections Decorator
 The sections decorator allows you to easily define sub-views to your view. Here's a basic example:
 <code>&#x60;</code>javascript
@@ -354,7 +353,7 @@ var MainView = mojo.View.extend({
     }
 });
 <code>&#x60;</code>
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/60/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+http://jsfiddle.net/BZA8K/60 <br />
 Note that you can also use registered components for each section, like so:
 <code>&#x60;</code>javascript
 //setup model data for the contacts view
@@ -380,8 +379,7 @@ var ContactsView = mojo.View.extend({
   }
 });
 <code>&#x60;</code>
-The above example creates a list of contacts. Here's what you get:
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/61/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+The above example creates a list of contacts. Here's what you get: http://jsfiddle.net/BZA8K/61 <br />
 <p>You'll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a <code>states</code>, and <code>list</code> component. See
 <code>ListView</code>, and <code>StatesView</code> for further documentation.</p>
 If you want to use your own custom component, you can do so by registering it to the application. For example:
@@ -403,8 +401,7 @@ app.viewClasses.add("hello", HelloView);
 app.viewClasses.add("main", MainView);
 app.viewClasses.create("main").attach($("#application"));
 <code>&#x60;</code>
-Here's what you get:
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/62/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Here's what you get: http://jsfiddle.net/BZA8K/62 <br />
 ## Property Scope
 By default, sections inherit properties from their parent. Here's a basic example:
 <code>&#x60;</code>javascript
@@ -419,7 +416,7 @@ var MainView = mojo.View.extend({
   }
 });
 <code>&#x60;</code>
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/63/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Result: http://jsfiddle.net/BZA8K/63 <br /> <br />
 Note that since <code>name</code> is not defined in <code>HelloView</code>, it's being inherited from <code>MainView</code>. You can easily break inheritance by defining <code>name</code> in <code>HelloView</code>, like so:
 <code>&#x60;</code>javascript
 var HelloView = mojo.View.extend({
@@ -434,8 +431,7 @@ var MainView = mojo.View.extend({
   }
 });
 <code>&#x60;</code>
-Here's what you get:
-<iframe width="100%" height="200" src="http://jsfiddle.net/BZA8K/64/embedded/result,js,html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+Here's what you get: http://jsfiddle.net/BZA8K/64
                     </div>
                 </li>
             

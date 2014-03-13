@@ -197,10 +197,8 @@ hello.pc:
 hello  \{{name}}!
 &#x60;&#x60;&#x60;
 
-Here&#x27;s what you get:
+Here&#x27;s what you get: http://jsfiddle.net/BZA8K/59
 
-
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/59/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 ## Sections Decorator
 
@@ -221,7 +219,7 @@ var MainView = mojo.View.extend({
 
 &#x60;&#x60;&#x60;
 
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/60/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+http://jsfiddle.net/BZA8K/60 &lt;br /&gt;
 
 Note that you can also use registered components for each section, like so:
 
@@ -257,9 +255,8 @@ var ContactsView = mojo.View.extend({
 
 &#x60;&#x60;&#x60;
 
-The above example creates a list of contacts. Here&#x27;s what you get:
+The above example creates a list of contacts. Here&#x27;s what you get: http://jsfiddle.net/BZA8K/61 &lt;br /&gt;
 
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/61/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;You&#x27;ll notice that the properties of each section are passed directly to the component you want to use. By default, Mojo comes with a &#x60;states&#x60;, and &#x60;list&#x60; component. See
 &#x60;ListView&#x60;, and &#x60;StatesView&#x60; for further documentation.&lt;/p&gt;
@@ -290,10 +287,7 @@ app.viewClasses.add(&quot;main&quot;, MainView);
 app.viewClasses.create(&quot;main&quot;).attach($(&quot;#application&quot;));
 &#x60;&#x60;&#x60;
 
-Here&#x27;s what you get:
-
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/62/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-
+Here&#x27;s what you get: http://jsfiddle.net/BZA8K/62 &lt;br /&gt;
 
 ## Property Scope
 
@@ -313,8 +307,7 @@ var MainView = mojo.View.extend({
   }
 });
 &#x60;&#x60;&#x60;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/63/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+Result: http://jsfiddle.net/BZA8K/63 &lt;br /&gt; &lt;br /&gt;
 
 Note that since &#x60;name&#x60; is not defined in &#x60;HelloView&#x60;, it&#x27;s being inherited from &#x60;MainView&#x60;. You can easily break inheritance by defining &#x60;name&#x60; in &#x60;HelloView&#x60;, like so:
 
@@ -334,9 +327,8 @@ var MainView = mojo.View.extend({
 });
 &#x60;&#x60;&#x60;
 
-Here&#x27;s what you get:
+Here&#x27;s what you get: http://jsfiddle.net/BZA8K/64
 
-&lt;iframe width=&quot;100%&quot; height=&quot;200&quot; src=&quot;http://jsfiddle.net/BZA8K/64/embedded/result,js,html&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 
 
 @class BaseView
