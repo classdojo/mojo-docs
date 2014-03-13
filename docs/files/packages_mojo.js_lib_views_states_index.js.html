@@ -152,10 +152,12 @@ flatstack    = require(&quot;flatstack&quot;);
  */
 
 /**
- * States View. This is usually defined in &#x60;{ sections: { pages: { type: &#x27;states&#x27;}} }&#x60;
- * @class StateView
- * @extends BaseView
- */
+
+TODO
+
+@class StateView
+@extends BaseView
+*/
 
 function StateView (data, application) {
   BaseView.call(this, data, application);
@@ -191,20 +193,20 @@ protoclass(BaseView, StateView, {
      * @property currentName
      */
 
-    &quot;currentName&quot;, 
+    &quot;currentName&quot;,
 
     /**
      * current state index
      * @property index
      */
 
-    &quot;index&quot;, 
+    &quot;index&quot;,
 
     /**
      * TODO - change this to &#x27;states&#x27;
      */
 
-    &quot;source&quot;, 
+    &quot;source&quot;,
 
     /**
      * The current view being displayed
@@ -212,10 +214,10 @@ protoclass(BaseView, StateView, {
      * @type {BaseView}
      */
 
-    &quot;currentView&quot;, 
+    &quot;currentView&quot;,
 
-    &quot;rotate&quot;, 
-    &quot;ended&quot;, 
+    &quot;rotate&quot;,
+    &quot;ended&quot;,
 
     /**
      * The collection of view classes to use
@@ -235,7 +237,7 @@ protoclass(BaseView, StateView, {
    */
 
   initialize: function (data) {
-    this.source = new bindable.Collection();    
+    this.source = new bindable.Collection();
     BaseView.prototype.initialize.call(this, data);
     this._q = flatstack();
 
@@ -285,7 +287,7 @@ protoclass(BaseView, StateView, {
   /**
    * Selects a specific index
    * @method select
-   * @param {Number} stateOrIndex 
+   * @param {Number} stateOrIndex
    */
 
   select: function (stateOrIndex) {
@@ -370,7 +372,7 @@ protoclass(BaseView, StateView, {
    */
 
   update: function () {
-    if (!this.source.length) return;  
+    if (!this.source.length) return;
 
     var self = this;
 
@@ -398,7 +400,7 @@ protoclass(BaseView, StateView, {
 
     function onTransition () {
       if (os &amp;&amp; os !== cs) os.removeLater();
-      
+
       self.set(&quot;currentView&quot;, newStateView);
     }
 
@@ -415,6 +417,7 @@ protoclass(BaseView, StateView, {
 
 
 module.exports = StateView;
+
     </pre>
 </div>
 

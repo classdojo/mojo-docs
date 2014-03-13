@@ -479,7 +479,7 @@
             "namespace": "",
             "file": "packages/mojo.js/lib/views/states/index.js",
             "line": 13,
-            "description": "States View. This is usually defined in `{ sections: { pages: { type: 'states'}} }`",
+            "description": "TODO",
             "extends": "BaseView"
         },
         "Animator": {
@@ -2224,7 +2224,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 26,
+            "line": 28,
             "description": "prevent states from being decorated",
             "class": "StateView",
             "module": "mojo",
@@ -2232,7 +2232,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 32,
+            "line": 34,
             "description": "Transitions from one state to another",
             "params": [
                 {
@@ -2257,14 +2257,14 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 43,
+            "line": 45,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 48,
+            "line": 50,
             "description": "current state name",
             "itemtype": "property",
             "name": "currentName",
@@ -2274,7 +2274,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 55,
+            "line": 57,
             "description": "current state index",
             "itemtype": "property",
             "name": "index",
@@ -2284,7 +2284,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 62,
+            "line": 64,
             "description": "TODO - change this to 'states'",
             "class": "StateView",
             "module": "mojo",
@@ -2292,7 +2292,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 68,
+            "line": 70,
             "description": "The current view being displayed",
             "itemtype": "property",
             "name": "currentView",
@@ -2303,7 +2303,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 79,
+            "line": 81,
             "description": "The collection of view classes to use",
             "itemtype": "property",
             "name": "views",
@@ -2314,42 +2314,42 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 88,
+            "line": 90,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 93,
+            "line": 95,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 107,
+            "line": 109,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 121,
+            "line": 123,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 130,
+            "line": 132,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 144,
+            "line": 146,
             "description": "Selects a specific index",
             "itemtype": "method",
             "name": "select",
@@ -2366,7 +2366,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 161,
+            "line": 163,
             "description": "moves to the next state",
             "itemtype": "method",
             "name": "next",
@@ -2376,7 +2376,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 170,
+            "line": 172,
             "description": "moves to the previous state",
             "itemtype": "method",
             "name": "prev",
@@ -2386,7 +2386,7 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 179,
+            "line": 181,
             "description": "moves to a specific state index",
             "itemtype": "method",
             "name": "move",
@@ -2402,21 +2402,21 @@
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 207,
+            "line": 209,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 221,
+            "line": 223,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
         },
         {
             "file": "packages/mojo.js/lib/views/states/index.js",
-            "line": 228,
+            "line": 230,
             "class": "StateView",
             "module": "mojo",
             "submodule": "mojo-views"
@@ -3326,51 +3326,51 @@
         },
         {
             "message": "Missing item type\nprevent states from being decorated",
-            "line": " packages/mojo.js/lib/views/states/index.js:26"
+            "line": " packages/mojo.js/lib/views/states/index.js:28"
         },
         {
             "message": "Missing item type\nTransitions from one state to another",
-            "line": " packages/mojo.js/lib/views/states/index.js:32"
+            "line": " packages/mojo.js/lib/views/states/index.js:34"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:43"
+            "line": " packages/mojo.js/lib/views/states/index.js:45"
         },
         {
             "message": "Missing item type\nTODO - change this to 'states'",
-            "line": " packages/mojo.js/lib/views/states/index.js:62"
+            "line": " packages/mojo.js/lib/views/states/index.js:64"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:88"
+            "line": " packages/mojo.js/lib/views/states/index.js:90"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:93"
+            "line": " packages/mojo.js/lib/views/states/index.js:95"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:107"
+            "line": " packages/mojo.js/lib/views/states/index.js:109"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:121"
+            "line": " packages/mojo.js/lib/views/states/index.js:123"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:130"
+            "line": " packages/mojo.js/lib/views/states/index.js:132"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:207"
+            "line": " packages/mojo.js/lib/views/states/index.js:209"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:221"
+            "line": " packages/mojo.js/lib/views/states/index.js:223"
         },
         {
             "message": "Missing item type",
-            "line": " packages/mojo.js/lib/views/states/index.js:228"
+            "line": " packages/mojo.js/lib/views/states/index.js:230"
         },
         {
             "message": "Missing item type",
