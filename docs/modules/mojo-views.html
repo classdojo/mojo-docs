@@ -232,6 +232,31 @@ app.viewClasses.add("hello", HelloView);
 app.viewClasses.add("main", MainView);
 app.viewClasses.create("main").attach($("#application"));</code></pre>
 <p>Here&#39;s what you get: <a href="http://jsfiddle.net/BZA8K/62">http://jsfiddle.net/BZA8K/62</a> <br /></p>
+<h2 id="bindings-decorator">Bindings Decorator</h2>
+<p>The bindings decorator provides a convenient way of data-binding properties together. This is also how you create <strong>computed properties</strong>
+a view controller. Here&#39;s an example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var MainView = mojo.View.extend({
+  paper: paperclip.compile("main"),
+  bindings: {
+    // easily compute two properties together
+    "firstName, lastName": {
+      "fullName": {
+        "map": function (firstName, lastName) {
+          return firstName + " " + lastName;
+        }
+      }
+    },
+    // bind "fullName" to "fullName2" on the view controller. This
+    // is especially useful when accessing properties from the application model locator
+    "fullName":"fullName2",
+    // bind a property to a function
+    "fullName2": function (fullName) {
+        console.log("fullName: ", fullName);
+    }
+  }
+})
+new MainView({ firstName: "Jon", lastName: "Anderson" });</code></pre>
+<p>Here&#39;s what you get: <a href="http://jsfiddle.net/BZA8K/67/">http://jsfiddle.net/BZA8K/67/</a></p>
 <h2 id="property-scope">Property Scope</h2>
 <p>By default, sections inherit properties from their parent. Here&#39;s a basic example:</p>
 <pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({

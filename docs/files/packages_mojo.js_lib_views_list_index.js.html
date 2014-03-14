@@ -414,6 +414,10 @@ protoclass(BaseView, ListView, {
 
     if (!source) return;
 
+    if (!source.__isBindableCollection) {
+      throw new Error(&quot;source must be a bindable Collection for &quot; + this.path());
+    }
+
     // listen to the source for any changes
     j.
       add(source.on(&quot;insert&quot;, this._onInsertModel)).
@@ -468,11 +472,16 @@ protoclass(BaseView, ListView, {
         model = this._map(model);
       }
 
+      if (!model.__isBindable) {
+        throw new Error(&quot;source must contain bindable objects for &quot; + this.path());
+      }
+
       this._sjanitor.add(this._watchModelChanges(model));
 
       if (this._filter &amp;&amp; !this._filter(model, this)) {
         continue;
       }
+
       modelsToInsert.push(model);
 
       // uneccessary overhead calling .get()

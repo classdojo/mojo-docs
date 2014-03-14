@@ -290,6 +290,42 @@ app.viewClasses.create(&quot;main&quot;).attach($(&quot;#application&quot;));
 
 Here&#x27;s what you get: http://jsfiddle.net/BZA8K/62 &lt;br /&gt;
 
+## Bindings Decorator
+
+The bindings decorator provides a convenient way of data-binding properties together. This is also how you create **computed properties**
+a view controller. Here&#x27;s an example:
+
+&#x60;&#x60;&#x60;javascript
+var MainView = mojo.View.extend({
+  paper: paperclip.compile(&quot;main&quot;),
+  bindings: {
+
+    // easily compute two properties together
+    &quot;firstName, lastName&quot;: {
+      &quot;fullName&quot;: {
+        &quot;map&quot;: function (firstName, lastName) {
+          return firstName + &quot; &quot; + lastName;
+        }
+      }
+    },
+
+    // bind &quot;fullName&quot; to &quot;fullName2&quot; on the view controller. This
+    // is especially useful when accessing properties from the application model locator
+    &quot;fullName&quot;:&quot;fullName2&quot;,
+
+    // bind a property to a function
+    &quot;fullName2&quot;: function (fullName) {
+        console.log(&quot;fullName: &quot;, fullName);
+    }
+  }
+})
+
+
+new MainView({ firstName: &quot;Jon&quot;, lastName: &quot;Anderson&quot; });
+&#x60;&#x60;&#x60;
+
+Here&#x27;s what you get: http://jsfiddle.net/BZA8K/67/
+
 ## Property Scope
 
 By default, sections inherit properties from their parent. Here&#x27;s a basic example:

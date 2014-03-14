@@ -243,6 +243,31 @@ app.viewClasses.add("hello", HelloView);
 app.viewClasses.add("main", MainView);
 app.viewClasses.create("main").attach($("#application"));</code></pre>
 <p>Here&#39;s what you get: <a href="http://jsfiddle.net/BZA8K/62">http://jsfiddle.net/BZA8K/62</a> <br /></p>
+<h2 id="bindings-decorator">Bindings Decorator</h2>
+<p>The bindings decorator provides a convenient way of data-binding properties together. This is also how you create <strong>computed properties</strong>
+a view controller. Here&#39;s an example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var MainView = mojo.View.extend({
+  paper: paperclip.compile("main"),
+  bindings: {
+    // easily compute two properties together
+    "firstName, lastName": {
+      "fullName": {
+        "map": function (firstName, lastName) {
+          return firstName + " " + lastName;
+        }
+      }
+    },
+    // bind "fullName" to "fullName2" on the view controller. This
+    // is especially useful when accessing properties from the application model locator
+    "fullName":"fullName2",
+    // bind a property to a function
+    "fullName2": function (fullName) {
+        console.log("fullName: ", fullName);
+    }
+  }
+})
+new MainView({ firstName: "Jon", lastName: "Anderson" });</code></pre>
+<p>Here&#39;s what you get: <a href="http://jsfiddle.net/BZA8K/67/">http://jsfiddle.net/BZA8K/67/</a></p>
 <h2 id="property-scope">Property Scope</h2>
 <p>By default, sections inherit properties from their parent. Here&#39;s a basic example:</p>
 <pre class="code prettyprint"><code class="lang-javascript">var HelloView = mojo.View.extend({
@@ -612,7 +637,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l382"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:382</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l418"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:418</code></a>
         
         </p>
 
@@ -692,7 +717,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l357"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:357</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l393"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:393</code></a>
         
         </p>
 
@@ -757,7 +782,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l400"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:400</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l436"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:436</code></a>
         
         </p>
 
@@ -998,7 +1023,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l457"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:457</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l493"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:493</code></a>
         
         </p>
 
@@ -1211,7 +1236,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l428"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:428</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l464"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:464</code></a>
         
         </p>
 
@@ -1313,7 +1338,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l241"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:241</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l277"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:277</code></a>
         
         </p>
 
@@ -1834,7 +1859,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l274"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:274</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l310"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:310</code></a>
         
         </p>
 
@@ -2337,7 +2362,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l316"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:316</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l352"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:352</code></a>
         
         </p>
 
@@ -2392,7 +2417,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l367"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:367</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l403"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:403</code></a>
         
         </p>
 
@@ -2537,7 +2562,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l332"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:332</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l368"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:368</code></a>
         
         </p>
 
@@ -2847,7 +2872,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l215"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:215</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l251"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:251</code></a>
         
         </p>
 
@@ -2934,7 +2959,7 @@ var MainView = mojo.View.extend({
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l303"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:303</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l339"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:339</code></a>
         
         </p>
 
@@ -3204,7 +3229,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l204"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:204</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l240"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:240</code></a>
         
         </p>
 
@@ -3248,7 +3273,7 @@ when the object is no-longer needed.</p>
             
         
         
-        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l199"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:199</code></a>
+        <a href="../files/packages_mojo.js_lib_views_base_index.js.html#l235"><code>packages&#x2F;mojo.js&#x2F;lib&#x2F;views&#x2F;base&#x2F;index.js:235</code></a>
         
         </p>
 
